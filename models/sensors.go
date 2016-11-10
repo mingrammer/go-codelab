@@ -33,7 +33,7 @@ func (s GyroSensor) String() string {
 	st = fmt.Sprintf("Angle Velocity of Y-axis : %f", s.AngleVelocityY)
 	result = append(result, st)
 
-	st = fmt.Sprintf("Anglue Velocity of Z-axis : %f", s.AngleVelocityZ)
+	st = fmt.Sprintf("Anglue Velocity of Z-axis : %f\n", s.AngleVelocityZ)
 	result = append(result, st)
 
 	return strings.Join(result, "\n")
@@ -59,7 +59,7 @@ func (s AccelSensor) String() string {
 	st = fmt.Sprintf("Gravitational Velocity of Y-axis : %f", s.GravityAccY)
 	result = append(result, st)
 
-	st = fmt.Sprintf("Gravitational Velocity of Z-axis : %f", s.GravityAccZ)
+	st = fmt.Sprintf("Gravitational Velocity of Z-axis : %f\n", s.GravityAccZ)
 	result = append(result, st)
 
 	return strings.Join(result, "\n")
@@ -81,7 +81,7 @@ func (s TempSensor) String() string {
 	st = fmt.Sprintf("Temperature : %f", s.Temperature)
 	result = append(result, st)
 
-	st = fmt.Sprintf("Humidity : %f", s.Humidity)
+	st = fmt.Sprintf("Humidity : %f\n", s.Humidity)
 	result = append(result, st)
 
 	return strings.Join(result, "\n")
