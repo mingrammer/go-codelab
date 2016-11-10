@@ -7,10 +7,10 @@ import (
 	"github.com/mingrammer/go-codelab/models"
 	"log"
 	"net/http"
-	"strings"
-	"time"
-	"sync"
 	"strconv"
+	"strings"
+	"sync"
+	"time"
 )
 
 func main() {
