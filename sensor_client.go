@@ -9,9 +9,14 @@ import (
 	"net/http"
 	"strings"
 	"time"
+	"sync"
 )
 
 func main() {
+	var wg sync.WaitGroup
+
+	wg.Add(3)
+
 	gyroTicker := time.NewTicker(500 * time.Millisecond)
 	accelTicker := time.NewTicker(500 * time.Millisecond)
 	tempTicker := time.NewTicker(2 * time.Second)
@@ -83,6 +88,8 @@ func main() {
 			}
 		}
 	}()
+
+	wg.Wait()
 }
 
 func getRequestServerUrl(port int) string {
