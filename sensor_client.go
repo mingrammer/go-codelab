@@ -10,6 +10,7 @@ import (
 	"strings"
 	"time"
 	"sync"
+	"strconv"
 )
 
 func main() {
@@ -93,7 +94,7 @@ func main() {
 }
 
 func getRequestServerUrl(port int) string {
-	urlComponents := []string{"http://127.0.0.1", string(port)}
+	urlComponents := []string{"http://127.0.0.1", strconv.Itoa(port)}
 
 	return strings.Join(urlComponents, ":")
 }
