@@ -8,8 +8,8 @@ import (
 	"log"
 	"net/http"
 	"strings"
-	"time"
 	"sync"
+	"time"
 )
 
 func main() {
