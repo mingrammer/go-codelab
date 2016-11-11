@@ -8,6 +8,14 @@ import (
 	"net/http"
 	"os"
 	"sync"
+	"strings"
+)
+
+const (
+	logDir = "log"
+	tempLog = "Temp.log"
+	accelLog = "Accel.log"
+	gyroLog = "Gyro.log"
 )
 
 type logContent struct {
@@ -15,21 +23,16 @@ type logContent struct {
 	location string
 }
 
-type logBuffer struct {
-	buffer chan logContent
-	mux    sync.Mutex
-}
-
 type TempHandler struct {
-	buf *logBuffer
+	buf chan logContent
 }
 
 type GyroHandler struct {
-	buf *logBuffer
+	buf chan logContent
 }
 
 type AccelHandler struct {
-	buf *logBuffer
+	buf chan logContent
 }
 
 func (m *TempHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
@@ -40,12 +43,9 @@ func (m *TempHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		fmt.Println("Somethink wrong")
 	}
-
 	defer req.Body.Close()
 
-	m.buf.mux.Lock()
-	m.buf.buffer <- logContent{content: fmt.Sprintf("%s", data), location: "Temp"}
-	defer m.buf.mux.Unlock()
+	m.buf <- logContent{content: fmt.Sprintf("%s", data), location: tempLog}
 }
 
 func (m *GyroHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
@@ -56,11 +56,9 @@ func (m *GyroHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		fmt.Println("Something wrong")
 	}
-
 	defer req.Body.Close()
-	m.buf.mux.Lock()
-	m.buf.buffer <- logContent{content: fmt.Sprintf("%s", data), location: "Gyro"}
-	defer m.buf.mux.Unlock()
+
+	m.buf <- logContent{content: fmt.Sprintf("%s", data), location: gyroLog}
 }
 
 func (m *AccelHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
@@ -71,43 +69,34 @@ func (m *AccelHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		fmt.Println("Something wrong")
 	}
-
 	defer req.Body.Close()
 
-	m.buf.mux.Lock()
-	m.buf.buffer <- logContent{content: fmt.Sprintf("%s", data), location: "Accel"}
-	defer m.buf.mux.Unlock()
+	m.buf <- logContent{content: fmt.Sprintf("%s", data), location: accelLog}
 }
 
-func (m *logBuffer) fileLogger() {
-	tempLog, tempErr := os.OpenFile("./log/Temp.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
-	gyroLog, gyroErr := os.OpenFile("./log/Gyro.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
-	accelLog, accelErr := os.OpenFile("./log/Accel.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+func fileLogger(m chan logContent) {
 
-	if tempErr != nil || gyroErr != nil || accelErr != nil {
-		fmt.Println("Error Opening File. See Below for Reason")
-		log.Fatal(tempErr)
-		log.Fatal(gyroErr)
-		log.Fatal(accelErr)
-	}
-
-	tempLogger := log.New(tempLog, "", log.LstdFlags)
-	gyroLogger := log.New(gyroLog, "", log.LstdFlags)
-	accelLogger := log.New(accelLog, "", log.LstdFlags)
-
-	defer tempLog.Close()
-	defer gyroLog.Close()
-	defer accelLog.Close()
-
-	for i := range m.buffer {
-		switch i.location {
-		case "Gyro":
-			gyroLogger.Printf("[GyroSensor Data Received]\n%s\n", i.content)
-		case "Accel":
-			accelLogger.Printf("[AccelSensor Data Received]\n%s\n", i.content)
-		case "Temp":
-			tempLogger.Printf("[TempSensor Data Received]\n%s\n", i.content)
+	for i := range m {
+		joinee := []string{logDir, i.location}
+		filePath := strings.Join(joinee, "/")
+		fileHandle, err := os.OpenFile(filePath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+		
+		if err != nil {
+			log.Fatal("Error Occured Opening File\n%s", err)
 		}
+
+		logger := log.New(fileHandle, "", log.LstdFlags)
+
+		switch i.location {
+		case gyroLog:
+			logger.Printf("[GyroSensor Data Received]\n%s\n", i.content)
+		case accelLog:
+			logger.Printf("[AccelSensor Data Received]\n%s\n", i.content)
+		case tempLog:
+			logger.Printf("[TempSensor Data Received]\n%s\n", i.content)
+		}
+		
+		defer fileHandle.Close()
 	}
 }
 
@@ -116,7 +105,7 @@ func main() {
 
 	wg.Add(4)
 
-	logBuf := &logBuffer{buffer: make(chan logContent)}
+	logBuf := make(chan logContent)
 	gyroHander := &GyroHandler{buf: logBuf}
 	accelHandler := &AccelHandler{buf: logBuf}
 	tempHandler := &TempHandler{buf: logBuf}
@@ -124,7 +113,7 @@ func main() {
 	go http.ListenAndServe(":8001", gyroHander)
 	go http.ListenAndServe(":8002", accelHandler)
 	go http.ListenAndServe(":8003", tempHandler)
-	go logBuf.fileLogger()
+	go fileLogger(logBuf)
 
 	wg.Wait()
 }
