@@ -7,15 +7,15 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"sync"
 	"strings"
+	"sync"
 )
 
 const (
-	logDir = "log"
-	tempLog = "Temp.log"
+	logDir   = "log"
+	tempLog  = "Temp.log"
 	accelLog = "Accel.log"
-	gyroLog = "Gyro.log"
+	gyroLog  = "Gyro.log"
 )
 
 type logContent struct {
@@ -80,7 +80,7 @@ func fileLogger(m chan logContent) {
 		joinee := []string{logDir, i.location}
 		filePath := strings.Join(joinee, "/")
 		fileHandle, err := os.OpenFile(filePath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
-		
+
 		if err != nil {
 			log.Fatal("Error Occured Opening File\n%s", err)
 		}
@@ -95,7 +95,7 @@ func fileLogger(m chan logContent) {
 		case tempLog:
 			logger.Printf("[TempSensor Data Received]\n%s\n", i.content)
 		}
-		
+
 		defer fileHandle.Close()
 	}
 }
