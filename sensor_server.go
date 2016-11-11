@@ -2,17 +2,17 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/mingrammer/go-codelab/models"
 	"fmt"
-	"net/http"
-	"sync"
+	"github.com/mingrammer/go-codelab/models"
 	"log"
+	"net/http"
 	"os"
+	"sync"
 )
 
 type logBuffer struct {
 	buffer chan interface{}
-	mux sync.Mutex
+	mux    sync.Mutex
 }
 
 type TempHandler struct {
@@ -31,7 +31,7 @@ func (m *TempHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	var data models.TempSensor
 
 	fileHandle, err := os.OpenFile("./log/Temp.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
-	
+
 	if err != nil {
 		fmt.Println(err)
 		log.Fatal("Error Opening Temp.log")
@@ -87,7 +87,7 @@ func (m *AccelHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	var data models.AccelSensor
 
 	fileHandle, err := os.OpenFile("./log/Accel.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
-	
+
 	if err != nil {
 		fmt.Println(err)
 		log.Fatal("Error Opening Accel.log")
@@ -113,7 +113,7 @@ func (m *AccelHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 
 }
 
-func fileLogger(buf *logBuffer){
+func fileLogger(buf *logBuffer) {
 	for i := range buf.buffer {
 		fmt.Println("Locked at fileLogger")
 		switch v := i.(type) {
@@ -132,10 +132,10 @@ func main() {
 
 	wg.Add(4)
 
-	logBuf := &logBuffer{buffer : make(chan interface{})}
-	gyroHander := &GyroHandler{buf : logBuf}
-	accelHandler := &AccelHandler{buf : logBuf}
-	tempHandler := &TempHandler{buf : logBuf}
+	logBuf := &logBuffer{buffer: make(chan interface{})}
+	gyroHander := &GyroHandler{buf: logBuf}
+	accelHandler := &AccelHandler{buf: logBuf}
+	tempHandler := &TempHandler{buf: logBuf}
 
 	go http.ListenAndServe(":8001", gyroHander)
 	go http.ListenAndServe(":8002", accelHandler)

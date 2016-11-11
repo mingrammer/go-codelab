@@ -110,6 +110,5 @@ func sendJsonSensorData(url string, sensorValues interface{}) {
 	resp, err := http.Post(url, "application/json", buff)
 	if err != nil || resp.StatusCode != 200 {
 		log.Fatal("Error occurs when request the post data")
-
 	}
 }
