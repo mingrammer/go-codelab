@@ -10,8 +10,13 @@ import (
 	"os"
 )
 
+type logContent struct {
+	content string
+	location string
+}
+
 type logBuffer struct {
-	buffer chan interface{}
+	buffer chan logContent
 	mux sync.Mutex
 }
 
@@ -30,99 +35,79 @@ type AccelHandler struct {
 func (m *TempHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	var data models.TempSensor
 
-	fileHandle, err := os.OpenFile("./log/Temp.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
-	
-	if err != nil {
-		fmt.Println(err)
-		log.Fatal("Error Opening Temp.log")
-	}
-
-	// logger := log.New(fileHandle, "", log.LstdFlags)
-	defer fileHandle.Close()
-
 	decoder := json.NewDecoder(req.Body)
-	err = decoder.Decode(&data)
+	err := decoder.Decode(&data)
 	if err != nil {
 		fmt.Println("Somethink wrong")
 	}
 
 	defer req.Body.Close()
-	// log.Println("Temperature Data Incoming")
+
 	m.buf.mux.Lock()
+	m.buf.buffer <- logContent{content : fmt.Sprintf("%s", data), location:"Temp"}
 	defer m.buf.mux.Unlock()
-	fmt.Println("Locked at Temp")
-	m.buf.buffer <- data
-	fmt.Println("Allocated at Temp")
 }
 
 func (m *GyroHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	var data models.GyroSensor
 
-	fileHandle, err := os.OpenFile("./log/Gyro.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
-
-	if err != nil {
-		fmt.Println(err)
-		log.Fatal("Error Opening Gyro.log")
-	}
-
-	// logger := log.New(fileHandle, "", log.LstdFlags)
-	defer fileHandle.Close()
-
 	decoder := json.NewDecoder(req.Body)
-	err = decoder.Decode(&data)
+	err := decoder.Decode(&data)
 	if err != nil {
 		fmt.Println("Something wrong")
 	}
 
 	defer req.Body.Close()
-	// log.Println("Gyro Sensor Data Incoming")
 	m.buf.mux.Lock()
+	m.buf.buffer <- logContent{content : fmt.Sprintf("%s", data), location : "Gyro"}
 	defer m.buf.mux.Unlock()
-	fmt.Println("Locked at Gyro")
-	m.buf.buffer <- data
-	fmt.Println("Allocated at Gyro")
 }
 
 func (m *AccelHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	var data models.AccelSensor
 
-	fileHandle, err := os.OpenFile("./log/Accel.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
-	
-	if err != nil {
-		fmt.Println(err)
-		log.Fatal("Error Opening Accel.log")
-	}
-
-	// logger := log.New(fileHandle, "", log.LstdFlags)
-	defer fileHandle.Close()
-
 	decoder := json.NewDecoder(req.Body)
-	err = decoder.Decode(&data)
+	err := decoder.Decode(&data)
 	if err != nil {
 		fmt.Println("Something wrong")
 	}
 
 	defer req.Body.Close()
-	// log.Println("Accelorator Sensor Data Incoming")
 
 	m.buf.mux.Lock()
+	m.buf.buffer <- logContent{content: fmt.Sprintf("%s", data), location: "Accel"}
 	defer m.buf.mux.Unlock()
-	fmt.Println("Locked at Accel")
-	m.buf.buffer <- data
-	fmt.Println("Allocated at Accel")
-
 }
 
-func fileLogger(buf *logBuffer){
-	for i := range buf.buffer {
-		fmt.Println("Locked at fileLogger")
-		switch v := i.(type) {
-		case models.GyroSensor:
-			fmt.Println("[%s of %s Received]\n%s", v.Name, v.Type, v)
-		case models.AccelSensor:
-			fmt.Println("[%s of %s Received]\n%s", v.Name, v.Type, v)
-		case models.TempSensor:
-			fmt.Println("[%s of %s Received]\n%s", v.Name, v.Type, v)
+func (m *logBuffer) fileLogger(){
+	tempLog, tempErr := os.OpenFile("./log/Temp.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	gyroLog, gyroErr := os.OpenFile("./log/Gyro.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	accelLog, accelErr := os.OpenFile("./log/Accel.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+
+	if tempErr != nil || gyroErr != nil || accelErr != nil {
+		fmt.Println("Error Opening File. See Below for Reason")
+		log.Fatal(tempErr)
+		log.Fatal(gyroErr)
+		log.Fatal(accelErr)
+	}
+
+	tempLogger := log.New(tempLog, "", log.LstdFlags)
+	gyroLogger := log.New(gyroLog, "", log.LstdFlags)
+	accelLogger := log.New(accelLog, "", log.LstdFlags)
+
+	defer tempLog.Close()
+	defer gyroLog.Close()
+	defer accelLog.Close()
+
+	for i := range m.buffer {
+		switch i.location {
+		case "Gyro":
+			gyroLogger.Printf("[GyroSensor Data Received]\n%s\n", i.content)
+		case "Accel":
+			accelLogger.Printf("[AccelSensor Data Received]\n%s\n", i.content)
+		case "Temp":
+			tempLogger.Printf("[TempSensor Data Received]\n%s\n", i.content)
+
 		}
 	}
 }
@@ -132,7 +117,7 @@ func main() {
 
 	wg.Add(4)
 
-	logBuf := &logBuffer{buffer : make(chan interface{})}
+	logBuf := &logBuffer{buffer : make(chan logContent)}
 	gyroHander := &GyroHandler{buf : logBuf}
 	accelHandler := &AccelHandler{buf : logBuf}
 	tempHandler := &TempHandler{buf : logBuf}
@@ -140,7 +125,7 @@ func main() {
 	go http.ListenAndServe(":8001", gyroHander)
 	go http.ListenAndServe(":8002", accelHandler)
 	go http.ListenAndServe(":8003", tempHandler)
-	go fileLogger(logBuf)
+	go logBuf.fileLogger()
 
 	wg.Wait()
 }
