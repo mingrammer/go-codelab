@@ -9,7 +9,7 @@ Our example is that make the simple server and simple sensor device structures a
 ## Environments
 
 * OS Independent.
-* Go 1.4+. If possible, use the latest version because you are beginner of Go.
+* If possible, use the latest version because you are beginner of Go.
 
 ## Simple Overview
 
