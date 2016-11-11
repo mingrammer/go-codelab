@@ -1,9 +1,9 @@
 package models
 
 import (
-	"time"
 	"fmt"
 	"strings"
+	"time"
 )
 
 // Sensor has common fields for any sensors
@@ -16,9 +16,9 @@ type Sensor struct {
 // GyroSensor produces x-y-z axes angle velocity values
 type GyroSensor struct {
 	Sensor
-	AngleVelocityX float32 `json:"x_axis_angle_velocity"`
-	AngleVelocityY float32 `json:"y_axis_angle_velocity"`
-	AngleVelocityZ float32 `json:"z_axis_angle_velocity"`
+	AngleVelocityX float64 `json:"x_axis_angle_velocity"`
+	AngleVelocityY float64 `json:"y_axis_angle_velocity"`
+	AngleVelocityZ float64 `json:"z_axis_angle_velocity"`
 }
 
 func (s GyroSensor) String() string {
@@ -26,14 +26,14 @@ func (s GyroSensor) String() string {
 
 	st := fmt.Sprintf("Measured on %s", s.GenTime)
 	result = append(result, st)
-	
+
 	st = fmt.Sprintf("Angle Velocity of X-axis : %f", s.AngleVelocityX)
 	result = append(result, st)
 
 	st = fmt.Sprintf("Angle Velocity of Y-axis : %f", s.AngleVelocityY)
 	result = append(result, st)
 
-	st = fmt.Sprintf("Anglue Velocity of Z-axis : %f\n", s.AngleVelocityZ)
+	st = fmt.Sprintf("Angle Velocity of Z-axis : %f\n", s.AngleVelocityZ)
 	result = append(result, st)
 
 	return strings.Join(result, "\n")
@@ -42,9 +42,9 @@ func (s GyroSensor) String() string {
 // AccelSensor produces x-y-z axes gravity acceleration values
 type AccelSensor struct {
 	Sensor
-	GravityAccX float32 `json:"x_axis_gravity_acceleration"`
-	GravityAccY float32 `json:"y_axis_gravity_acceleration"`
-	GravityAccZ float32 `json:"z_axis_grativy_acceleration"`
+	GravityAccX float64 `json:"x_axis_gravity_acceleration"`
+	GravityAccY float64 `json:"y_axis_gravity_acceleration"`
+	GravityAccZ float64 `json:"z_axis_grativy_acceleration"`
 }
 
 func (s AccelSensor) String() string {
@@ -52,7 +52,7 @@ func (s AccelSensor) String() string {
 
 	st := fmt.Sprintf("Measured on %s", s.GenTime)
 	result = append(result, st)
-	
+
 	st = fmt.Sprintf("Gravitational Velocity of X-axis : %f", s.GravityAccX)
 	result = append(result, st)
 
@@ -68,8 +68,8 @@ func (s AccelSensor) String() string {
 // TempSensor produces temperature and humidity values
 type TempSensor struct {
 	Sensor
-	Temperature float32 `json:"temperature"`
-	Humidity    float32 `json:"humidity"`
+	Temperature float64 `json:"temperature"`
+	Humidity    float64 `json:"humidity"`
 }
 
 func (s TempSensor) String() string {
@@ -77,7 +77,7 @@ func (s TempSensor) String() string {
 
 	st := fmt.Sprintf("Measured on %s", s.GenTime)
 	result = append(result, st)
-	
+
 	st = fmt.Sprintf("Temperature : %f", s.Temperature)
 	result = append(result, st)
 
@@ -86,4 +86,3 @@ func (s TempSensor) String() string {
 
 	return strings.Join(result, "\n")
 }
-

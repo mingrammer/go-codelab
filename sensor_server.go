@@ -2,22 +2,22 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/mingrammer/go-codelab/models"
 	"fmt"
-	"net/http"
-	"sync"
+	"github.com/mingrammer/go-codelab/models"
 	"log"
+	"net/http"
 	"os"
+	"sync"
 )
 
 type logContent struct {
-	content string
+	content  string
 	location string
 }
 
 type logBuffer struct {
 	buffer chan logContent
-	mux sync.Mutex
+	mux    sync.Mutex
 }
 
 type TempHandler struct {
@@ -44,7 +44,7 @@ func (m *TempHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	defer req.Body.Close()
 
 	m.buf.mux.Lock()
-	m.buf.buffer <- logContent{content : fmt.Sprintf("%s", data), location:"Temp"}
+	m.buf.buffer <- logContent{content: fmt.Sprintf("%s", data), location: "Temp"}
 	defer m.buf.mux.Unlock()
 }
 
@@ -59,7 +59,7 @@ func (m *GyroHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 
 	defer req.Body.Close()
 	m.buf.mux.Lock()
-	m.buf.buffer <- logContent{content : fmt.Sprintf("%s", data), location : "Gyro"}
+	m.buf.buffer <- logContent{content: fmt.Sprintf("%s", data), location: "Gyro"}
 	defer m.buf.mux.Unlock()
 }
 
@@ -79,7 +79,7 @@ func (m *AccelHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	defer m.buf.mux.Unlock()
 }
 
-func (m *logBuffer) fileLogger(){
+func (m *logBuffer) fileLogger() {
 	tempLog, tempErr := os.OpenFile("./log/Temp.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	gyroLog, gyroErr := os.OpenFile("./log/Gyro.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	accelLog, accelErr := os.OpenFile("./log/Accel.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
@@ -107,7 +107,6 @@ func (m *logBuffer) fileLogger(){
 			accelLogger.Printf("[AccelSensor Data Received]\n%s\n", i.content)
 		case "Temp":
 			tempLogger.Printf("[TempSensor Data Received]\n%s\n", i.content)
-
 		}
 	}
 }
@@ -117,10 +116,10 @@ func main() {
 
 	wg.Add(4)
 
-	logBuf := &logBuffer{buffer : make(chan logContent)}
-	gyroHander := &GyroHandler{buf : logBuf}
-	accelHandler := &AccelHandler{buf : logBuf}
-	tempHandler := &TempHandler{buf : logBuf}
+	logBuf := &logBuffer{buffer: make(chan logContent)}
+	gyroHander := &GyroHandler{buf: logBuf}
+	accelHandler := &AccelHandler{buf: logBuf}
+	tempHandler := &TempHandler{buf: logBuf}
 
 	go http.ListenAndServe(":8001", gyroHander)
 	go http.ListenAndServe(":8002", accelHandler)
