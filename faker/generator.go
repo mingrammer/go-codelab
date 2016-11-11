@@ -8,10 +8,9 @@ import (
 func getRandValueInRange(rangeSize int, epsilon float64) float64 {
 	rand.Seed(time.Now().UTC().UnixNano())
 
-	minDataWithError := rand.Float64()*float64(rangeSize) - epsilon
-	maxDataWithError := rand.Float64()*float64(rangeSize) + epsilon
+	maxDataWithError := float64(rangeSize) + 2*epsilon
 
-	dataInRange := rand.Float64()*maxDataWithError + minDataWithError
+	dataInRange := rand.Float64()*maxDataWithError - epsilon
 
 	return dataInRange
 }
