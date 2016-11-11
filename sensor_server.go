@@ -31,7 +31,6 @@ func (m *TempHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	var data models.TempSensor
 
 	fileHandle, err := os.OpenFile("./log/Temp.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
-
 	if err != nil {
 		fmt.Println(err)
 		log.Fatal("Error Opening Temp.log")
@@ -59,7 +58,6 @@ func (m *GyroHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	var data models.GyroSensor
 
 	fileHandle, err := os.OpenFile("./log/Gyro.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
-
 	if err != nil {
 		fmt.Println(err)
 		log.Fatal("Error Opening Gyro.log")
@@ -87,7 +85,6 @@ func (m *AccelHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	var data models.AccelSensor
 
 	fileHandle, err := os.OpenFile("./log/Accel.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
-
 	if err != nil {
 		fmt.Println(err)
 		log.Fatal("Error Opening Accel.log")
