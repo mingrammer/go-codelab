@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"github.com/mingrammer/go-codelab/faker"
 	"github.com/mingrammer/go-codelab/models"
 	"log"
 	"net/http"
@@ -26,17 +27,18 @@ func main() {
 		for {
 			select {
 			case <-gyroTicker.C:
-				url := getRequestServerUrl(8001)
+				epsilon := 5.0
 				gyroSensorData := models.GyroSensor{
 					Sensor: models.Sensor{
 						Name:    "GyroSensor",
 						Type:    "VelocitySensor",
 						GenTime: time.Now(),
 					},
-					AngleVelocityX: 32.54,
-					AngleVelocityY: 35.12,
-					AngleVelocityZ: 61.23,
+					AngleVelocityX: faker.GenerateAngleVelocity(epsilon),
+					AngleVelocityY: faker.GenerateAngleVelocity(epsilon),
+					AngleVelocityZ: faker.GenerateAngleVelocity(epsilon),
 				}
+				url := getRequestServerUrl(8001)
 
 				fmt.Println(gyroSensorData)
 
@@ -49,17 +51,18 @@ func main() {
 		for {
 			select {
 			case <-accelTicker.C:
-				url := getRequestServerUrl(8002)
+				epsilon := 10.0
 				accelSensorData := models.AccelSensor{
 					Sensor: models.Sensor{
 						Name:    "AccelerometerSensor",
 						Type:    "VelocitySensor",
 						GenTime: time.Now(),
 					},
-					GravityAccX: 41.31,
-					GravityAccY: 81.36,
-					GravityAccZ: 46.19,
+					GravityAccX: faker.GenerateGravityAcceleration(epsilon),
+					GravityAccY: faker.GenerateGravityAcceleration(epsilon),
+					GravityAccZ: faker.GenerateGravityAcceleration(epsilon),
 				}
+				url := getRequestServerUrl(8002)
 
 				fmt.Println(accelSensorData)
 
@@ -72,16 +75,18 @@ func main() {
 		for {
 			select {
 			case <-tempTicker.C:
-				url := getRequestServerUrl(8003)
+				tempEpsilon := 2.0
+				humidityEpsilon := 1.5
 				tempSensorData := models.TempSensor{
 					Sensor: models.Sensor{
 						Name:    "TemperatureSensor",
 						Type:    "AtmosphericSensor",
 						GenTime: time.Now(),
 					},
-					Temperature: 84.13,
-					Humidity:    76.12,
+					Temperature: faker.GenerateTemperature(tempEpsilon),
+					Humidity:    faker.GenerateHumidity(humidityEpsilon),
 				}
+				url := getRequestServerUrl(8003)
 
 				fmt.Println(tempSensorData)
 
