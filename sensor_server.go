@@ -10,13 +10,21 @@ import (
 	"os"
 )
 
+type logBuffer struct {
+	buffer chan interface{}
+	mux sync.Mutex
+}
+
 type TempHandler struct {
+	buf *logBuffer
 }
 
 type GyroHandler struct {
+	buf *logBuffer
 }
 
 type AccelHandler struct {
+	buf *logBuffer
 }
 
 func (m *TempHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
@@ -29,7 +37,7 @@ func (m *TempHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 		log.Fatal("Error Opening Temp.log")
 	}
 
-	logger := log.New(fileHandle, "", log.LstdFlags)
+	// logger := log.New(fileHandle, "", log.LstdFlags)
 	defer fileHandle.Close()
 
 	decoder := json.NewDecoder(req.Body)
@@ -39,8 +47,12 @@ func (m *TempHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	}
 
 	defer req.Body.Close()
-	logger.Printf("[%s of %s Received]\n%s", data.Name, data.Type, data)
-	log.Println("Temperature Data Incoming")
+	// log.Println("Temperature Data Incoming")
+	m.buf.mux.Lock()
+	defer m.buf.mux.Unlock()
+	fmt.Println("Locked at Temp")
+	m.buf.buffer <- data
+	fmt.Println("Allocated at Temp")
 }
 
 func (m *GyroHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
@@ -53,7 +65,7 @@ func (m *GyroHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 		log.Fatal("Error Opening Gyro.log")
 	}
 
-	logger := log.New(fileHandle, "", log.LstdFlags)
+	// logger := log.New(fileHandle, "", log.LstdFlags)
 	defer fileHandle.Close()
 
 	decoder := json.NewDecoder(req.Body)
@@ -63,8 +75,12 @@ func (m *GyroHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	}
 
 	defer req.Body.Close()
-	logger.Printf("[%s of %s Received]\n%s", data.Name, data.Type, data)
-	log.Println("Gyro Sensor Data Incoming")
+	// log.Println("Gyro Sensor Data Incoming")
+	m.buf.mux.Lock()
+	defer m.buf.mux.Unlock()
+	fmt.Println("Locked at Gyro")
+	m.buf.buffer <- data
+	fmt.Println("Allocated at Gyro")
 }
 
 func (m *AccelHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
@@ -77,7 +93,7 @@ func (m *AccelHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 		log.Fatal("Error Opening Accel.log")
 	}
 
-	logger := log.New(fileHandle, "", log.LstdFlags)
+	// logger := log.New(fileHandle, "", log.LstdFlags)
 	defer fileHandle.Close()
 
 	decoder := json.NewDecoder(req.Body)
@@ -87,8 +103,28 @@ func (m *AccelHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	}
 
 	defer req.Body.Close()
-	logger.Printf("[%s of %s Received]\n%s", data.Name, data.Type, data)
-	log.Println("Accelorator Sensor Data Incoming")
+	// log.Println("Accelorator Sensor Data Incoming")
+
+	m.buf.mux.Lock()
+	defer m.buf.mux.Unlock()
+	fmt.Println("Locked at Accel")
+	m.buf.buffer <- data
+	fmt.Println("Allocated at Accel")
+
+}
+
+func fileLogger(buf *logBuffer){
+	for i := range buf.buffer {
+		fmt.Println("Locked at fileLogger")
+		switch v := i.(type) {
+		case models.GyroSensor:
+			fmt.Println("[%s of %s Received]\n%s", v.Name, v.Type, v)
+		case models.AccelSensor:
+			fmt.Println("[%s of %s Received]\n%s", v.Name, v.Type, v)
+		case models.TempSensor:
+			fmt.Println("[%s of %s Received]\n%s", v.Name, v.Type, v)
+		}
+	}
 }
 
 func main() {
@@ -96,14 +132,15 @@ func main() {
 
 	wg.Add(4)
 
-	gyroHander := &GyroHandler{}
-	accelHandler := &AccelHandler{}
-	tempHandler := &TempHandler{}
-	// buf := make(chan interface{})
+	logBuf := &logBuffer{buffer : make(chan interface{})}
+	gyroHander := &GyroHandler{buf : logBuf}
+	accelHandler := &AccelHandler{buf : logBuf}
+	tempHandler := &TempHandler{buf : logBuf}
 
 	go http.ListenAndServe(":8001", gyroHander)
 	go http.ListenAndServe(":8002", accelHandler)
 	go http.ListenAndServe(":8003", tempHandler)
+	go fileLogger(logBuf)
 
 	wg.Wait()
 }
