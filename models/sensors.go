@@ -1,9 +1,9 @@
 package models
 
 import (
-	"time"
 	"fmt"
 	"strings"
+	"time"
 )
 
 // Sensor has common fields for any sensors
@@ -26,14 +26,14 @@ func (s GyroSensor) String() string {
 
 	st := fmt.Sprintf("Measured on %s", s.GenTime)
 	result = append(result, st)
-	
+
 	st = fmt.Sprintf("Angle Velocity of X-axis : %f", s.AngleVelocityX)
 	result = append(result, st)
 
 	st = fmt.Sprintf("Angle Velocity of Y-axis : %f", s.AngleVelocityY)
 	result = append(result, st)
 
-	st = fmt.Sprintf("Anglue Velocity of Z-axis : %f\n", s.AngleVelocityZ)
+	st = fmt.Sprintf("Angle Velocity of Z-axis : %f\n", s.AngleVelocityZ)
 	result = append(result, st)
 
 	return strings.Join(result, "\n")
@@ -52,7 +52,7 @@ func (s AccelSensor) String() string {
 
 	st := fmt.Sprintf("Measured on %s", s.GenTime)
 	result = append(result, st)
-	
+
 	st = fmt.Sprintf("Gravitational Velocity of X-axis : %f", s.GravityAccX)
 	result = append(result, st)
 
@@ -77,7 +77,7 @@ func (s TempSensor) String() string {
 
 	st := fmt.Sprintf("Measured on %s", s.GenTime)
 	result = append(result, st)
-	
+
 	st = fmt.Sprintf("Temperature : %f", s.Temperature)
 	result = append(result, st)
 
@@ -86,4 +86,3 @@ func (s TempSensor) String() string {
 
 	return strings.Join(result, "\n")
 }
-
