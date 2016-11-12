@@ -19,12 +19,13 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/mingrammer/go-codelab/models"
 	"log"
 	"net/http"
 	"os"
 	"strings"
 	"sync"
+
+	"github.com/mingrammer/go-codelab/models"
 )
 
 // String constants that are used in sensor_server.go
@@ -155,8 +156,7 @@ func fileLogger(m <-chan logContent) {
 
 		logger := log.New(fileHandle, "", log.LstdFlags)
 
-		logger.Printf("[%s Data Received]\n%s\n",i.sensorName, i.content)
-
+		logger.Printf("[%s Data Received]\n%s\n", i.sensorName, i.content)
 
 		defer fileHandle.Close()
 	}
