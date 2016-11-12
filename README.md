@@ -35,4 +35,11 @@ The sensors send produced data to pipeline concurrently using goroutine, so pipe
 
 This is for beginner of Go language.
 
-If you finish this tutorial, you could get knowledges about 'Go application structure', 'How to work Go application with packages', 'Go struct model', 'Concurrency of Go', 'Handling the synchronization using Channel' and 'A way processing the bytes/encoding in Go'.
+If you finish this tutorial, you could get knowledges about 
+
+* 'Go application structure'
+* 'How to work Go application with packages'
+* 'Go struct model', 
+* 'Concurrency of Go',
+* 'Handling the synchronization using Channel' 
+* 'A way processing the bytes/encoding in Go'.
