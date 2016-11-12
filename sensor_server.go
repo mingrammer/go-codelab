@@ -41,7 +41,7 @@ func (m *TempHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	decoder := json.NewDecoder(req.Body)
 	err := decoder.Decode(&data)
 	if err != nil {
-		fmt.Println("Somethink wrong")
+		fmt.Println("Something wrong")
 	}
 	defer req.Body.Close()
 
