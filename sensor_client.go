@@ -4,107 +4,91 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/mingrammer/go-codelab/faker"
-	"github.com/mingrammer/go-codelab/models"
 	"log"
 	"net/http"
+	"runtime"
 	"strconv"
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/mingrammer/go-codelab/models"
 )
 
+// worker struct has necessary information to run sensor data producing job
+type worker struct {
+	ticker      *time.Ticker
+	sensor      models.Sensor
+	sensorError float64
+	serverPort  int
+}
+
+// sensorWorker will be ran in goroutine to produce (random) sensor data and sends it to server
+func sensorWorker(done <-chan struct{}, ticker *time.Ticker, sensorGenerator models.SensorGenerator, sensorError float64, serverPort int) {
+	select {
+	case <-done:
+		return
+	case <-ticker.C:
+		sensorData := sensorGenerator.GenerateSensorData(sensorError)
+		url := getRequestServerURL(serverPort)
+
+		fmt.Println(sensorData.InlineString())
+
+		sendJSONSensorData(url, sensorData)
+	}
+}
+
 func main() {
+	numCPUs := runtime.NumCPU()
+	runtime.GOMAXPROCS(numCPUs)
+
 	var wg sync.WaitGroup
+	const numWorkers = 3
 
-	wg.Add(3)
+	done := make(chan struct{})
 
-	gyroTicker := time.NewTicker(500 * time.Millisecond)
-	accelTicker := time.NewTicker(500 * time.Millisecond)
-	tempTicker := time.NewTicker(2 * time.Second)
+	wg.Add(numWorkers)
 
-	go func() {
-		for {
-			select {
-			case <-gyroTicker.C:
-				epsilon := 5.0
-				gyroSensorData := models.GyroSensor{
-					Sensor: models.Sensor{
-						Name:    "GyroSensor",
-						Type:    "VelocitySensor",
-						GenTime: time.Now(),
-					},
-					AngleVelocityX: faker.GenerateAngleVelocity(epsilon),
-					AngleVelocityY: faker.GenerateAngleVelocity(epsilon),
-					AngleVelocityZ: faker.GenerateAngleVelocity(epsilon),
-				}
-				url := getRequestServerUrl(8001)
+	workerList := [numWorkers]worker{
+		worker{
+			ticker:      time.NewTicker(500 * time.Millisecond),
+			sensor:      models.GyroSensor{},
+			sensorError: 4.0,
+			serverPort:  8001,
+		},
+		worker{
+			ticker:      time.NewTicker(500 * time.Millisecond),
+			sensor:      models.AccelSensor{},
+			sensorError: 12.0,
+			serverPort:  8002,
+		},
+		worker{
+			ticker:      time.NewTicker(2 * time.Second),
+			sensor:      models.TempSensor{},
+			sensorError: 1.5,
+			serverPort:  8003,
+		},
+	}
 
-				fmt.Println(gyroSensorData)
-
-				sendJsonSensorData(url, gyroSensorData)
-			}
-		}
-	}()
-
-	go func() {
-		for {
-			select {
-			case <-accelTicker.C:
-				epsilon := 10.0
-				accelSensorData := models.AccelSensor{
-					Sensor: models.Sensor{
-						Name:    "AccelerometerSensor",
-						Type:    "VelocitySensor",
-						GenTime: time.Now(),
-					},
-					GravityAccX: faker.GenerateGravityAcceleration(epsilon),
-					GravityAccY: faker.GenerateGravityAcceleration(epsilon),
-					GravityAccZ: faker.GenerateGravityAcceleration(epsilon),
-				}
-				url := getRequestServerUrl(8002)
-
-				fmt.Println(accelSensorData)
-
-				sendJsonSensorData(url, accelSensorData)
-			}
-		}
-	}()
-
-	go func() {
-		for {
-			select {
-			case <-tempTicker.C:
-				tempEpsilon := 2.0
-				humidityEpsilon := 1.5
-				tempSensorData := models.TempSensor{
-					Sensor: models.Sensor{
-						Name:    "TemperatureSensor",
-						Type:    "AtmosphericSensor",
-						GenTime: time.Now(),
-					},
-					Temperature: faker.GenerateTemperature(tempEpsilon),
-					Humidity:    faker.GenerateHumidity(humidityEpsilon),
-				}
-				url := getRequestServerUrl(8003)
-
-				fmt.Println(tempSensorData)
-
-				sendJsonSensorData(url, tempSensorData)
-			}
-		}
-	}()
+	for _, w := range workerList {
+		go func(w worker) {
+			sensorWorker(done, w.ticker, w.sensor, w.sensorError, w.serverPort)
+			wg.Done()
+		}(w)
+	}
 
 	wg.Wait()
 }
 
-func getRequestServerUrl(port int) string {
+// getRequestServerURL just concatenate the server url and port number to get complete server url
+func getRequestServerURL(port int) string {
 	urlComponents := []string{"http://127.0.0.1", strconv.Itoa(port)}
 
 	return strings.Join(urlComponents, ":")
 }
 
-func sendJsonSensorData(url string, sensorValues interface{}) {
+// sendJSONSensorData sends the sensor data as JSON type to server
+func sendJSONSensorData(url string, sensorValues interface{}) {
 	jsonBytes, err := json.Marshal(sensorValues)
 	if err != nil {
 		log.Fatal("Error occurs when mashaling the gyro sensor values")
