@@ -46,28 +46,27 @@ const (
 // location	: Indicator that where the 'content' should be stored (or written)
 
 type logContent struct {
-	content  string
-	location string
+	content    string
+	location   string
 	sensorName string
-
 }
 
 // Three structs below are to implement ServeHTTP method
 // Each handler stores the pointer to data logging channel
 // Also, channel is bidirectional in these handlers, which only can store data in channel
-// TempHandler 	: Temperature sensor handler to implement ServeHTTP method
+
 // GyroHandler	: Gyroscopte sensor handler to implement ServeHTTP method
-// accelHandler : Accelerator sensro handler to implement ServeHTTP method
-
-type TempHandler struct {
-	buf chan<- logContent
-}
-
 type GyroHandler struct {
 	buf chan<- logContent
 }
 
+// AccelHandler : Accelerator sensro handler to implement ServeHTTP method
 type AccelHandler struct {
+	buf chan<- logContent
+}
+
+// TempHandler 	: Temperature sensor handler to implement ServeHTTP method
+type TempHandler struct {
 	buf chan<- logContent
 }
 
