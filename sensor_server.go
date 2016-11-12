@@ -26,6 +26,7 @@ import (
 	"strings"
 	"sync"
 )
+
 // String constants that are used in sensor_server.go
 // logDir	: Directory name to store logs
 // tempLog	: File name to store temperature sensor log
@@ -46,6 +47,8 @@ const (
 type logContent struct {
 	content  string
 	location string
+	sensorName string
+
 }
 
 // Three structs below are to implement ServeHTTP method
@@ -78,11 +81,11 @@ func (m *TempHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	decoder := json.NewDecoder(req.Body)
 	err := decoder.Decode(&data)
 	if err != nil {
-		fmt.Println("Somethink wrong")
+		fmt.Println("Something wrong")
 	}
 	defer req.Body.Close()
 
-	m.buf <- logContent{content: fmt.Sprintf("%s", data), location: tempLog}
+	m.buf <- logContent{content: fmt.Sprintf("%s", data), location: tempLog, sensorName: data.Name}
 }
 
 func (m *GyroHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
@@ -95,7 +98,7 @@ func (m *GyroHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	}
 	defer req.Body.Close()
 
-	m.buf <- logContent{content: fmt.Sprintf("%s", data), location: gyroLog}
+	m.buf <- logContent{content: fmt.Sprintf("%s", data), location: gyroLog, sensorName: data.Name}
 }
 
 func (m *AccelHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
@@ -108,7 +111,7 @@ func (m *AccelHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	}
 	defer req.Body.Close()
 
-	m.buf <- logContent{content: fmt.Sprintf("%s", data), location: accelLog}
+	m.buf <- logContent{content: fmt.Sprintf("%s", data), location: accelLog, sensorName: data.Name}
 }
 
 // This method loggs the content of sensor data
@@ -147,19 +150,13 @@ func fileLogger(m <-chan logContent) {
 		fileHandle, err := os.OpenFile(filePath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 
 		if err != nil {
-			log.Fatal("Error Opening File\n", err)			
+			log.Fatal("Error Opening File\n", err)
 		}
 
 		logger := log.New(fileHandle, "", log.LstdFlags)
 
-		switch i.location {
-		case gyroLog:
-			logger.Printf("[GyroSensor Data Received]\n%s\n", i.content)
-		case accelLog:
-			logger.Printf("[AccelSensor Data Received]\n%s\n", i.content)
-		case tempLog:
-			logger.Printf("[TempSensor Data Received]\n%s\n", i.content)
-		}
+		logger.Printf("[%s Data Received]\n%s\n",i.sensorName, i.content)
+
 
 		defer fileHandle.Close()
 	}
