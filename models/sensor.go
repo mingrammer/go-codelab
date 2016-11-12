@@ -10,7 +10,8 @@ import (
 
 // Sensor is common interface for any sensors
 type Sensor interface {
-	InlineString() string
+	SendingOutputString() string
+	ReceivingOutputString() string
 	GenerateSensorData(epsilon float64) Sensor
 }
 
@@ -62,12 +63,20 @@ func (s GyroSensor) String() string {
 	return strings.Join(result, "\n")
 }
 
-// InlineString of GyroSensor create inline string with their data
-func (s GyroSensor) InlineString() string {
-	inlineStr := fmt.Sprintf("[Type : %s, Name : %s, Angle Velo of X : %f, Angle Velo of Y : %f, Angle Velo of Z : %f]",
+// SendingOutputString of GyroSensor create sending output string with their data
+func (s GyroSensor) SendingOutputString() string {
+	output := fmt.Sprintf("[%s] SENT : %s : %f, %f, %f",
 		s.Type, s.Name, s.AngleVelocityX, s.AngleVelocityY, s.AngleVelocityZ)
 
-	return inlineStr
+	return output
+}
+
+// ReceivingOutputString of GyroSensor create receiving output string with their data
+func (s GyroSensor) ReceivingOutputString() string {
+	output := fmt.Sprintf("[%s] RECEIVED : %s : %f, %f, %f",
+		s.Type, s.Name, s.AngleVelocityX, s.AngleVelocityY, s.AngleVelocityZ)
+
+	return output
 }
 
 // GenerateSensorData generates randomly GyroSensor data
@@ -104,12 +113,20 @@ func (s AccelSensor) String() string {
 	return strings.Join(result, "\n")
 }
 
-// InlineString of AccelSensor create inline string with their data
-func (s AccelSensor) InlineString() string {
-	inlineStr := fmt.Sprintf("[Type : %s, Name : %s, Gravity Acc of X : %f, Gravity Accof Y : %f, Gravity Accof Z : %f]",
+// SendingOutputString of AccelSensor create sending output string with their data
+func (s AccelSensor) SendingOutputString() string {
+	output := fmt.Sprintf("[%s] SENT : %s : %f, %f, %f",
 		s.Type, s.Name, s.GravityAccX, s.GravityAccY, s.GravityAccZ)
 
-	return inlineStr
+	return output
+}
+
+// ReceivingOutputString of AccelSensor create receiving output string with their data
+func (s AccelSensor) ReceivingOutputString() string {
+	output := fmt.Sprintf("[%s] RECEIVED : %s : %f, %f, %f",
+		s.Type, s.Name, s.GravityAccX, s.GravityAccY, s.GravityAccZ)
+
+	return output
 }
 
 // GenerateSensorData generates randomly AccelSensor data
@@ -149,6 +166,22 @@ func (s TempSensor) InlineString() string {
 		s.Type, s.Name, s.Temperature, s.Humidity)
 
 	return inlineStr
+}
+
+// SendingOutputString of TempSensor create sending output string with their data
+func (s TempSensor) SendingOutputString() string {
+	output := fmt.Sprintf("[%s] SENT : %s : %f, %f",
+		s.Type, s.Name, s.Temperature, s.Humidity)
+
+	return output
+}
+
+// ReceivingOutputString of TempSensor create receiving output string with their data
+func (s TempSensor) ReceivingOutputString() string {
+	output := fmt.Sprintf("[%s] RECEIVED : %s : %f, %f",
+		s.Type, s.Name, s.Temperature, s.Humidity)
+
+	return output
 }
 
 // GenerateSensorData generates randomly TempSensor data

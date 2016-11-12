@@ -33,7 +33,7 @@ func sensorWorker(done <-chan struct{}, ticker *time.Ticker, sensor models.Senso
 			sensorData := sensor.GenerateSensorData(sensorError)
 			url := getRequestServerURL(serverPort)
 
-			fmt.Println(sensorData.InlineString())
+			fmt.Println(sensorData.SendingOutputString())
 
 			sendJSONSensorData(url, sensorData)
 		}

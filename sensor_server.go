@@ -10,7 +10,7 @@
 
 package main
 
-// 'modles' package		 : Stores basic sensor information in srtuct form
+// 'models' package		 : Stores basic sensor information in srtuct form
 // 'net/http' package	 : To serve http connection and handle requests
 // 'os' package			 : To open files for logging
 // 'strings' package	 : To join strings for file path
@@ -85,6 +85,8 @@ func (m *TempHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	}
 	defer req.Body.Close()
 
+	fmt.Println(data.ReceivingOutputString())
+
 	m.buf <- logContent{content: fmt.Sprintf("%s", data), location: tempLog, sensorName: data.Name}
 }
 
@@ -98,6 +100,8 @@ func (m *GyroHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	}
 	defer req.Body.Close()
 
+	fmt.Println(data.ReceivingOutputString())
+
 	m.buf <- logContent{content: fmt.Sprintf("%s", data), location: gyroLog, sensorName: data.Name}
 }
 
@@ -110,6 +114,8 @@ func (m *AccelHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 		fmt.Println("Something wrong")
 	}
 	defer req.Body.Close()
+
+	fmt.Println(data.ReceivingOutputString())
 
 	m.buf <- logContent{content: fmt.Sprintf("%s", data), location: accelLog, sensorName: data.Name}
 }
