@@ -25,16 +25,18 @@ type worker struct {
 
 // sensorWorker will be ran in goroutine to produce (random) sensor data and sends it to server
 func sensorWorker(done <-chan struct{}, ticker *time.Ticker, sensor models.Sensor, sensorError float64, serverPort int) {
-	select {
-	case <-done:
-		return
-	case <-ticker.C:
-		sensorData := sensor.GenerateSensorData(sensorError)
-		url := getRequestServerURL(serverPort)
+	for {
+		select {
+		case <-done:
+			return
+		case <-ticker.C:
+			sensorData := sensor.GenerateSensorData(sensorError)
+			url := getRequestServerURL(serverPort)
 
-		fmt.Println(sensorData.InlineString())
+			fmt.Println(sensorData.InlineString())
 
-		sendJSONSensorData(url, sensorData)
+			sendJSONSensorData(url, sensorData)
+		}
 	}
 }
 
