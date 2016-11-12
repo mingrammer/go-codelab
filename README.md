@@ -27,7 +27,6 @@ Sensor2 ---------- Queue as Pipeline ---------- IoT Server
 Sensor3 /                                            |
                                            [Processing with data]
                                            [  Logging the data  ]
-                                           [ Visualize the data ]
 ```
 
 The sensors send produced data to pipeline concurrently using goroutine, so pipeline should queueing the streaming data then the server will fetch the data from pipeline by channel and processing with that.
