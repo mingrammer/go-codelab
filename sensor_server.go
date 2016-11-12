@@ -55,7 +55,7 @@ type logContent struct {
 // Each handler stores the pointer to data logging channel
 // Also, channel is bidirectional in these handlers, which only can store data in channel
 
-// GyroHandler	: Gyroscopte sensor handler to implement ServeHTTP method
+// GyroHandler : Gyroscopte sensor handler to implement ServeHTTP method
 type GyroHandler struct {
 	buf chan<- logContent
 }
