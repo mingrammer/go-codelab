@@ -16,17 +16,14 @@ Our example is that make the simple server and simple sensor device structures a
 Assume that there are 3 sensors and we have a realtime server for handling the data from pipeline.
 
 ```
-[Produce the data with own data structure in realtime]
-[We use 'JSON' format here for communicating]
-   |
-   |
-Sensor1 \
-   |     \
-Sensor2 ---------- Queue as Pipeline ---------- IoT Server 
-   |     /                                           |
-Sensor3 /                                            |
-                                           [  Logging the data  ]
-```
+|---- Sensor1 ----\            /----- Server1 -----\
+                   \          /                     \
+|---- Sensor2 ----------------------- Server2 ---------------- Log handler
+                   /          \                     /               |
+|---- Sensor3 ----/            \----- Server3 -----/                |
+         |                               |                          |
+[Produce the data]             [Handle the request]         [Logging the data]
+``` 
 
 The sensors send produced data to pipeline concurrently using goroutine, so pipeline should queueing the streaming data then the server will fetch the data from pipeline by channel and processing with that.
 
