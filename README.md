@@ -25,7 +25,6 @@ Sensor1 \
 Sensor2 ---------- Queue as Pipeline ---------- IoT Server 
    |     /                                           |
 Sensor3 /                                            |
-                                           [Processing with data]
                                            [  Logging the data  ]
 ```
 
@@ -39,7 +38,6 @@ If you finish this tutorial, you could get knowledges about
 
 * Go application structure
 * How to work Go application with packages
-* Go struct model 
-* Concurrency of Go
-* Handling the synchronization using Channel 
-* A way processing the bytes/encoding in Go
+* Go interface/struct model 
+* Concurrency in Go
+* Communication way between goroutines using Go channel
