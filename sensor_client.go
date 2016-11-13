@@ -23,8 +23,24 @@ type worker struct {
 	serverPort  int
 }
 
+// counter is for counting the number of sending request
+type counter struct {
+	mutex sync.Mutex
+	n     int
+}
+
+func (c *counter) count() {
+	c.mutex.Lock()
+	c.n++
+	c.mutex.Unlock()
+}
+
+func (c *counter) value() int {
+	return c.n
+}
+
 // sensorWorker will be ran in goroutine to produce (random) sensor data and sends it to server
-func sensorWorker(done <-chan struct{}, w worker) {
+func sensorWorker(done <-chan struct{}, w worker, c *counter) {
 	for {
 		select {
 		case <-done:
@@ -36,6 +52,8 @@ func sensorWorker(done <-chan struct{}, w worker) {
 			fmt.Println(sensorData.SendingOutputString())
 
 			sendJSONSensorData(url, sensorData)
+
+			c.count()
 		}
 	}
 }
@@ -44,6 +62,7 @@ func main() {
 	numCPUs := runtime.NumCPU()
 	runtime.GOMAXPROCS(numCPUs)
 
+	var sendCounter counter
 	var wg sync.WaitGroup
 	const numWorkers = 3
 
@@ -74,12 +93,23 @@ func main() {
 
 	for _, w := range workerList {
 		go func(w worker) {
-			sensorWorker(done, w)
+			sensorWorker(done, w, &sendCounter)
 			wg.Done()
 		}(w)
 	}
 
+	go func() {
+		for {
+			if sendCounter.value() > 100 {
+				close(done)
+				return
+			}
+		}
+	}()
+
 	wg.Wait()
+
+	fmt.Printf("\n[Count : %d] Sending is stopped.\n", sendCounter.value())
 }
 
 // getRequestServerURL just concatenate the server url and port number to get complete server url
