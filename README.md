@@ -3,8 +3,8 @@ Simple codelab tutorial for learning Go language.
 
 *Notes: This is "unofficial" tutorial. It was made by personal. If there are something wrong, please inform or fix that via Issues or Pull Requests.*
 
-We'll make very simple IoT application service with Go.
-Our example is that make the simple server and simple sensor device structures as clients. So the server and devices can communicate each other in realtime
+We'll make very tiny IoT application service with Go.
+Our example is that make the simple server and simple sensor device structures as clients. So the server and devices can communicate each other in realtime.
 
 ## Environments
 
