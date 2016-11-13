@@ -29,13 +29,13 @@ func sensorWorker(done <-chan struct{}, w worker) {
 		select {
 		case <-done:
 			return
-		case <-ticker.C:
-			sensorData := sensor.GenerateSensorData(w.sensorError)
+		case <-w.ticker.C:
+			sensorData := w.sensor.GenerateSensorData(w.sensorError)
 			url := getRequestServerURL(w.serverPort)
 
-			fmt.Println(w.sensorData.SendingOutputString())
+			fmt.Println(sensorData.SendingOutputString())
 
-			sendJSONSensorData(w.url, w.sensorData)
+			sendJSONSensorData(url, sensorData)
 		}
 	}
 }
