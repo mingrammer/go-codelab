@@ -1,21 +1,23 @@
-// This file represents the server for sensors
-// It opens communication links (for each sensor) through http protocol
-// Port # 8001 for Gyroscope Sensor,
-// Port # 8002 for Accelerator Sensor,
-// Port # 8003 for Temperature Sensor.
-// If the sensor client sends data through appropriate port,
-// each http handler is initiated, decoding data to appropriate JSON file.
-// Those datas are then logged to each sensor's log file
-// (log/Accel.log , log/Temp.log , log/Gyro.log)
-
+/*
+This file represents the server for sensors
+It opens communication links (for each sensor) through http protocol
+Port # 8001 for Gyroscope Sensor,
+Port # 8002 for Accelerator Sensor,
+Port # 8003 for Temperature Sensor.
+If the sensor client sends data through appropriate port,
+each http handler is initiated, decoding data to appropriate JSON file.
+Those datas are then logged to each sensor's log file
+(log/Accel.log , log/Temp.log , log/Gyro.log)
+*/
 package main
 
-// 'models' package		 : Stores basic sensor information in srtuct form
-// 'net/http' package	 : To serve http connection and handle requests
-// 'os' package			 : To open files for logging
-// 'strings' package	 : To join strings for file path
-// 'sync' package		 : To use 'WaitGroup' to hold main thread while goroutines are working
-
+/*
+'models' package	: Stores basic sensor information in srtuct form
+'net/http' package	: To serve http connection and handle requests
+'os' package		: To open files for logging
+'strings' package	: To join strings for file path
+'sync' package		: To use 'WaitGroup' to hold main thread while goroutines are working
+*/
 import (
 	"encoding/json"
 	"fmt"
@@ -28,12 +30,13 @@ import (
 	"github.com/mingrammer/go-codelab/models"
 )
 
-// String constants that are used in sensor_server.go
-// logDir	: Directory name to store logs
-// tempLog	: File name to store temperature sensor log
-// accelLog	: File name to store accelerator sensor log
-// gyroLog	: File name to store gyroscope sensro log
-
+/*
+String constants that are used in sensor_server.go
+logDir	: Directory name to store logs
+tempLog	: File name to store temperature sensor log
+accelLog: File name to store accelerator sensor log
+gyroLog	: File name to store gyroscope sensro log
+*/
 const (
 	logDir   = "log"
 	tempLog  = "Temp.log"
@@ -41,19 +44,22 @@ const (
 	gyroLog  = "Gyro.log"
 )
 
-// This logContent struct is to store data (string) would be written in log file
-// content 	: Actual string data, that would be logged in file
-// location	: Indicator that where the 'content' should be stored (or written)
-
+/*
+This logContent struct is to store data (string) would be written in log file
+content 	: Actual string data, that would be logged in file
+location	: Indicator that where the 'content' should be stored (or written)
+*/
 type logContent struct {
 	content    string
 	location   string
 	sensorName string
 }
 
-// Three structs below are to implement ServeHTTP method
-// Each handler stores the pointer to data logging channel
-// Also, channel is bidirectional in these handlers, which only can store data in channel
+/*
+Three structs below are to implement ServeHTTP method
+Each handler stores the pointer to data logging channel
+Also, channel is bidirectional in these handlers, which only can store data in channel
+*/
 
 // GyroHandler : Gyroscopte sensor handler to implement ServeHTTP method
 type GyroHandler struct {
@@ -70,11 +76,12 @@ type TempHandler struct {
 	buf chan<- logContent
 }
 
-// These methods are to handle request from each port.
-// Body of request (which is in JSON format) is decoded and allocated to TempSensor variable
-// and string, of which data would be saved in log fileis sent to logging channel
-// Note that BOdy of http request CAN NOT BE unmarshalled, because body of request is in array of bytes.
-
+/*
+These methods are to handle request from each port.
+Body of request (which is in JSON format) is decoded and allocated to TempSensor variable
+and string, of which data would be saved in log fileis sent to logging channel
+Note that BOdy of http request CAN NOT BE unmarshalled, because body of request is in array of bytes.
+*/
 func (m *TempHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	var data models.TempSensor
 
@@ -120,21 +127,22 @@ func (m *AccelHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	m.buf <- logContent{content: fmt.Sprintf("%s", data), location: accelLog, sensorName: data.Name}
 }
 
-// This method loggs the content of sensor data
-// This method waits incoming data from 'logContent' channel at range block,
-// where ServeHTTP mehthod sends log data
-// When data is detected, for/range block immediately processes data
-// It checks the location, where the data should be stored,
-// and opens file of desired location (by joining string constants)
-// Note that channel used in this method is also BIDIRECTIONAL,
-// You only can pop the data from channel.
-
+/*
+This method loggs the content of sensor data
+This method waits incoming data from 'logContent' channel at range block,
+where ServeHTTP mehthod sends log data
+When data is detected, for/range block immediately processes data
+It checks the location, where the data should be stored,
+and opens file of desired location (by joining string constants)
+Note that channel used in this method is also BIDIRECTIONAL,
+You only can pop the data from channel.
+*/
 func fileLogger(m <-chan logContent) {
-
-	// When program is initialized, fileLogger checks if 'log' dir exists.
-	// If it does not, it creates directory for the first time.
-	// If there is problem with creating it, it throws panic and aborts the application.
-
+	/*
+		When program is initialized, fileLogger checks if 'log' dir exists.
+		If it does not, it creates directory for the first time.
+		If there is problem with creating it, it throws panic and aborts the application.
+	*/
 	dir, _ := os.Open("log")
 	dirInfo, _ := dir.Stat()
 
@@ -167,12 +175,13 @@ func fileLogger(m <-chan logContent) {
 	}
 }
 
-// This method is for main thread. It starts go application.
-// It first creates handler to serve http serve for each sensors
-// sync.WaitGroup is to hold main thread while go routines are still working
-// Main thread indicates WaitGroup to wait 4 routines to stop.
-// After goroutines we need is created, main thread has WaitGroup to wait goroutines.
-
+/*
+This method is for main thread. It starts go application.
+It first creates handler to serve http serve for each sensors
+sync.WaitGroup is to hold main thread while go routines are still working
+Main thread indicates WaitGroup to wait 4 routines to stop.
+After goroutines we need is created, main thread has WaitGroup to wait goroutines.
+*/
 func main() {
 	var wg sync.WaitGroup
 
