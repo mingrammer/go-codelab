@@ -16,8 +16,11 @@ ul, li {
     list-style-type: none;
 }
 
-a {
+a,
+a:active,
+a:visited {
     text-decoration: none;
+    color: #0097A7;
 }
 
 pre {
