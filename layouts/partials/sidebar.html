@@ -1,0 +1,14 @@
+<div class="sidebar">
+    <ul>
+        {{ $currentWeight := .Weight }}
+        {{ range .Site.Pages.ByWeight }}
+            {{ if gt .Weight $currentWeight }}
+                {{ .Render "li"}}
+            {{ else if eq .Weight $currentWeight }}
+                {{ .Render "li-active" }}
+            {{ else }}
+                {{ .Render "li-passed" }}
+            {{ end }}
+        {{ end }}
+    </ul>
+</div>
