@@ -2,77 +2,77 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>/mingrammer.com/go-codelab/</loc>
+    <loc>http://mingrammer.com/go-codelab/</loc>
     <lastmod>2016-11-14T10:20:44+09:00</lastmod>
   </url>
   
   <url>
-    <loc>/mingrammer.com/go-codelab/codelab-introduction</loc>
+    <loc>http://mingrammer.com/go-codelab/codelab-introduction</loc>
     <lastmod>2016-11-14T10:20:44+09:00</lastmod>
   </url>
   
   <url>
-    <loc>/mingrammer.com/go-codelab/install-and-env</loc>
+    <loc>http://mingrammer.com/go-codelab/install-and-env</loc>
     <lastmod>2016-11-14T10:20:44+09:00</lastmod>
   </url>
   
   <url>
-    <loc>/mingrammer.com/go-codelab/project-structure</loc>
+    <loc>http://mingrammer.com/go-codelab/project-structure</loc>
     <lastmod>2016-11-14T10:20:44+09:00</lastmod>
   </url>
   
   <url>
-    <loc>/mingrammer.com/go-codelab/models</loc>
+    <loc>http://mingrammer.com/go-codelab/models</loc>
     <lastmod>2016-11-14T10:20:44+09:00</lastmod>
   </url>
   
   <url>
-    <loc>/mingrammer.com/go-codelab/struct-and-interface</loc>
+    <loc>http://mingrammer.com/go-codelab/struct-and-interface</loc>
     <lastmod>2016-11-14T10:20:44+09:00</lastmod>
   </url>
   
   <url>
-    <loc>/mingrammer.com/go-codelab/implement-interface-methods</loc>
+    <loc>http://mingrammer.com/go-codelab/implement-interface-methods</loc>
     <lastmod>2016-11-14T10:20:44+09:00</lastmod>
   </url>
   
   <url>
-    <loc>/mingrammer.com/go-codelab/client-structure</loc>
+    <loc>http://mingrammer.com/go-codelab/client-structure</loc>
     <lastmod>2016-11-14T10:20:44+09:00</lastmod>
   </url>
   
   <url>
-    <loc>/mingrammer.com/go-codelab/go-routine-and-channel-and-mutex</loc>
+    <loc>http://mingrammer.com/go-codelab/go-routine-and-channel-and-mutex</loc>
     <lastmod>2016-11-14T10:20:44+09:00</lastmod>
   </url>
   
   <url>
-    <loc>/mingrammer.com/go-codelab/how-client-works</loc>
+    <loc>http://mingrammer.com/go-codelab/how-client-works</loc>
     <lastmod>2016-11-14T10:20:44+09:00</lastmod>
   </url>
   
   <url>
-    <loc>/mingrammer.com/go-codelab/faker-structure</loc>
+    <loc>http://mingrammer.com/go-codelab/faker-structure</loc>
     <lastmod>2016-11-14T10:20:44+09:00</lastmod>
   </url>
   
   <url>
-    <loc>/mingrammer.com/go-codelab/server-structure-and-net-http</loc>
+    <loc>http://mingrammer.com/go-codelab/server-structure-and-net-http</loc>
     <lastmod>2016-11-14T10:20:44+09:00</lastmod>
   </url>
   
   <url>
-    <loc>/mingrammer.com/go-codelab/how-server-and-logger-works</loc>
+    <loc>http://mingrammer.com/go-codelab/how-server-and-logger-works</loc>
     <lastmod>2016-11-14T10:20:44+09:00</lastmod>
   </url>
   
   <url>
-    <loc>/mingrammer.com/go-codelab/error-handling-in-go</loc>
+    <loc>http://mingrammer.com/go-codelab/error-handling-in-go</loc>
     <lastmod>2016-11-14T10:20:44+09:00</lastmod>
   </url>
   
   <url>
-    <loc>/mingrammer.com/go-codelab/how-application-works</loc>
+    <loc>http://mingrammer.com/go-codelab/how-application-works</loc>
     <lastmod>2016-11-14T10:20:44+09:00</lastmod>
   </url>
   

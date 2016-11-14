@@ -2,136 +2,136 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Go codelab step-by-step page</title>
-    <link>mingrammer.com/go-codelab/index.xml</link>
+    <link>http://mingrammer.com/go-codelab/index.xml</link>
     <description>Recent content on Go codelab step-by-step page</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 14 Nov 2016 10:20:44 +0900</lastBuildDate>
-    <atom:link href="mingrammer.com/go-codelab/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://mingrammer.com/go-codelab/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>코드랩 소개</title>
-      <link>/mingrammer.com/go-codelab/codelab-introduction</link>
+      <link>http://mingrammer.com/go-codelab/codelab-introduction</link>
       <pubDate>Mon, 14 Nov 2016 10:20:44 +0900</pubDate>
       
-      <guid>/mingrammer.com/go-codelab/codelab-introduction</guid>
+      <guid>http://mingrammer.com/go-codelab/codelab-introduction</guid>
       <description></description>
     </item>
     
     <item>
       <title>설치 및 환경셋팅</title>
-      <link>/mingrammer.com/go-codelab/install-and-env</link>
+      <link>http://mingrammer.com/go-codelab/install-and-env</link>
       <pubDate>Mon, 14 Nov 2016 10:20:44 +0900</pubDate>
       
-      <guid>/mingrammer.com/go-codelab/install-and-env</guid>
+      <guid>http://mingrammer.com/go-codelab/install-and-env</guid>
       <description></description>
     </item>
     
     <item>
       <title>프로젝트 구조</title>
-      <link>/mingrammer.com/go-codelab/project-structure</link>
+      <link>http://mingrammer.com/go-codelab/project-structure</link>
       <pubDate>Mon, 14 Nov 2016 10:20:44 +0900</pubDate>
       
-      <guid>/mingrammer.com/go-codelab/project-structure</guid>
+      <guid>http://mingrammer.com/go-codelab/project-structure</guid>
       <description></description>
     </item>
     
     <item>
       <title>모델과 패키지</title>
-      <link>/mingrammer.com/go-codelab/models</link>
+      <link>http://mingrammer.com/go-codelab/models</link>
       <pubDate>Mon, 14 Nov 2016 10:20:44 +0900</pubDate>
       
-      <guid>/mingrammer.com/go-codelab/models</guid>
+      <guid>http://mingrammer.com/go-codelab/models</guid>
       <description></description>
     </item>
     
     <item>
       <title>Struct와 Interface</title>
-      <link>/mingrammer.com/go-codelab/struct-and-interface</link>
+      <link>http://mingrammer.com/go-codelab/struct-and-interface</link>
       <pubDate>Mon, 14 Nov 2016 10:20:44 +0900</pubDate>
       
-      <guid>/mingrammer.com/go-codelab/struct-and-interface</guid>
+      <guid>http://mingrammer.com/go-codelab/struct-and-interface</guid>
       <description></description>
     </item>
     
     <item>
       <title>인터페이스 메서드</title>
-      <link>/mingrammer.com/go-codelab/implement-interface-methods</link>
+      <link>http://mingrammer.com/go-codelab/implement-interface-methods</link>
       <pubDate>Mon, 14 Nov 2016 10:20:44 +0900</pubDate>
       
-      <guid>/mingrammer.com/go-codelab/implement-interface-methods</guid>
+      <guid>http://mingrammer.com/go-codelab/implement-interface-methods</guid>
       <description></description>
     </item>
     
     <item>
       <title>클라이언트 구조</title>
-      <link>/mingrammer.com/go-codelab/client-structure</link>
+      <link>http://mingrammer.com/go-codelab/client-structure</link>
       <pubDate>Mon, 14 Nov 2016 10:20:44 +0900</pubDate>
       
-      <guid>/mingrammer.com/go-codelab/client-structure</guid>
+      <guid>http://mingrammer.com/go-codelab/client-structure</guid>
       <description></description>
     </item>
     
     <item>
       <title>고루틴, 채널 그리고 뮤텍스</title>
-      <link>/mingrammer.com/go-codelab/go-routine-and-channel-and-mutex</link>
+      <link>http://mingrammer.com/go-codelab/go-routine-and-channel-and-mutex</link>
       <pubDate>Mon, 14 Nov 2016 10:20:44 +0900</pubDate>
       
-      <guid>/mingrammer.com/go-codelab/go-routine-and-channel-and-mutex</guid>
+      <guid>http://mingrammer.com/go-codelab/go-routine-and-channel-and-mutex</guid>
       <description></description>
     </item>
     
     <item>
       <title>클라이언트 동작 방식</title>
-      <link>/mingrammer.com/go-codelab/how-client-works</link>
+      <link>http://mingrammer.com/go-codelab/how-client-works</link>
       <pubDate>Mon, 14 Nov 2016 10:20:44 +0900</pubDate>
       
-      <guid>/mingrammer.com/go-codelab/how-client-works</guid>
+      <guid>http://mingrammer.com/go-codelab/how-client-works</guid>
       <description></description>
     </item>
     
     <item>
       <title>Faker 구조</title>
-      <link>/mingrammer.com/go-codelab/faker-structure</link>
+      <link>http://mingrammer.com/go-codelab/faker-structure</link>
       <pubDate>Mon, 14 Nov 2016 10:20:44 +0900</pubDate>
       
-      <guid>/mingrammer.com/go-codelab/faker-structure</guid>
+      <guid>http://mingrammer.com/go-codelab/faker-structure</guid>
       <description></description>
     </item>
     
     <item>
       <title>서버 구조 및 net/http</title>
-      <link>/mingrammer.com/go-codelab/server-structure-and-net-http</link>
+      <link>http://mingrammer.com/go-codelab/server-structure-and-net-http</link>
       <pubDate>Mon, 14 Nov 2016 10:20:44 +0900</pubDate>
       
-      <guid>/mingrammer.com/go-codelab/server-structure-and-net-http</guid>
+      <guid>http://mingrammer.com/go-codelab/server-structure-and-net-http</guid>
       <description></description>
     </item>
     
     <item>
       <title>서버에서의 채널 동작 방식 및 로그 핸들러</title>
-      <link>/mingrammer.com/go-codelab/how-server-and-logger-works</link>
+      <link>http://mingrammer.com/go-codelab/how-server-and-logger-works</link>
       <pubDate>Mon, 14 Nov 2016 10:20:44 +0900</pubDate>
       
-      <guid>/mingrammer.com/go-codelab/how-server-and-logger-works</guid>
+      <guid>http://mingrammer.com/go-codelab/how-server-and-logger-works</guid>
       <description></description>
     </item>
     
     <item>
       <title>에러 핸들링</title>
-      <link>/mingrammer.com/go-codelab/error-handling-in-go</link>
+      <link>http://mingrammer.com/go-codelab/error-handling-in-go</link>
       <pubDate>Mon, 14 Nov 2016 10:20:44 +0900</pubDate>
       
-      <guid>/mingrammer.com/go-codelab/error-handling-in-go</guid>
+      <guid>http://mingrammer.com/go-codelab/error-handling-in-go</guid>
       <description></description>
     </item>
     
     <item>
       <title>애플리케이션 동작 과정</title>
-      <link>/mingrammer.com/go-codelab/how-application-works</link>
+      <link>http://mingrammer.com/go-codelab/how-application-works</link>
       <pubDate>Mon, 14 Nov 2016 10:20:44 +0900</pubDate>
       
-      <guid>/mingrammer.com/go-codelab/how-application-works</guid>
+      <guid>http://mingrammer.com/go-codelab/how-application-works</guid>
       <description></description>
     </item>
     
