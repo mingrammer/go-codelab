@@ -9,7 +9,7 @@ hugo
 git add -A
 
 # Commit changes.
-msg="Rebuilding site `date`"
+msg="Rebuilding site `date +%Y-%m-%dT%H:%M:%S%z`"
 if [ $# -eq 1 ]
       then msg="$1"
 fi
