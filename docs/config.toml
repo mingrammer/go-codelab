@@ -1,7 +1,7 @@
 contentdir = "content"
 layoutdir = "layouts"
 publishdir = "public"
-baseurl = "mingrammer.com/go-codelab"
+baseurl = "http://mingrammer.com/go-codelab"
 title = "Go codelab step-by-step page"
 canonifyurls = true
 languageCode = "en-us"
