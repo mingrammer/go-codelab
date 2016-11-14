@@ -1,6 +1,5 @@
-++
-title = "Codelab 소개"
-authors = ["mingrammer"]
-date = "2016-11-14T15:37:44+09:00""
 +++
-
+title = "코드랩 소개"
+date = "2016-11-14T10:20:44+09:00"
+weight = 1
++++
