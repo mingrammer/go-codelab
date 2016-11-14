@@ -1,0 +1,114 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+html, body, div, p, a {
+    font-family: 'Roboto', 'Noto', 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+}
+
+ul {
+    padding: 6px 16px;
+}
+
+ul, li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.sidebar {
+    z-index: 1000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 256px;
+    height: 100%;
+    background: #f5f5f5;
+    overflow-y: auto;
+}
+
+.sidebar .step-item a {
+    display: block;
+    height: 100%;
+    padding: 20px 16px;
+    color: #9e9e9e;
+    border-radius: 4px;
+}
+
+.sidebar .step-item a p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.sidebar .step-item a .item-weight {
+    display: inline-block;
+    float: left;
+    width: 20px;
+    padding: 2px;
+    border: 2px solid;
+    border-color: #bdbdbd;
+    border-radius: 34px;
+    background: #fff;
+    text-align: center;
+}
+
+.sidebar .step-item a .item-title {
+    margin-left: 45px;
+}
+
+.sidebar .step-item-passed a,
+.sidebar .step-item-active a {
+    color: #212121;
+}
+
+.sidebar .step-item-passed a .item-weight,
+.sidebar .step-item-active a .item-weight {
+    border-color: #2196f3;
+}
+
+.sidebar .step-item-active a {
+    font-weight: bold;
+    background: #e0e0e0;
+}
+
+.preview {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 256px;
+    right: 0;
+    background: #e0e0e0;
+    overflow-y: auto;
+}
+
+.preview .preview-title {
+    position: fixed;
+    top: 0;
+    left: 256px;
+    right: 0;
+    height: 60px;
+    background: #1e88e5;
+}
+
+.preview .preview-title {
+    padding-left: 40px;
+    line-height: 60px;
+    color: #ffffff;
+}
+
+.preview .preview-content {
+    max-width: 800px;
+    margin: 100px auto 40px;
+    padding: 30px;
+    background: #ffffff;
+    box-shadow: 1px 1px 16px #ccc
+}
+
+.preview .preview-content .content-title {
+    font-weight: 500;
+    font-size: 24px;
+}
