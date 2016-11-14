@@ -5,6 +5,9 @@ baseurl = "https://mingrammer.com/go-codelab"
 title = "Go codelab step-by-step page"
 canonifyurls = true
 languageCode = "en-us"
+pygmentsstyle = "monokai"
+PygmentsCodeFences = true
+pygmentsuseclasses = false
 
 [permalinks]
     post = "/:filename"
