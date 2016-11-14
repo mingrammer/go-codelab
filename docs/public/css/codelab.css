@@ -3,7 +3,7 @@ html, body {
     padding: 0;
 }
 
-html, body, div, p, a {
+html, body, div, p, a, code, pre, span {
     font-family: 'Roboto', 'Noto', 'Noto Sans KR', sans-serif;
     font-size: 14px;
 }
