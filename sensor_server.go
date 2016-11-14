@@ -137,7 +137,7 @@ and opens file of desired location (by joining string constants)
 Note that channel used in this method is also BIDIRECTIONAL,
 You only can pop the data from channel.
 */
-func fileLogger(m <-chan logContent) {
+func fileLogger(logStream <-chan logContent) {
 	/*
 		When program is initialized, fileLogger checks if 'log' dir exists.
 		If it does not, it creates directory for the first time.
@@ -156,9 +156,8 @@ func fileLogger(m <-chan logContent) {
 	dir.Close()
 
 	// This part continuously wait for incoming data through channel
-
-	for i := range m {
-		joinee := []string{logDir, i.location}
+	for logData := range logStream {
+		joinee := []string{logDir, logData.location}
 		filePath := strings.Join(joinee, "/")
 
 		fileHandle, err := os.OpenFile(filePath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
@@ -169,7 +168,7 @@ func fileLogger(m <-chan logContent) {
 
 		logger := log.New(fileHandle, "", log.LstdFlags)
 
-		logger.Printf("[%s Data Received]\n%s\n", i.sensorName, i.content)
+		logger.Printf("[%s Data Received]\n%s\n", logData.sensorName, logData.content)
 
 		defer fileHandle.Close()
 	}
