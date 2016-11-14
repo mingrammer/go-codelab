@@ -5,7 +5,6 @@ baseurl = "https://mingrammer.com/go-codelab"
 title = "Go codelab step-by-step page"
 canonifyurls = true
 languageCode = "en-us"
-canonifyurls = true
 
 [permalinks]
-    post = "/:title/"
+    post = "/:filename"
