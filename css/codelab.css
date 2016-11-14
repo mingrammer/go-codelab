@@ -20,6 +20,11 @@ a {
     text-decoration: none;
 }
 
+pre {
+    padding: 15px;
+    overflow-x: scroll;
+}
+
 .sidebar {
     z-index: 1000;
     position: absolute;
