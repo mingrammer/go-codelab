@@ -147,23 +147,25 @@ models/
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;그럼 이제 우리 튜토리얼의 패키지들을 살펴봅시다. &lt;code&gt;faker&lt;/code&gt;의 &lt;code&gt;range.go&lt;/code&gt; 파일과 &lt;code&gt;models&lt;/code&gt;의 &lt;code&gt;sensor.go&lt;/code&gt;를 보면 상단에 다음과 같은 코드를 볼 수 있습니다.&lt;/p&gt;
-package faker
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kn&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;faker&lt;/span&gt;
 
-import (
-	&#34;math/rand&#34;
-	&#34;time&#34;
-)
-package models
+&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+	&lt;span class=&#34;s&#34;&gt;&amp;quot;math/rand&amp;quot;&lt;/span&gt;
+	&lt;span class=&#34;s&#34;&gt;&amp;quot;time&amp;quot;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kn&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;models&lt;/span&gt;
 
-import (
-	&#34;fmt&#34;
-	&#34;strings&#34;
-	&#34;time&#34;
+&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+	&lt;span class=&#34;s&#34;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
+	&lt;span class=&#34;s&#34;&gt;&amp;quot;strings&amp;quot;&lt;/span&gt;
+	&lt;span class=&#34;s&#34;&gt;&amp;quot;time&amp;quot;&lt;/span&gt;
 
-	&#34;github.com/mingrammer/go-codelab/faker&#34;
-)
+	&lt;span class=&#34;s&#34;&gt;&amp;quot;github.com/mingrammer/go-codelab/faker&amp;quot;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;최상단을 보면 &lt;code&gt;package &amp;lt;name&amp;gt;&lt;/code&gt;형태의 코드를 볼 수 있습니다. 한 패키지에 속한 모든 Go 파일들은 이렇게 최상단에 자신의 속한 패키지명을 선언해야 합니다. 이 패키지명은 보통 패키지가 속한 디렉토리명을 따릅니다. 따라서, &lt;code&gt;range.go&lt;/code&gt;나 &lt;code&gt;sensor.go&lt;/code&gt;를 보면 각 파일이 &lt;code&gt;faker&lt;/code&gt;와 &lt;code&gt;models&lt;/code&gt; 패키지에 속한다는걸 바로 알 수 있습니다.&lt;/p&gt;
+&lt;p&gt;최상단을 보면 &lt;code&gt;package &amp;lt;name&amp;gt;&lt;/code&gt;형태의 코드를 볼 수 있습니다. 한 패키지에 속한 모든 Go 파일들은 이렇게 최상단에 자신이 속한 패키지명을 선언해야 합니다. 이 패키지명은 보통 패키지가 속한 디렉토리명을 따릅니다. 따라서, &lt;code&gt;range.go&lt;/code&gt;나 &lt;code&gt;sensor.go&lt;/code&gt;를 보면 각 파일이 &lt;code&gt;faker&lt;/code&gt;와 &lt;code&gt;models&lt;/code&gt; 패키지에 속한다는걸 바로 알 수 있습니다.&lt;/p&gt;
 </description>
     </item>
     
@@ -245,20 +247,21 @@ import (
 &lt;p&gt;그러나, &lt;code&gt;net/http&lt;/code&gt; 패키지에서 서버를 생성하는 메서드인 &lt;a href=&#34;https://golang.org/pkg/net/http/#ListenAndServe&#34;&gt;&lt;code&gt;ListenAndServe()&lt;/code&gt;&lt;/a&gt; 메서드를 확인해보면, 인자로 &lt;a href=&#34;https://golang.org/pkg/net/http/#Handler&#34;&gt;핸들러 인터페이스&lt;/a&gt;를 요구하고 있습니다. 이 핸들러 인터페이스를 다시 확인해보면, 결국 &lt;a href=&#34;https://golang.org/pkg/net/http/#HandlerFunc&#34;&gt;&lt;code&gt;ServeHTTP()&lt;/code&gt;&lt;/a&gt;라는 메서드를 요구합니다.&lt;/p&gt;
 
 &lt;p&gt;따라서, 우리는 ServeHTTP() 메서드가 구현된 핸들러 인터페이스가 필요합니다. 이를 위해, 우리는 각 데이터 종류에 대한 인터페이스를 다음과 같이 만들어줘야 합니다.&lt;/p&gt;
-// GyroHandler : Gyroscopte sensor handler to implement ServeHTTP method
-type GyroHandler struct {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// GyroHandler : Gyroscopte sensor handler to implement ServeHTTP method&lt;/span&gt;
+&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;GyroHandler&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 
-}
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 
-// AccelHandler : Accelerator sensro handler to implement ServeHTTP method
-type AccelHandler struct {
+&lt;span class=&#34;c1&#34;&gt;// AccelHandler : Accelerator sensro handler to implement ServeHTTP method&lt;/span&gt;
+&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;AccelHandler&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 
-}
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 
-// TempHandler 	: Temperature sensor handler to implement ServeHTTP method
-type TempHandler struct {
+&lt;span class=&#34;c1&#34;&gt;// TempHandler 	: Temperature sensor handler to implement ServeHTTP method&lt;/span&gt;
+&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;TempHandler&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 
-}
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
     </item>
     

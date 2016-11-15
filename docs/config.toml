@@ -7,7 +7,7 @@ canonifyurls = true
 languageCode = "en-us"
 pygmentsstyle = "monokai"
 PygmentsCodeFences = true
-pygmentsuseclasses = false
+pygmentsuseclasses = true
 
 [permalinks]
     post = "/:filename"
