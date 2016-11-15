@@ -171,9 +171,9 @@
 
 <h3 id="data-pipeline으로서-channel">Data Pipeline으로서 Channel</h3>
 
-<p>이렇게 <em><code>Server</code></em>는 HTTP Protocol을 통해 받은 데이터를 로그 파일에 남길 형식으로 가공하여 <em><code>Log Handler</code></em>에게 전달해줍니다. 여기서 <em><code>Log Handler</code></em>는 sensor_server.go에서 함수로 구현되어 현재 Goroutine 상에서 실행되고 있습니다. 그렇다면 각 HTTP 핸들러는 <em><code>Log Handler</code></em>인 <code>fileLogger()</code> 메서드에게 데이터를 어떻게 보내야할까요? 여기서 사용되는 것이 Channel입니다.</p>
+<p>이렇게 <code>Server</code>는 HTTP Protocol을 통해 받은 데이터를 로그 파일에 남길 형식으로 가공하여 <code>Log Handler</code>에게 전달해줍니다. 여기서 <code>Log Handler</code>는 sensor_server.go에서 함수로 구현되어 현재 Goroutine 상에서 실행되고 있습니다. 그렇다면 각 HTTP 핸들러는 <code>Log Handler</code>인 <code>fileLogger()</code> 메서드에게 데이터를 어떻게 보내야할까요? 여기서 사용되는 것이 Channel입니다.</p>
 
-<p>sensor_server.go 내에서 로그컨텐트에 대한 채널을 만들어줍니다. 그리고 이 채널을 <code>ServeHTTP()</code>를 구현한 각 핸들러 구조체를 생성할 때 인자로 같이 넘겨줍니다. 이렇게 되면 각 구조체는 해당 채널에 대한 사용권을 받게 됩니다. 마찬가지로, 로그를 남기는 역할을 하는 <code>fileLogger()</code> 메서드도 채널 사용권을 인자로 넘겨받습니다. 이렇게 되면 데이터를 보내야할 <code>ServeHTTP()</code> 메서드와 데이터를 받아야할 <em><code>Log Handler</code></em>가 채널을 통해 데이터를 교환할 수 있는 환경이 만들어졌습니다!</p>
+<p>sensor_server.go 내에서 로그컨텐트에 대한 채널을 만들어줍니다. 그리고 이 채널을 <code>ServeHTTP()</code>를 구현한 각 핸들러 구조체를 생성할 때 인자로 같이 넘겨줍니다. 이렇게 되면 각 구조체는 해당 채널에 대한 사용권을 받게 됩니다. 마찬가지로, 로그를 남기는 역할을 하는 <code>fileLogger()</code> 메서드도 채널 사용권을 인자로 넘겨받습니다. 이렇게 되면 데이터를 보내야할 <code>ServeHTTP()</code> 메서드와 데이터를 받아야할 <code>Log Handler</code>가 채널을 통해 데이터를 교환할 수 있는 환경이 만들어졌습니다!</p>
 
 <h3 id="양방향-채널-단방향-채널">양방향 채널? 단방향 채널!</h3>
 
@@ -201,7 +201,7 @@ chan&lt;- float64  // 이런 형식으로 받게 되면 채널에서 T 타입 �
 &lt;-chan int      // 이런 형식으로 받으면 T 타입 데이터를 채널에 저장만 할 수 있습니다.
 </code></pre>
 
-<p>그렇다면 우리는 <code>ServeHTTP()</code> 메서드에선 채널에서 데이터를 보내기만 하도록, <em><code>Log Handler</code></em> 메서드에선 채널에서 데이터를 받기만 하도록 지정해줘야겠죠. 따라서 우리는 각 메서드의 정의에서 채널의 방향성을 아래와 같이 지정해줘야합니다. 이렇게 바꿔주면 에러가 날까봐 걱정인가요? 지금까지 잘 따라왔다면 에러없이 잘 작동할 것입니다. :)</p>
+<p>그렇다면 우리는 <code>ServeHTTP()</code> 메서드에선 채널에서 데이터를 보내기만 하도록, <code>fileLogger()</code> 메서드에선 채널에서 데이터를 받기만 하도록 지정해줘야겠죠. 따라서 우리는 각 메서드의 정의에서 채널의 방향성을 아래와 같이 지정해줘야합니다. 이렇게 바꿔주면 에러가 날까봐 걱정인가요? 지금까지 잘 따라왔다면 에러없이 잘 작동할 것입니다. :)</p>
 
 <pre><code>type GyroHandler struct {
 	buf chan&lt;- logContent
@@ -223,15 +223,15 @@ func fileLogger(logStream &lt;-chan logContent) {
 
 <p>이제 로그를 남겨봅시다! 로그는 각 센서별로 정보를 모아서 저장을 할 것입니다. 이미 눈치 채신 분들이 있겠지만, 이미 프로젝트 폴더에 로그라는 폴더가 존재합니다.</p>
 
-<pre><code>├── log
-│   ├── Accel.log
-│   ├── Gyro.log
-│   └── Temp.log
+<pre><code>log/
+		Accel.log
+		Gyro.log
+		Temp.log
 </code></pre>
 
 <p>약어가 의미하듯이 엑셀.로그는 가속도 센서의 측정값을, 자이로.로그는 자이로 센서의 측정값을, 그리고 템프.로그는 온도 및 습도계의 측정값을 저장합니다. 로그를 본격적으로 저장하기 전에, 우리가 로그를 저장할 폴더가 존재하는지 확인해야합니다. 이를 외해 <a href="https://golang.org/pkg/os/#Open"><code>os.Open('log')</code></a>이라는 메서드를 사용할 것입니다.만약 이 메서드가 로그 폴더를 정상적으로 찾아내면, 그에 대한 파일 타입을 반환할 것입니다. 아닐 경우, 로그 폴더를 <a href="https://golang.org/pkg/os/#Mkdir"><code>os.Mkdir('log', os.ModePerm)</code></a>이라는 메서드를 이용해 생성할 것입니다.</p>
 
-<p>로그 폴더가 정상적으로 존재하는 경우, <em><code>Log Handler</code></em>인 fileLogger()<code>메서드는 채널에 값이 들어오기를 기다립니다. 아래의</code>for, range` 문구가 그 역할을 합니다.</p>
+<p>로그 폴더가 정상적으로 존재하는 경우, <code>Log Handler</code>인 fileLogger()<code>메서드는 채널에 값이 들어오기를 기다립니다. 아래의</code>for, range` 문구가 그 역할을 합니다.</p>
 
 <pre><code>for logData := range logStream
 </code></pre>
