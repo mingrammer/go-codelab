@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Post-rsses on Go codelab step-by-step page</title>
+    <title>Posts on Go codelab step-by-step page</title>
     <link>https://mingrammer.com/go-codelab/post/index.xml</link>
-    <description>Recent content in Post-rsses on Go codelab step-by-step page</description>
+    <description>Recent content in Posts on Go codelab step-by-step page</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 14 Nov 2016 10:20:44 +0900</lastBuildDate>
@@ -75,7 +75,7 @@
 
 &lt;p&gt;&lt;img src=&#34;https://mingrammer.com/go-codelab/img/project_structure.png&#34; alt=&#34;Alt project_structure&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;&lt;code&gt;Sensor&lt;/code&gt;&lt;/em&gt;는 IoT 기기의 &lt;em&gt;&lt;code&gt;Sensor&lt;/code&gt;&lt;/em&gt;로, 이 구조에선 Client를 의미하며, &lt;code&gt;sensor_client.go&lt;/code&gt;에서 정의되어있습니다. 이 프로젝트에서는 다음의 3개의 &lt;em&gt;&lt;code&gt;Sensor&lt;/code&gt;&lt;/em&gt;들이 존재합니다.2&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Sensor&lt;/code&gt;는 IoT 기기의 &lt;code&gt;Sensor&lt;/code&gt;로, 이 구조에선 Client를 의미하며, &lt;code&gt;sensor_client.go&lt;/code&gt;에서 정의되어있습니다. 이 프로젝트에서는 다음의 3개의 &lt;code&gt;Sensor&lt;/code&gt;들이 존재합니다.&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;h4 id=&#34;자이로-센서-gyroscope-sensor&#34;&gt;&lt;strong&gt;자이로 센서 (Gyroscope Sensor)&lt;/strong&gt;&lt;/h4&gt;
@@ -85,27 +85,23 @@
 &lt;h4 id=&#34;온도-및-습도계-temperature-sensor&#34;&gt;&lt;strong&gt;온도 및 습도계 (Temperature Sensor)&lt;/strong&gt;&lt;/h4&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;이들 센서의 종류는 잠시 후 설명할 &lt;code&gt;model&lt;/code&gt; 패키지에 정의되어 있으며, 센서들은 일정 시간 간격마다 &lt;em&gt;&lt;code&gt;Server&lt;/code&gt;&lt;/em&gt;에게 &lt;em&gt;&lt;code&gt;Sensor&lt;/code&gt;&lt;/em&gt;에서 발생한 측정값을 보내줍니다. 이 측정값으로는 각속도(&lt;code&gt;Angule Velocity&lt;/code&gt;), 선속도(&lt;code&gt;Gravitational Velocity&lt;/code&gt;), 온도 및 습도(&lt;code&gt;Temperature and Humidity&lt;/code&gt;)가 있습니다.&lt;/p&gt;
+&lt;p&gt;이들 센서의 종류는 잠시 후 설명할 &lt;code&gt;model&lt;/code&gt; 패키지에 정의되어 있으며, 센서들은 일정 시간 간격마다 &lt;code&gt;Server&lt;/code&gt;에게 &lt;code&gt;Sensor&lt;/code&gt;에서 발생한 측정값을 보내줍니다. 이 측정값으로는 각속도(Angule Velocity), 선속도(Gravitational Velocity), 온도 및 습도(Temperature and Humidity)가 있습니다.&lt;/p&gt;
 
 &lt;p&gt;그러나, 우리는 가상의 센서를 구현하는 것이기 때문에, 실제 측정값을 넣지 못하는 관계로, &lt;code&gt;faker&lt;/code&gt;라는 것을 이용해, 가상의 난수값을 측정값으로 설정하여 서버에 보내줄 것입니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;&lt;code&gt;Server&lt;/code&gt;&lt;/em&gt;는 각 &lt;em&gt;&lt;code&gt;Sensor&lt;/code&gt;&lt;/em&gt;에 대한 측정값을 HTTP Protocol을 통해서 받으며, &lt;code&gt;sensor_server.go&lt;/code&gt;에 정의되어 있습니다. 이 때, 각 측정값 종류에 대한 포트 번호는 달리해서 보내게 됩니다. &lt;code&gt;&amp;lt;em&amp;gt;Server&lt;/code&gt;&lt;/em&gt;는 &lt;code&gt;&amp;lt;em&amp;gt;Sensor&lt;/code&gt;&lt;/em&gt;로부터 받은 데이터의 내용으로 측정값의 종류와 그 값을 확인합니다.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Server&lt;/code&gt;는 각 &lt;code&gt;Sensor&lt;/code&gt;에 대한 측정값을 HTTP Protocol을 통해서 받으며, &lt;code&gt;sensor_server.go&lt;/code&gt;에 정의되어 있습니다. 이 때, 각 측정값 종류에 대한 포트 번호는 달리해서 보내게 됩니다. &lt;code&gt;Server&lt;/code&gt;는 &lt;code&gt;Sensor&lt;/code&gt;로부터 받은 데이터의 내용으로 측정값의 종류와 그 값을 확인합니다.&lt;/p&gt;
 
-&lt;p&gt;이렇게 확인된 데이터는 &lt;em&gt;&lt;code&gt;Log Handler&lt;/code&gt;&lt;/em&gt;에게 넘겨지며, 이를 받은 &lt;em&gt;&lt;code&gt;Log Handler&lt;/code&gt;&lt;/em&gt;는 실시간으로 각 &lt;em&gt;&lt;code&gt;Sensor&lt;/code&gt;&lt;/em&gt;가 받은 측정값을 &lt;code&gt;log&lt;/code&gt; 폴더의 센서별 파일에 로그 형식으로 남깁니다.&lt;/p&gt;
+&lt;p&gt;이렇게 확인된 데이터는 &lt;code&gt;Log Handler&lt;/code&gt;에게 넘겨지며, 이를 받은 &lt;code&gt;Log Handler&lt;/code&gt;는 실시간으로 각 &lt;code&gt;Sensor&lt;/code&gt;가 받은 측정값을 &lt;code&gt;log&lt;/code&gt; 폴더의 센서별 파일에 로그 형식으로 남깁니다.&lt;/p&gt;
 
 &lt;p&gt;이러한 프로젝트 구조를 트리 형식으로 보면 다음과 같습니다.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;├── faker
-│   └── range.go
-├── log
-│   ├── Accel.log
-│   ├── Gyro.log
-│   └── Temp.log
-├── models
-│   └── sensor.go
-├── README.md
-├── sensor_client.go
-└── sensor_server.go
+&lt;pre&gt;&lt;code&gt;go-codelab/
+        faker/
+                range.go
+        models/
+                sensor.go
+        sensor_client.go
+        sensor_server.go
 &lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
@@ -151,23 +147,21 @@ models/
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;그럼 이제 우리 튜토리얼의 패키지들을 살펴봅시다. &lt;code&gt;faker&lt;/code&gt;의 &lt;code&gt;range.go&lt;/code&gt; 파일과 &lt;code&gt;models&lt;/code&gt;의 &lt;code&gt;sensor.go&lt;/code&gt;를 보면 상단에 다음과 같은 코드를 볼 수 있습니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #272822&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #f92672&#34;&gt;package&lt;/span&gt; &lt;span style=&#34;color: #a6e22e&#34;&gt;faker&lt;/span&gt;
+package faker
 
-&lt;span style=&#34;color: #f92672&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color: #f8f8f2&#34;&gt;(&lt;/span&gt;
-	&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;math/rand&amp;quot;&lt;/span&gt;
-	&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;time&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #f8f8f2&#34;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #272822&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #f92672&#34;&gt;package&lt;/span&gt; &lt;span style=&#34;color: #a6e22e&#34;&gt;models&lt;/span&gt;
+import (
+	&#34;math/rand&#34;
+	&#34;time&#34;
+)
+package models
 
-&lt;span style=&#34;color: #f92672&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color: #f8f8f2&#34;&gt;(&lt;/span&gt;
-	&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
-	&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;strings&amp;quot;&lt;/span&gt;
-	&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;time&amp;quot;&lt;/span&gt;
+import (
+	&#34;fmt&#34;
+	&#34;strings&#34;
+	&#34;time&#34;
 
-	&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;github.com/mingrammer/go-codelab/faker&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #f8f8f2&#34;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+	&#34;github.com/mingrammer/go-codelab/faker&#34;
+)
 
 &lt;p&gt;최상단을 보면 &lt;code&gt;package &amp;lt;name&amp;gt;&lt;/code&gt;형태의 코드를 볼 수 있습니다. 한 패키지에 속한 모든 Go 파일들은 이렇게 최상단에 자신의 속한 패키지명을 선언해야 합니다. 이 패키지명은 보통 패키지가 속한 디렉토리명을 따릅니다. 따라서, &lt;code&gt;range.go&lt;/code&gt;나 &lt;code&gt;sensor.go&lt;/code&gt;를 보면 각 파일이 &lt;code&gt;faker&lt;/code&gt;와 &lt;code&gt;models&lt;/code&gt; 패키지에 속한다는걸 바로 알 수 있습니다.&lt;/p&gt;
 </description>
@@ -251,21 +245,20 @@ models/
 &lt;p&gt;그러나, &lt;code&gt;net/http&lt;/code&gt; 패키지에서 서버를 생성하는 메서드인 &lt;a href=&#34;https://golang.org/pkg/net/http/#ListenAndServe&#34;&gt;&lt;code&gt;ListenAndServe()&lt;/code&gt;&lt;/a&gt; 메서드를 확인해보면, 인자로 &lt;a href=&#34;https://golang.org/pkg/net/http/#Handler&#34;&gt;핸들러 인터페이스&lt;/a&gt;를 요구하고 있습니다. 이 핸들러 인터페이스를 다시 확인해보면, 결국 &lt;a href=&#34;https://golang.org/pkg/net/http/#HandlerFunc&#34;&gt;&lt;code&gt;ServeHTTP()&lt;/code&gt;&lt;/a&gt;라는 메서드를 요구합니다.&lt;/p&gt;
 
 &lt;p&gt;따라서, 우리는 ServeHTTP() 메서드가 구현된 핸들러 인터페이스가 필요합니다. 이를 위해, 우리는 각 데이터 종류에 대한 인터페이스를 다음과 같이 만들어줘야 합니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #272822&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #75715e&#34;&gt;// GyroHandler : Gyroscopte sensor handler to implement ServeHTTP method&lt;/span&gt;
-&lt;span style=&#34;color: #66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #a6e22e&#34;&gt;GyroHandler&lt;/span&gt; &lt;span style=&#34;color: #66d9ef&#34;&gt;struct&lt;/span&gt; &lt;span style=&#34;color: #f8f8f2&#34;&gt;{&lt;/span&gt;
+// GyroHandler : Gyroscopte sensor handler to implement ServeHTTP method
+type GyroHandler struct {
 
-&lt;span style=&#34;color: #f8f8f2&#34;&gt;}&lt;/span&gt;
+}
 
-&lt;span style=&#34;color: #75715e&#34;&gt;// AccelHandler : Accelerator sensro handler to implement ServeHTTP method&lt;/span&gt;
-&lt;span style=&#34;color: #66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #a6e22e&#34;&gt;AccelHandler&lt;/span&gt; &lt;span style=&#34;color: #66d9ef&#34;&gt;struct&lt;/span&gt; &lt;span style=&#34;color: #f8f8f2&#34;&gt;{&lt;/span&gt;
+// AccelHandler : Accelerator sensro handler to implement ServeHTTP method
+type AccelHandler struct {
 
-&lt;span style=&#34;color: #f8f8f2&#34;&gt;}&lt;/span&gt;
+}
 
-&lt;span style=&#34;color: #75715e&#34;&gt;// TempHandler 	: Temperature sensor handler to implement ServeHTTP method&lt;/span&gt;
-&lt;span style=&#34;color: #66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #a6e22e&#34;&gt;TempHandler&lt;/span&gt; &lt;span style=&#34;color: #66d9ef&#34;&gt;struct&lt;/span&gt; &lt;span style=&#34;color: #f8f8f2&#34;&gt;{&lt;/span&gt;
+// TempHandler 	: Temperature sensor handler to implement ServeHTTP method
+type TempHandler struct {
 
-&lt;span style=&#34;color: #f8f8f2&#34;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+}
 </description>
     </item>
     
@@ -279,9 +272,9 @@ models/
 
 &lt;h3 id=&#34;data-pipeline으로서-channel&#34;&gt;Data Pipeline으로서 Channel&lt;/h3&gt;
 
-&lt;p&gt;이렇게 &lt;em&gt;&lt;code&gt;Server&lt;/code&gt;&lt;/em&gt;는 HTTP Protocol을 통해 받은 데이터를 로그 파일에 남길 형식으로 가공하여 &lt;em&gt;&lt;code&gt;Log Handler&lt;/code&gt;&lt;/em&gt;에게 전달해줍니다. 여기서 &lt;em&gt;&lt;code&gt;Log Handler&lt;/code&gt;&lt;/em&gt;는 sensor_server.go에서 함수로 구현되어 현재 Goroutine 상에서 실행되고 있습니다. 그렇다면 각 HTTP 핸들러는 &lt;em&gt;&lt;code&gt;Log Handler&lt;/code&gt;&lt;/em&gt;인 &lt;code&gt;fileLogger()&lt;/code&gt; 메서드에게 데이터를 어떻게 보내야할까요? 여기서 사용되는 것이 Channel입니다.&lt;/p&gt;
+&lt;p&gt;이렇게 &lt;code&gt;Server&lt;/code&gt;는 HTTP Protocol을 통해 받은 데이터를 로그 파일에 남길 형식으로 가공하여 &lt;code&gt;Log Handler&lt;/code&gt;에게 전달해줍니다. 여기서 &lt;code&gt;Log Handler&lt;/code&gt;는 sensor_server.go에서 함수로 구현되어 현재 Goroutine 상에서 실행되고 있습니다. 그렇다면 각 HTTP 핸들러는 &lt;code&gt;Log Handler&lt;/code&gt;인 &lt;code&gt;fileLogger()&lt;/code&gt; 메서드에게 데이터를 어떻게 보내야할까요? 여기서 사용되는 것이 Channel입니다.&lt;/p&gt;
 
-&lt;p&gt;sensor_server.go 내에서 로그컨텐트에 대한 채널을 만들어줍니다. 그리고 이 채널을 &lt;code&gt;ServeHTTP()&lt;/code&gt;를 구현한 각 핸들러 구조체를 생성할 때 인자로 같이 넘겨줍니다. 이렇게 되면 각 구조체는 해당 채널에 대한 사용권을 받게 됩니다. 마찬가지로, 로그를 남기는 역할을 하는 &lt;code&gt;fileLogger()&lt;/code&gt; 메서드도 채널 사용권을 인자로 넘겨받습니다. 이렇게 되면 데이터를 보내야할 &lt;code&gt;ServeHTTP()&lt;/code&gt; 메서드와 데이터를 받아야할 &lt;em&gt;&lt;code&gt;Log Handler&lt;/code&gt;&lt;/em&gt;가 채널을 통해 데이터를 교환할 수 있는 환경이 만들어졌습니다!&lt;/p&gt;
+&lt;p&gt;sensor_server.go 내에서 로그컨텐트에 대한 채널을 만들어줍니다. 그리고 이 채널을 &lt;code&gt;ServeHTTP()&lt;/code&gt;를 구현한 각 핸들러 구조체를 생성할 때 인자로 같이 넘겨줍니다. 이렇게 되면 각 구조체는 해당 채널에 대한 사용권을 받게 됩니다. 마찬가지로, 로그를 남기는 역할을 하는 &lt;code&gt;fileLogger()&lt;/code&gt; 메서드도 채널 사용권을 인자로 넘겨받습니다. 이렇게 되면 데이터를 보내야할 &lt;code&gt;ServeHTTP()&lt;/code&gt; 메서드와 데이터를 받아야할 &lt;code&gt;Log Handler&lt;/code&gt;가 채널을 통해 데이터를 교환할 수 있는 환경이 만들어졌습니다!&lt;/p&gt;
 
 &lt;h3 id=&#34;양방향-채널-단방향-채널&#34;&gt;양방향 채널? 단방향 채널!&lt;/h3&gt;
 
@@ -309,7 +302,7 @@ chan&amp;lt;- float64  // 이런 형식으로 받게 되면 채널에서 T 타�
 &amp;lt;-chan int      // 이런 형식으로 받으면 T 타입 데이터를 채널에 저장만 할 수 있습니다.
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;그렇다면 우리는 &lt;code&gt;ServeHTTP()&lt;/code&gt; 메서드에선 채널에서 데이터를 보내기만 하도록, &lt;em&gt;&lt;code&gt;Log Handler&lt;/code&gt;&lt;/em&gt; 메서드에선 채널에서 데이터를 받기만 하도록 지정해줘야겠죠. 따라서 우리는 각 메서드의 정의에서 채널의 방향성을 아래와 같이 지정해줘야합니다. 이렇게 바꿔주면 에러가 날까봐 걱정인가요? 지금까지 잘 따라왔다면 에러없이 잘 작동할 것입니다. :)&lt;/p&gt;
+&lt;p&gt;그렇다면 우리는 &lt;code&gt;ServeHTTP()&lt;/code&gt; 메서드에선 채널에서 데이터를 보내기만 하도록, &lt;code&gt;fileLogger()&lt;/code&gt; 메서드에선 채널에서 데이터를 받기만 하도록 지정해줘야겠죠. 따라서 우리는 각 메서드의 정의에서 채널의 방향성을 아래와 같이 지정해줘야합니다. 이렇게 바꿔주면 에러가 날까봐 걱정인가요? 지금까지 잘 따라왔다면 에러없이 잘 작동할 것입니다. :)&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;type GyroHandler struct {
 	buf chan&amp;lt;- logContent
@@ -331,15 +324,15 @@ func fileLogger(logStream &amp;lt;-chan logContent) {
 
 &lt;p&gt;이제 로그를 남겨봅시다! 로그는 각 센서별로 정보를 모아서 저장을 할 것입니다. 이미 눈치 채신 분들이 있겠지만, 이미 프로젝트 폴더에 로그라는 폴더가 존재합니다.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;├── log
-│   ├── Accel.log
-│   ├── Gyro.log
-│   └── Temp.log
+&lt;pre&gt;&lt;code&gt;log/
+		Accel.log
+		Gyro.log
+		Temp.log
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;약어가 의미하듯이 엑셀.로그는 가속도 센서의 측정값을, 자이로.로그는 자이로 센서의 측정값을, 그리고 템프.로그는 온도 및 습도계의 측정값을 저장합니다. 로그를 본격적으로 저장하기 전에, 우리가 로그를 저장할 폴더가 존재하는지 확인해야합니다. 이를 외해 &lt;a href=&#34;https://golang.org/pkg/os/#Open&#34;&gt;&lt;code&gt;os.Open(&#39;log&#39;)&lt;/code&gt;&lt;/a&gt;이라는 메서드를 사용할 것입니다.만약 이 메서드가 로그 폴더를 정상적으로 찾아내면, 그에 대한 파일 타입을 반환할 것입니다. 아닐 경우, 로그 폴더를 &lt;a href=&#34;https://golang.org/pkg/os/#Mkdir&#34;&gt;&lt;code&gt;os.Mkdir(&#39;log&#39;, os.ModePerm)&lt;/code&gt;&lt;/a&gt;이라는 메서드를 이용해 생성할 것입니다.&lt;/p&gt;
 
-&lt;p&gt;로그 폴더가 정상적으로 존재하는 경우, &lt;em&gt;&lt;code&gt;Log Handler&lt;/code&gt;&lt;/em&gt;인 fileLogger()&lt;code&gt;메서드는 채널에 값이 들어오기를 기다립니다. 아래의&lt;/code&gt;for, range` 문구가 그 역할을 합니다.&lt;/p&gt;
+&lt;p&gt;로그 폴더가 정상적으로 존재하는 경우, &lt;code&gt;Log Handler&lt;/code&gt;인 fileLogger()&lt;code&gt;메서드는 채널에 값이 들어오기를 기다립니다. 아래의&lt;/code&gt;for, range` 문구가 그 역할을 합니다.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;for logData := range logStream
 &lt;/code&gt;&lt;/pre&gt;

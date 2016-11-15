@@ -175,7 +175,7 @@
 
 <p><img src="https://mingrammer.com/go-codelab/img/project_structure.png" alt="Alt project_structure" /></p>
 
-<p><em><code>Sensor</code></em>는 IoT 기기의 <em><code>Sensor</code></em>로, 이 구조에선 Client를 의미하며, <code>sensor_client.go</code>에서 정의되어있습니다. 이 프로젝트에서는 다음의 3개의 <em><code>Sensor</code></em>들이 존재합니다.2</p>
+<p><code>Sensor</code>는 IoT 기기의 <code>Sensor</code>로, 이 구조에선 Client를 의미하며, <code>sensor_client.go</code>에서 정의되어있습니다. 이 프로젝트에서는 다음의 3개의 <code>Sensor</code>들이 존재합니다.</p>
 
 <blockquote>
 <h4 id="자이로-센서-gyroscope-sensor"><strong>자이로 센서 (Gyroscope Sensor)</strong></h4>
@@ -185,27 +185,23 @@
 <h4 id="온도-및-습도계-temperature-sensor"><strong>온도 및 습도계 (Temperature Sensor)</strong></h4>
 </blockquote>
 
-<p>이들 센서의 종류는 잠시 후 설명할 <code>model</code> 패키지에 정의되어 있으며, 센서들은 일정 시간 간격마다 <em><code>Server</code></em>에게 <em><code>Sensor</code></em>에서 발생한 측정값을 보내줍니다. 이 측정값으로는 각속도(<code>Angule Velocity</code>), 선속도(<code>Gravitational Velocity</code>), 온도 및 습도(<code>Temperature and Humidity</code>)가 있습니다.</p>
+<p>이들 센서의 종류는 잠시 후 설명할 <code>model</code> 패키지에 정의되어 있으며, 센서들은 일정 시간 간격마다 <code>Server</code>에게 <code>Sensor</code>에서 발생한 측정값을 보내줍니다. 이 측정값으로는 각속도(Angule Velocity), 선속도(Gravitational Velocity), 온도 및 습도(Temperature and Humidity)가 있습니다.</p>
 
 <p>그러나, 우리는 가상의 센서를 구현하는 것이기 때문에, 실제 측정값을 넣지 못하는 관계로, <code>faker</code>라는 것을 이용해, 가상의 난수값을 측정값으로 설정하여 서버에 보내줄 것입니다.</p>
 
-<p><em><code>Server</code></em>는 각 <em><code>Sensor</code></em>에 대한 측정값을 HTTP Protocol을 통해서 받으며, <code>sensor_server.go</code>에 정의되어 있습니다. 이 때, 각 측정값 종류에 대한 포트 번호는 달리해서 보내게 됩니다. <code>&lt;em&gt;Server</code></em>는 <code>&lt;em&gt;Sensor</code></em>로부터 받은 데이터의 내용으로 측정값의 종류와 그 값을 확인합니다.</p>
+<p><code>Server</code>는 각 <code>Sensor</code>에 대한 측정값을 HTTP Protocol을 통해서 받으며, <code>sensor_server.go</code>에 정의되어 있습니다. 이 때, 각 측정값 종류에 대한 포트 번호는 달리해서 보내게 됩니다. <code>Server</code>는 <code>Sensor</code>로부터 받은 데이터의 내용으로 측정값의 종류와 그 값을 확인합니다.</p>
 
-<p>이렇게 확인된 데이터는 <em><code>Log Handler</code></em>에게 넘겨지며, 이를 받은 <em><code>Log Handler</code></em>는 실시간으로 각 <em><code>Sensor</code></em>가 받은 측정값을 <code>log</code> 폴더의 센서별 파일에 로그 형식으로 남깁니다.</p>
+<p>이렇게 확인된 데이터는 <code>Log Handler</code>에게 넘겨지며, 이를 받은 <code>Log Handler</code>는 실시간으로 각 <code>Sensor</code>가 받은 측정값을 <code>log</code> 폴더의 센서별 파일에 로그 형식으로 남깁니다.</p>
 
 <p>이러한 프로젝트 구조를 트리 형식으로 보면 다음과 같습니다.</p>
 
-<pre><code>├── faker
-│   └── range.go
-├── log
-│   ├── Accel.log
-│   ├── Gyro.log
-│   └── Temp.log
-├── models
-│   └── sensor.go
-├── README.md
-├── sensor_client.go
-└── sensor_server.go
+<pre><code>go-codelab/
+        faker/
+                range.go
+        models/
+                sensor.go
+        sensor_client.go
+        sensor_server.go
 </code></pre>
 
         </article>
