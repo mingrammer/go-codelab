@@ -1,5 +1,8 @@
 +++
-title = "Struct와 Interface"
+title = "구조체와 인터페이스"
 date = "2016-11-14T10:20:44+09:00"
 weight = 5
 +++
+
+모델 패키지 `models`에는 클라이언트와 서버에서 사용할 센서들의 공용 메서드를 정의하는 `Sensor` 인터페이스와 센서들의 공통 필드를 갖는 `SensorInfo` 구조체를 정의해놓은 `sensor.go` 파일이 있습니다.
+
