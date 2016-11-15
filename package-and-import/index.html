@@ -5,7 +5,7 @@
 
     <base href="https://mingrammer.com/go-codelab">
     <title>Go codelab step-by-step page</title>
-    <link rel="canonical" href="https://mingrammer.com/go-codelab/install-and-env">
+    <link rel="canonical" href="https://mingrammer.com/go-codelab/package-and-import">
     <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
     <link rel="stylesheet" href="https://mingrammer.com/go-codelab/css/codelab.css"/>
 </head>
@@ -27,7 +27,7 @@
             
         
             
-                <li class="step-item step-item-active">
+                <li class="step-item step-item-passed">
     <a href="https://mingrammer.com/go-codelab/install-and-env">
         <p class="item-weight"> 2 </p>
         <p class="item-title"> 설치 및 환경셋팅 </p>
@@ -37,7 +37,7 @@
             
         
             
-                <li class="step-item">
+                <li class="step-item step-item-passed">
     <a href="https://mingrammer.com/go-codelab/project-structure">
         <p class="item-weight"> 3 </p>
         <p class="item-title"> 프로젝트 구조 </p>
@@ -47,7 +47,7 @@
             
         
             
-                <li class="step-item">
+                <li class="step-item step-item-active">
     <a href="https://mingrammer.com/go-codelab/package-and-import">
         <p class="item-weight"> 4 </p>
         <p class="item-title"> 패키지와 임포트 </p>
@@ -164,10 +164,64 @@
 
     <div class=preview-content>
         <div class="content-title">
-            2. 설치 및 환경셋팅
+            4. 패키지와 임포트
         </div>
         <article id="content">
-           
+           <p>이전에도 살펴봤듯이 이 튜토리얼은 다음과 같이 구성되어 있습니다.</p>
+
+<pre><code>go-codelab/
+        faker/
+                range.go
+        models/
+                sensor.go
+        sensor_client.go
+        sensor_server.go
+</code></pre>
+
+<p><code>go-codelab</code>은 튜토리얼 프로젝트의 루트 디렉토리이며 모든 소스코드는 이 안에 위치합니다. <code>go-codelab</code> 하위에는 <code>faker</code> 디렉토리와 <code>models</code> 디렉토리가 존재하며 <code>sensor_client.go</code>와 <code>sensor_server.go</code>가 단일 파일로 존재합니다.</p>
+
+<p>Go 프로그램은 <strong>패키지</strong>라고 하는 일련의 파일 그룹에 의해 관리됩니다. 패키지는 재사용이 가능하며 작은 단위의 <code>.go</code> 확장자를 갖는 프로그램들로 구성됩니다. 이 튜토리얼엔 2개의 패키지가 존재합니다. 물론 정확히 말하자면 메인 패키지를 포함하여 총 3개의 패키지가 존재하지만 메인 패키지는 조금 특별하게 다뤄지므로 패키지라고 하면 메인 패키지를 제외한 일반적인 패키지를 말합니다. 이 튜토리얼엔 2개의 패키지가 존재하는데 바로 <code>faker</code>와 <code>models</code> 패키지입니다.</p>
+
+<pre><code>faker/
+        range.go
+models/
+        sensor.go
+</code></pre>
+
+<p>우리가 다룰 패키지는 비록 단일 파일만 갖고 있지만 일반적인 경우엔 한 패키지에 작은 단위로 나뉜 여러 파일과 디렉토리가 존재합니다. 쉬운 예로 나중에 살펴보게될 <code>net/http</code> 패키지의 경우 다음과 같이 구성되어 있습니다.</p>
+
+<pre><code>net/http/
+        cgi/
+        cookiejar/
+                testdata/
+        fcgi/
+        httptest/
+        httputil/
+        pprof/
+        testdata/
+</code></pre>
+
+<p>그럼 이제 우리 튜토리얼의 패키지들을 살펴봅시다. <code>faker</code>의 <code>range.go</code> 파일과 <code>models</code>의 <code>sensor.go</code>를 보면 상단에 다음과 같은 코드를 볼 수 있습니다.</p>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #f92672">package</span> <span style="color: #a6e22e">faker</span>
+
+<span style="color: #f92672">import</span> <span style="color: #f8f8f2">(</span>
+	<span style="color: #e6db74">&quot;math/rand&quot;</span>
+	<span style="color: #e6db74">&quot;time&quot;</span>
+<span style="color: #f8f8f2">)</span>
+</pre></div>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #f92672">package</span> <span style="color: #a6e22e">models</span>
+
+<span style="color: #f92672">import</span> <span style="color: #f8f8f2">(</span>
+	<span style="color: #e6db74">&quot;fmt&quot;</span>
+	<span style="color: #e6db74">&quot;strings&quot;</span>
+	<span style="color: #e6db74">&quot;time&quot;</span>
+
+	<span style="color: #e6db74">&quot;github.com/mingrammer/go-codelab/faker&quot;</span>
+<span style="color: #f8f8f2">)</span>
+</pre></div>
+
+<p>최상단을 보면 <code>package &lt;name&gt;</code>형태의 코드를 볼 수 있습니다. 한 패키지에 속한 모든 Go 파일들은 이렇게 최상단에 자신의 속한 패키지명을 선언해야 합니다. 이 패키지명은 보통 패키지가 속한 디렉토리명을 따릅니다. 따라서, <code>range.go</code>나 <code>sensor.go</code>를 보면 각 파일이 <code>faker</code>와 <code>models</code> 패키지에 속한다는걸 바로 알 수 있습니다.</p>
+
         </article>
     </div>
 </div>

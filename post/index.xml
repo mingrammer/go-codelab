@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Go codelab step-by-step page</title>
+    <title>Post-rsses on Go codelab step-by-step page</title>
     <link>https://mingrammer.com/go-codelab/post/index.xml</link>
-    <description>Recent content in Posts on Go codelab step-by-step page</description>
+    <description>Recent content in Post-rsses on Go codelab step-by-step page</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 14 Nov 2016 10:20:44 +0900</lastBuildDate>
@@ -111,21 +111,76 @@
     </item>
     
     <item>
-      <title>모델과 패키지</title>
-      <link>https://mingrammer.com/go-codelab/models</link>
+      <title>패키지와 임포트</title>
+      <link>https://mingrammer.com/go-codelab/package-and-import</link>
       <pubDate>Mon, 14 Nov 2016 10:20:44 +0900</pubDate>
       
-      <guid>https://mingrammer.com/go-codelab/models</guid>
-      <description></description>
+      <guid>https://mingrammer.com/go-codelab/package-and-import</guid>
+      <description>&lt;p&gt;이전에도 살펴봤듯이 이 튜토리얼은 다음과 같이 구성되어 있습니다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;go-codelab/
+        faker/
+                range.go
+        models/
+                sensor.go
+        sensor_client.go
+        sensor_server.go
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;go-codelab&lt;/code&gt;은 튜토리얼 프로젝트의 루트 디렉토리이며 모든 소스코드는 이 안에 위치합니다. &lt;code&gt;go-codelab&lt;/code&gt; 하위에는 &lt;code&gt;faker&lt;/code&gt; 디렉토리와 &lt;code&gt;models&lt;/code&gt; 디렉토리가 존재하며 &lt;code&gt;sensor_client.go&lt;/code&gt;와 &lt;code&gt;sensor_server.go&lt;/code&gt;가 단일 파일로 존재합니다.&lt;/p&gt;
+
+&lt;p&gt;Go 프로그램은 &lt;strong&gt;패키지&lt;/strong&gt;라고 하는 일련의 파일 그룹에 의해 관리됩니다. 패키지는 재사용이 가능하며 작은 단위의 &lt;code&gt;.go&lt;/code&gt; 확장자를 갖는 프로그램들로 구성됩니다. 이 튜토리얼엔 2개의 패키지가 존재합니다. 물론 정확히 말하자면 메인 패키지를 포함하여 총 3개의 패키지가 존재하지만 메인 패키지는 조금 특별하게 다뤄지므로 패키지라고 하면 메인 패키지를 제외한 일반적인 패키지를 말합니다. 이 튜토리얼엔 2개의 패키지가 존재하는데 바로 &lt;code&gt;faker&lt;/code&gt;와 &lt;code&gt;models&lt;/code&gt; 패키지입니다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;faker/
+        range.go
+models/
+        sensor.go
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;우리가 다룰 패키지는 비록 단일 파일만 갖고 있지만 일반적인 경우엔 한 패키지에 작은 단위로 나뉜 여러 파일과 디렉토리가 존재합니다. 쉬운 예로 나중에 살펴보게될 &lt;code&gt;net/http&lt;/code&gt; 패키지의 경우 다음과 같이 구성되어 있습니다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;net/http/
+        cgi/
+        cookiejar/
+                testdata/
+        fcgi/
+        httptest/
+        httputil/
+        pprof/
+        testdata/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;그럼 이제 우리 튜토리얼의 패키지들을 살펴봅시다. &lt;code&gt;faker&lt;/code&gt;의 &lt;code&gt;range.go&lt;/code&gt; 파일과 &lt;code&gt;models&lt;/code&gt;의 &lt;code&gt;sensor.go&lt;/code&gt;를 보면 상단에 다음과 같은 코드를 볼 수 있습니다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #272822&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #f92672&#34;&gt;package&lt;/span&gt; &lt;span style=&#34;color: #a6e22e&#34;&gt;faker&lt;/span&gt;
+
+&lt;span style=&#34;color: #f92672&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color: #f8f8f2&#34;&gt;(&lt;/span&gt;
+	&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;math/rand&amp;quot;&lt;/span&gt;
+	&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;time&amp;quot;&lt;/span&gt;
+&lt;span style=&#34;color: #f8f8f2&#34;&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #272822&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #f92672&#34;&gt;package&lt;/span&gt; &lt;span style=&#34;color: #a6e22e&#34;&gt;models&lt;/span&gt;
+
+&lt;span style=&#34;color: #f92672&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color: #f8f8f2&#34;&gt;(&lt;/span&gt;
+	&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
+	&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;strings&amp;quot;&lt;/span&gt;
+	&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;time&amp;quot;&lt;/span&gt;
+
+	&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;github.com/mingrammer/go-codelab/faker&amp;quot;&lt;/span&gt;
+&lt;span style=&#34;color: #f8f8f2&#34;&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;최상단을 보면 &lt;code&gt;package &amp;lt;name&amp;gt;&lt;/code&gt;형태의 코드를 볼 수 있습니다. 한 패키지에 속한 모든 Go 파일들은 이렇게 최상단에 자신의 속한 패키지명을 선언해야 합니다. 이 패키지명은 보통 패키지가 속한 디렉토리명을 따릅니다. 따라서, &lt;code&gt;range.go&lt;/code&gt;나 &lt;code&gt;sensor.go&lt;/code&gt;를 보면 각 파일이 &lt;code&gt;faker&lt;/code&gt;와 &lt;code&gt;models&lt;/code&gt; 패키지에 속한다는걸 바로 알 수 있습니다.&lt;/p&gt;
+</description>
     </item>
     
     <item>
-      <title>Struct와 Interface</title>
+      <title>구조체와 인터페이스</title>
       <link>https://mingrammer.com/go-codelab/struct-and-interface</link>
       <pubDate>Mon, 14 Nov 2016 10:20:44 +0900</pubDate>
       
       <guid>https://mingrammer.com/go-codelab/struct-and-interface</guid>
-      <description></description>
+      <description>&lt;p&gt;모델 패키지 &lt;code&gt;models&lt;/code&gt;에는 클라이언트와 서버에서 사용할 센서들의 공용 메서드를 정의하는 &lt;code&gt;Sensor&lt;/code&gt; 인터페이스와 센서들의 공통 필드를 갖는 &lt;code&gt;SensorInfo&lt;/code&gt; 구조체를 정의해놓은 &lt;code&gt;sensor.go&lt;/code&gt; 파일이 있습니다.&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -196,20 +251,21 @@
 &lt;p&gt;그러나, &lt;code&gt;net/http&lt;/code&gt; 패키지에서 서버를 생성하는 메서드인 &lt;a href=&#34;https://golang.org/pkg/net/http/#ListenAndServe&#34;&gt;&lt;code&gt;ListenAndServe()&lt;/code&gt;&lt;/a&gt; 메서드를 확인해보면, 인자로 &lt;a href=&#34;https://golang.org/pkg/net/http/#Handler&#34;&gt;핸들러 인터페이스&lt;/a&gt;를 요구하고 있습니다. 이 핸들러 인터페이스를 다시 확인해보면, 결국 &lt;a href=&#34;https://golang.org/pkg/net/http/#HandlerFunc&#34;&gt;&lt;code&gt;ServeHTTP()&lt;/code&gt;&lt;/a&gt;라는 메서드를 요구합니다.&lt;/p&gt;
 
 &lt;p&gt;따라서, 우리는 ServeHTTP() 메서드가 구현된 핸들러 인터페이스가 필요합니다. 이를 위해, 우리는 각 데이터 종류에 대한 인터페이스를 다음과 같이 만들어줘야 합니다.&lt;/p&gt;
-// GyroHandler : Gyroscopte sensor handler to implement ServeHTTP method
-type GyroHandler struct {
+&lt;div class=&#34;highlight&#34; style=&#34;background: #272822&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #75715e&#34;&gt;// GyroHandler : Gyroscopte sensor handler to implement ServeHTTP method&lt;/span&gt;
+&lt;span style=&#34;color: #66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #a6e22e&#34;&gt;GyroHandler&lt;/span&gt; &lt;span style=&#34;color: #66d9ef&#34;&gt;struct&lt;/span&gt; &lt;span style=&#34;color: #f8f8f2&#34;&gt;{&lt;/span&gt;
 
-}
+&lt;span style=&#34;color: #f8f8f2&#34;&gt;}&lt;/span&gt;
 
-// AccelHandler : Accelerator sensro handler to implement ServeHTTP method
-type AccelHandler struct {
+&lt;span style=&#34;color: #75715e&#34;&gt;// AccelHandler : Accelerator sensro handler to implement ServeHTTP method&lt;/span&gt;
+&lt;span style=&#34;color: #66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #a6e22e&#34;&gt;AccelHandler&lt;/span&gt; &lt;span style=&#34;color: #66d9ef&#34;&gt;struct&lt;/span&gt; &lt;span style=&#34;color: #f8f8f2&#34;&gt;{&lt;/span&gt;
 
-}
+&lt;span style=&#34;color: #f8f8f2&#34;&gt;}&lt;/span&gt;
 
-// TempHandler 	: Temperature sensor handler to implement ServeHTTP method
-type TempHandler struct {
+&lt;span style=&#34;color: #75715e&#34;&gt;// TempHandler 	: Temperature sensor handler to implement ServeHTTP method&lt;/span&gt;
+&lt;span style=&#34;color: #66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #a6e22e&#34;&gt;TempHandler&lt;/span&gt; &lt;span style=&#34;color: #66d9ef&#34;&gt;struct&lt;/span&gt; &lt;span style=&#34;color: #f8f8f2&#34;&gt;{&lt;/span&gt;
 
-}
+&lt;span style=&#34;color: #f8f8f2&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 </description>
     </item>
     
