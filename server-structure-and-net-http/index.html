@@ -8,6 +8,7 @@
     <link rel="canonical" href="https://mingrammer.com/go-codelab/server-structure-and-net-http">
     <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
     <link rel="stylesheet" href="https://mingrammer.com/go-codelab/css/codelab.css"/>
+    <link rel="stylesheet" href="https://mingrammer.com/go-codelab/css/syntax.css"/>
 </head>
 <body>
 
@@ -184,20 +185,21 @@
 <p>그러나, <code>net/http</code> 패키지에서 서버를 생성하는 메서드인 <a href="https://golang.org/pkg/net/http/#ListenAndServe"><code>ListenAndServe()</code></a> 메서드를 확인해보면, 인자로 <a href="https://golang.org/pkg/net/http/#Handler">핸들러 인터페이스</a>를 요구하고 있습니다. 이 핸들러 인터페이스를 다시 확인해보면, 결국 <a href="https://golang.org/pkg/net/http/#HandlerFunc"><code>ServeHTTP()</code></a>라는 메서드를 요구합니다.</p>
 
 <p>따라서, 우리는 ServeHTTP() 메서드가 구현된 핸들러 인터페이스가 필요합니다. 이를 위해, 우리는 각 데이터 종류에 대한 인터페이스를 다음과 같이 만들어줘야 합니다.</p>
-// GyroHandler : Gyroscopte sensor handler to implement ServeHTTP method
-type GyroHandler struct {
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="c1">// GyroHandler : Gyroscopte sensor handler to implement ServeHTTP method</span>
+<span class="kd">type</span> <span class="nx">GyroHandler</span> <span class="kd">struct</span> <span class="p">{</span>
 
-}
+<span class="p">}</span>
 
-// AccelHandler : Accelerator sensro handler to implement ServeHTTP method
-type AccelHandler struct {
+<span class="c1">// AccelHandler : Accelerator sensro handler to implement ServeHTTP method</span>
+<span class="kd">type</span> <span class="nx">AccelHandler</span> <span class="kd">struct</span> <span class="p">{</span>
 
-}
+<span class="p">}</span>
 
-// TempHandler 	: Temperature sensor handler to implement ServeHTTP method
-type TempHandler struct {
+<span class="c1">// TempHandler 	: Temperature sensor handler to implement ServeHTTP method</span>
+<span class="kd">type</span> <span class="nx">TempHandler</span> <span class="kd">struct</span> <span class="p">{</span>
 
-}
+<span class="p">}</span>
+</code></pre></div>
 
         </article>
     </div>

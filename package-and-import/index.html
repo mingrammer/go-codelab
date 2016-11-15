@@ -8,6 +8,7 @@
     <link rel="canonical" href="https://mingrammer.com/go-codelab/package-and-import">
     <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
     <link rel="stylesheet" href="https://mingrammer.com/go-codelab/css/codelab.css"/>
+    <link rel="stylesheet" href="https://mingrammer.com/go-codelab/css/syntax.css"/>
 </head>
 <body>
 
@@ -202,23 +203,25 @@ models/
 </code></pre>
 
 <p>그럼 이제 우리 튜토리얼의 패키지들을 살펴봅시다. <code>faker</code>의 <code>range.go</code> 파일과 <code>models</code>의 <code>sensor.go</code>를 보면 상단에 다음과 같은 코드를 볼 수 있습니다.</p>
-package faker
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">faker</span>
 
-import (
-	"math/rand"
-	"time"
-)
-package models
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&quot;math/rand&quot;</span>
+	<span class="s">&quot;time&quot;</span>
+<span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">models</span>
 
-import (
-	"fmt"
-	"strings"
-	"time"
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&quot;fmt&quot;</span>
+	<span class="s">&quot;strings&quot;</span>
+	<span class="s">&quot;time&quot;</span>
 
-	"github.com/mingrammer/go-codelab/faker"
-)
+	<span class="s">&quot;github.com/mingrammer/go-codelab/faker&quot;</span>
+<span class="p">)</span>
+</code></pre></div>
 
-<p>최상단을 보면 <code>package &lt;name&gt;</code>형태의 코드를 볼 수 있습니다. 한 패키지에 속한 모든 Go 파일들은 이렇게 최상단에 자신의 속한 패키지명을 선언해야 합니다. 이 패키지명은 보통 패키지가 속한 디렉토리명을 따릅니다. 따라서, <code>range.go</code>나 <code>sensor.go</code>를 보면 각 파일이 <code>faker</code>와 <code>models</code> 패키지에 속한다는걸 바로 알 수 있습니다.</p>
+<p>최상단을 보면 <code>package &lt;name&gt;</code>형태의 코드를 볼 수 있습니다. 한 패키지에 속한 모든 Go 파일들은 이렇게 최상단에 자신이 속한 패키지명을 선언해야 합니다. 이 패키지명은 보통 패키지가 속한 디렉토리명을 따릅니다. 따라서, <code>range.go</code>나 <code>sensor.go</code>를 보면 각 파일이 <code>faker</code>와 <code>models</code> 패키지에 속한다는걸 바로 알 수 있습니다.</p>
 
         </article>
     </div>
