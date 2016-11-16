@@ -120,7 +120,7 @@ func getRequestServerURL(port int) string {
 }
 
 // sendJSONSensorData sends the sensor data as JSON type to server
-func sendJSONSensorData(url string, sensorValues interface{}) {
+func sendJSONSensorData(url string, sensorValues models.Sensor) {
 	jsonBytes, err := json.Marshal(sensorValues)
 	if err != nil {
 		log.Fatal("Error occurs when mashaling the gyro sensor values")
