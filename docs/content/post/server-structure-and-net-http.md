@@ -17,7 +17,7 @@ weight = 9
 
 따라서, 우리는 ServeHTTP() 메서드가 구현된 핸들러 인터페이스가 필요합니다. 이를 위해, 우리는 각 데이터 종류에 대한 인터페이스를 다음과 같이 만들어줘야 합니다.
 
-~~~go
+```go
 // GyroHandler : Gyroscopte sensor handler to implement ServeHTTP method
 type GyroHandler struct {
 
@@ -32,4 +32,4 @@ type AccelHandler struct {
 type TempHandler struct {
 
 }
-~~~
+```
