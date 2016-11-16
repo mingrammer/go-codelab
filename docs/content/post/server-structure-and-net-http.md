@@ -57,6 +57,8 @@ func (m *AccelHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 }
 ```
 
+이제 다음 페이지에선 
+
 <br>
 ### 도전
 `구조체와 인터페이스` 단계에서 만들었던 여러분들만의 센서에 대해 `Handler Interface`와 `ServeHTTP()` 메서드를 정의해보세요.

@@ -12,7 +12,7 @@ sensor_server.go 내에서 로그컨텐트에 대한 채널을 만들어줍니�
 ### 양방향 채널? 단방향 채널!
 기본적으로 채널을 생성하게 되면 채널은 양방향의 성격을 가지게 됩니다. 다시 말해, 채널은 특별한 언급이 없으면 어디서든 데이터를 저장하고, 불러올 수 있도록 전제하고 있습니다. 이해가 잘 안 간다고요? 그럼 예시로 설명해보죠.
 
-```
+```go
 func ShowMeTheChannel() {
 	data := make(chan int)
 
@@ -28,14 +28,14 @@ func ShowMeTheChannel() {
 채널을 이용한 간단한 메서드를 만들어 봤습니다. `data`라는 채널은 int형 파이프라인으로 선언되었습니다. 그리고 `ShowMeTheChannel()`이라는 메서드는 반복문 10번씩 두 번 돌면서 각각 데이터를 저장하고, 불러옵니다. 이 메서드는 채널의 양 끝에 대한 사용권을 모두 가지고 있죠. 이것을 우리는 양방향 채널(Bidirectional Channel)이라고 합니다.
 
 여려분이 만들 프로그램은 각 데이터 종류에 대한 핸들러와 `fileLogger()`메서드가 채널을 사용합니다. 만약 각 요소에서 데이터를 활용할 방향성에 대해 정의하지 않으면, 자신의 권한과 상관없이 데이터를 마음껏 저장하고 불러올 수 있겠죠. 이건 우리가 이상적으로 생각하는 모습이 아닙니다. 그래서 우리는 각 핸들러와 메서드가 사용할 채널의 방향성을 지정해줌으로서 파이프라인에서의 데이터의 흐름을 한 방향으로 보장하도록 하려고 합니다. 고맙게도 고언어에서는 이에 대해서도 미리 [준비](https://golang.org/ref/spec#Channel_types)를 해놨습니다.
-```
+```go
 chan T          // 이런 형식으로 사용권을 받으면 채널에서 T 타입 데이터를 불러오고 저장할 수 있습니다.
 chan<- float64  // 이런 형식으로 받게 되면 채널에서 T 타입 데이터를 불러오기만 할 수 있습니다.
 <-chan int      // 이런 형식으로 받으면 T 타입 데이터를 채널에 저장만 할 수 있습니다.
 ```
 그렇다면 우리는 `ServeHTTP()` 메서드에선 채널에서 데이터를 보내기만 하도록, `fileLogger()` 메서드에선 채널에서 데이터를 받기만 하도록 지정해줘야겠죠. 따라서 우리는 각 메서드의 정의에서 채널의 방향성을 아래와 같이 지정해줘야합니다. 이렇게 바꿔주면 에러가 날까봐 걱정인가요? 지금까지 잘 따라왔다면 에러없이 잘 작동할 것입니다. :)
 
-```
+```go
 type GyroHandler struct {
 	buf chan<- logContent
 }
@@ -81,7 +81,48 @@ fileHandle, err := os.OpenFile(filePath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 06
 logger := log.New(fileHandle, "", log.LstdFlags)
 logger.Printf("[%s Data Received]\n%s\n", logData.sensorName, logData.content)
 ```
-이렇게 생성한 `logger`를 이용해 로그 내용을 출력하게 되면 다음과 같은 결과를 로그파일에서 확인할 수 있습니다.
+이렇게 생성한 `logger`를 이용해 로그 내용을 출력하게 되면 다음과 같은 결과를 로그파일에서 확인할 수 있습니다. 결과값은 `main()` 메서드에서 실제로 핸들러와 로거를 실행해서 결과를 확인해봅시다!
+
+<br>
+### 일해라 서버야!
+이제 `main()` 메서드에서 우리가 정의해줬던 것들을 실제로 실행할 수 있게 해보겠습니다.
+
+먼저, HTTP 핸들러 메서드에서 로그 핸들러로 기록할 로그의 내용을 전달해주는 채널, 각 센서에 대한 핸들러를 정의해줍니다.
+```go
+logBuf := make(chan logContent)
+gyroHander := &GyroHandler{buf: logBuf}
+accelHandler := &AccelHandler{buf: logBuf}
+tempHandler := &TempHandler{buf: logBuf}
+```
+그 다음엔 실제 HTTP 서버를 실행하는 `ListenAndServe()` 메서드를 실행합니다. 여기서 주의할 것은, 그냥 실행하면 맨 위의 한 개 서버만 생성이 됩니다. `ListenAndServe()` 메서드가 실행되면 그 즉시 해당 핸들러에 대해 HTTP 요청을 대기 시작하기 때문입니다. 우리는 3개의 센서에 대한 서버가 동시에 돌아가는 것을 윈하는 것이죠? 이 때 고루틴을 적용해줍니다! 단순히 실행할 메서드 앞에 `go`를 붙여주면 됩니다.
+
+```go
+go http.ListenAndServe(":8001", gyroHander)
+go http.ListenAndServe(":8002", accelHandler)
+go http.ListenAndServe(":8003", tempHandler)
+```
+
+그리고 동시에 파일로거도 실행이 되어야겠죠? `fileLogger()` 메서드도 고루틴을 이용해 실행해줍니다.
+
+```go
+go fileLogger(logBuf)
+```
+
+이제 바로 실행을 해볼까요? 실행이 잘 되나요? 아마 안 될 겁니다. 왜냐하면 고루틴들이 일을 하고 있지만, 프로그램 메인 프로세스가 먼저 종료되었기 때문입니다. 기본적으로 고루틴들이 종료되기를 기다리지 않는다는 것이죠. 그래서 우리는 메인 스레드가 고루틴을 기다릴 수 있도록 한 가지를 더 추가할 것입니다. 바로 [`WaitGroup`](https://golang.org/pkg/sync/#WaitGroup)입니다. 이 `WaitGroup`에서 우리는 `Wait()`이라는 메서드를 사용해서 고루틴들이 끝나기기 까지 기다려야하지만, 그 전에 얼마나 많은 고루틴을 기다려야하는지를 정의해야합니다. 이 때 우리는 `Add()` 메서드를 이용하며, 얼마나 더 많은 고루틴을 기다릴지 `WaitGroup`에 알려줍니다. 우리의 경우 4개의 고루틴을 기다려야겠죠? (주의할 것은 `WaitGroup`은 `sync` 패키지에 정의되어 있는 타입이기 때문에 이 또한 `import`해줘야 합니다!!)
+
+```go
+import "sync"
+
+...
+
+wg.Add(4)
+```
+그리고 고루틴들을 실행하고 기다려주도록 `Wait()` 메서드를 실행해줍니다.
+
+```go
+wg.Wait()
+```
+이제 `WaitGroup`까지 만들어줬으면 프로그램을 실행해봅니다! 만약 정상적으로 프로그램이 실행된다면 로그 파일에 다음과 같이 표시 될 것 입니다!
 
 ```
 2016/11/12 17:03:06 [GyroSensor Data Received]
