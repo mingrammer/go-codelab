@@ -28,27 +28,23 @@
 
 &lt;h4 id=&#34;2-프로젝트-구조-project-structure&#34;&gt;2. &lt;a href=&#34;https://mingrammer.com/go-codelab/project-structure&#34;&gt;프로젝트 구조&lt;/a&gt;&lt;/h4&gt;
 
-&lt;h4 id=&#34;3-모델-및-모델-패키지-models&#34;&gt;3. &lt;a href=&#34;https://mingrammer.com/go-codelab/models&#34;&gt;모델 및 모델 패키지&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;3-패키지와-임포트-package-and-import&#34;&gt;3. &lt;a href=&#34;https://mingrammer.com/go-codelab/package-and-import&#34;&gt;패키지와 임포트&lt;/a&gt;&lt;/h4&gt;
 
-&lt;h4 id=&#34;4-struct와-interface-struct-and-interface&#34;&gt;4. &lt;a href=&#34;https://mingrammer.com/go-codelab/struct-and-interface&#34;&gt;Struct와 Interface&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;4-구조체와-인터페이스-struct-and-interface&#34;&gt;4. &lt;a href=&#34;https://mingrammer.com/go-codelab/struct-and-interface&#34;&gt;구조체와 인터페이스&lt;/a&gt;&lt;/h4&gt;
 
-&lt;h4 id=&#34;5-interface-method-구현-implement-interface-method&#34;&gt;5. &lt;a href=&#34;https://mingrammer.com/go-codelab/implement-interface-method&#34;&gt;Interface Method 구현&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;5-클라이언트-구조-how-client-works&#34;&gt;5. &lt;a href=&#34;https://mingrammer.com/go-codelab/how-client-works&#34;&gt;클라이언트 구조&lt;/a&gt;&lt;/h4&gt;
 
-&lt;h4 id=&#34;6-클라이언트의-구조-및-main-package-how-client-works&#34;&gt;6. &lt;a href=&#34;https://mingrammer.com/go-codelab/how-client-works&#34;&gt;클라이언트의 구조 및 main package&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;6-고루틴-채널-그리고-뮤텍스-go-routine-and-channel-and-mutex&#34;&gt;6. &lt;a href=&#34;https://mingrammer.com/go-codelab/go-routine-and-channel-and-mutex&#34;&gt;고루틴, 채널 그리고 뮤텍스&lt;/a&gt;&lt;/h4&gt;
 
-&lt;h4 id=&#34;7-클라이언트에서-goroutine-channel-mutex-활용-방식-go-routine-and-channel-and-mutex&#34;&gt;7. &lt;a href=&#34;https://mingrammer.com/go-codelab/go-routine-and-channel-and-mutex&#34;&gt;클라이언트에서 Goroutine, Channel, Mutex 활용 방식&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;7-클라이언트의-동작-방식-how-client-works&#34;&gt;7. &lt;a href=&#34;https://mingrammer.com/go-codelab/how-client-works&#34;&gt;클라이언트의 동작 방식&lt;/a&gt;&lt;/h4&gt;
 
-&lt;h4 id=&#34;8-클라이언트의-작동-방식-how-client-works&#34;&gt;8. &lt;a href=&#34;https://mingrammer.com/go-codelab/how-client-works&#34;&gt;클라이언트의 작동 방식&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;8-서버-구조-및-net-http-server-structure-and-net-http&#34;&gt;8. &lt;a href=&#34;https://mingrammer.com/go-codelab/server-structure-and-net-http&#34;&gt;서버 구조 및 net/http&lt;/a&gt;&lt;/h4&gt;
 
-&lt;h4 id=&#34;9-faker의-구조-faker-structure&#34;&gt;9. &lt;a href=&#34;https://mingrammer.com/go-codelab/faker-structure&#34;&gt;Faker의 구조&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;9-서버에서-채널-동작-방식-및-로그-핸들러-how-server-and-logger-works&#34;&gt;9. &lt;a href=&#34;https://mingrammer.com/go-codelab/how-server-and-logger-works&#34;&gt;서버에서 채널 동작 방식 및 로그 핸들러&lt;/a&gt;&lt;/h4&gt;
 
-&lt;h4 id=&#34;10-서버의-구조-net-http-패키지를-활용한-포트별-개별서버-구동-server-structure-and-net-http&#34;&gt;10. &lt;a href=&#34;https://mingrammer.com/go-codelab/server-structure-and-net-http&#34;&gt;서버의 구조 (net/http 패키지를 활용한 포트별 개별서버 구동)&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;10-go에서-예외-처리하기-error-handling-in-go&#34;&gt;10. &lt;a href=&#34;https://mingrammer.com/go-codelab/error-handling-in-go&#34;&gt;Go에서 예외 처리하기&lt;/a&gt;&lt;/h4&gt;
 
-&lt;h4 id=&#34;11-서버에서-channel-활용-방식-및-log-handler-how-server-and-logger-works&#34;&gt;11. &lt;a href=&#34;https://mingrammer.com/go-codelab/how-server-and-logger-works&#34;&gt;서버에서 Channel 활용 방식 및 Log Handler&lt;/a&gt;&lt;/h4&gt;
-
-&lt;h4 id=&#34;12-go에서-예외-처리하기-error-handling-in-go&#34;&gt;12. &lt;a href=&#34;https://mingrammer.com/go-codelab/error-handling-in-go&#34;&gt;Go에서 예외 처리하기&lt;/a&gt;&lt;/h4&gt;
-
-&lt;h4 id=&#34;13-큰-그림-다시-보기-how-application-works&#34;&gt;13. &lt;a href=&#34;https://mingrammer.com/go-codelab/how-application-works&#34;&gt;큰 그림 다시 보기&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;11-애플리케이션-동작-방식-how-application-works&#34;&gt;11. &lt;a href=&#34;https://mingrammer.com/go-codelab/how-application-works&#34;&gt;애플리케이션 동작 방식&lt;/a&gt;&lt;/h4&gt;
 </description>
     </item>
     
@@ -112,7 +108,9 @@
       <pubDate>Mon, 14 Nov 2016 10:20:44 +0900</pubDate>
       
       <guid>https://mingrammer.com/go-codelab/package-and-import</guid>
-      <description>&lt;p&gt;이전에도 살펴봤듯이 이 튜토리얼은 다음과 같이 구성되어 있습니다.&lt;/p&gt;
+      <description>
+
+&lt;p&gt;이전에도 살펴봤듯이 이 튜토리얼은 다음과 같이 구성되어 있습니다.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;go-codelab/
         faker/
@@ -124,6 +122,10 @@
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;code&gt;go-codelab&lt;/code&gt;은 튜토리얼 프로젝트의 루트 디렉토리이며 모든 소스코드는 이 안에 위치합니다. &lt;code&gt;go-codelab&lt;/code&gt; 하위에는 &lt;code&gt;faker&lt;/code&gt; 디렉토리와 &lt;code&gt;models&lt;/code&gt; 디렉토리가 존재하며 &lt;code&gt;sensor_client.go&lt;/code&gt;와 &lt;code&gt;sensor_server.go&lt;/code&gt;가 단일 파일로 존재합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;패키지&#34;&gt;패키지&lt;/h3&gt;
 
 &lt;p&gt;Go 프로그램은 &lt;strong&gt;패키지&lt;/strong&gt;라고 하는 일련의 파일 그룹에 의해 관리됩니다. 패키지는 재사용이 가능하며 작은 단위의 &lt;code&gt;.go&lt;/code&gt; 확장자를 갖는 프로그램들로 구성됩니다. 이 튜토리얼엔 2개의 패키지가 존재합니다. 물론 정확히 말하자면 메인 패키지를 포함하여 총 3개의 패키지가 존재하지만 메인 패키지는 조금 특별하게 다뤄지므로 패키지라고 하면 메인 패키지를 제외한 일반적인 패키지를 말합니다. 이 튜토리얼엔 2개의 패키지가 존재하는데 바로 &lt;code&gt;faker&lt;/code&gt;와 &lt;code&gt;models&lt;/code&gt; 패키지입니다.&lt;/p&gt;
 
@@ -147,14 +149,16 @@ models/
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;그럼 이제 우리 튜토리얼의 패키지들을 살펴봅시다. &lt;code&gt;faker&lt;/code&gt;의 &lt;code&gt;range.go&lt;/code&gt; 파일과 &lt;code&gt;models&lt;/code&gt;의 &lt;code&gt;sensor.go&lt;/code&gt;를 보면 상단에 다음과 같은 코드를 볼 수 있습니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kn&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;faker&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// faker/range.go&lt;/span&gt;
+&lt;span class=&#34;kn&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;faker&lt;/span&gt;
 
 &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
 	&lt;span class=&#34;s&#34;&gt;&amp;quot;math/rand&amp;quot;&lt;/span&gt;
 	&lt;span class=&#34;s&#34;&gt;&amp;quot;time&amp;quot;&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kn&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;models&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// models/sensor.go&lt;/span&gt;
+&lt;span class=&#34;kn&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;models&lt;/span&gt;
 
 &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
 	&lt;span class=&#34;s&#34;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
@@ -166,6 +170,48 @@ models/
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;최상단을 보면 &lt;code&gt;package &amp;lt;name&amp;gt;&lt;/code&gt;형태의 코드를 볼 수 있습니다. 한 패키지에 속한 모든 Go 파일들은 이렇게 최상단에 자신이 속한 패키지명을 선언해야 합니다. 이 패키지명은 보통 패키지가 속한 디렉토리명을 따릅니다. 따라서, &lt;code&gt;range.go&lt;/code&gt;나 &lt;code&gt;sensor.go&lt;/code&gt;를 보면 각 파일이 &lt;code&gt;faker&lt;/code&gt;와 &lt;code&gt;models&lt;/code&gt; 패키지에 속한다는걸 바로 알 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;임포트&#34;&gt;임포트&lt;/h3&gt;
+
+&lt;p&gt;위의 &lt;code&gt;range.go&lt;/code&gt;와 &lt;code&gt;sensor.go&lt;/code&gt; 파일을 보면 &lt;code&gt;package&lt;/code&gt; 아래에서 &lt;code&gt;import&lt;/code&gt;문을 볼 수 있습니다.  &lt;code&gt;import&lt;/code&gt;문을 통해 표준 또는 외부 패키지를 불러와 사용할 수 있습니다. 위 코드에서 보이는 &lt;code&gt;math/rand&lt;/code&gt;, &lt;code&gt;time&lt;/code&gt;, &lt;code&gt;fmt&lt;/code&gt;, &lt;code&gt;strings&lt;/code&gt;는 Go의 표준 라이브러리 패키지입니다. 표준 라이브러리 패키지의 경우 해당 패키지명만 그대로 선언해주면 바로 사용할 수 있습니다. 다음은 콘솔에 값을 출력하는 코드입니다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 단일 import문은 이렇게 쓸 수 있습니다.&lt;/span&gt;
+&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;// 다중 import문은 이렇게 쓸 수 있습니다.&lt;/span&gt;
+&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+    &lt;span class=&#34;s&#34;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+
+&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;Hello, World!&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;그런데 &lt;code&gt;sensor.go&lt;/code&gt;의 &lt;code&gt;import&lt;/code&gt;문을 보면 &lt;code&gt;github.com/mingrammer/go-codelab/faker&lt;/code&gt;와 같이 조금 특이한 형태의 임포트문을 볼 수 있습니다. Go는 Github나 Bitbucket와 같은 곳에 호스팅 되어있는 외부 패키지와 소스코드를 패키지로써 사용할 수 있게 해줍니다. 즉, 위 임포트문은 github.com에 호스팅 되어있는 mingrammer 유저의 &lt;code&gt;go-codelab/faker&lt;/code&gt; 패키지를 사용하겠다는 의미입니다. Go에서는 표준 라이브러리가 아닌 패키지의 경우 &lt;code&gt;$GOPATH/src&lt;/code&gt;를 기준으로 패키지를 불러오기 때문에 이런 외부 패키지가 &lt;code&gt;import&lt;/code&gt;문에 선언되어 있을 때  &lt;code&gt;go get&lt;/code&gt;이라는 명령어를 사용하면 해당 위치의 패키지 구조를 &lt;code&gt;$GOPATH/src&lt;/code&gt; 하위로 다운로드 받아 해당 패키지를 사용할 수 있게 해줍니다.&lt;/p&gt;
+
+&lt;p&gt;우리 프로젝트의 경우 전체 Go 프로젝트 구조는 다음과 같습니다.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;GOPATH/
+        bin/
+        pkg/
+        src/
+                github.com/
+                        mingrammer/
+                                go-codelab/
+                                        faker/
+                                                range.go
+                                        models/
+                                                sensor.go
+                                        sensor_client.go
+                                        sensor_server.go
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;이렇게 되면 어떤 Go 파일에서도 &lt;code&gt;github.com/mingrammer/go-codelab/&amp;lt;package name&amp;gt;&lt;/code&gt;를 &lt;code&gt;import&lt;/code&gt;에 선언하게되면 우리 프로젝트의 패키지를 사용할 수 있게 됩니다.&lt;/p&gt;
+
+&lt;p&gt;Go의 또 하나 특이한 점은 현재 사용되지 않는 패키지가 &lt;code&gt;import&lt;/code&gt;문에 선언되어 있을 경우엔 컴파일이 되지 않습니다. 즉, 미사용 패키지를 임포트하는걸 미연에 방지할 수 있습니다. 물론 &lt;code&gt;_ (blank indentifier)&lt;/code&gt;를 사용해 해당 패키지를 직접적으로 사용하지 않으면서 초기화를 위해 임포트하는 방법이 있긴 하지만 여기서는 다루지 않을 것입니다. 기본적으로 미사용 패키지의 임포트는 컴파일 에러를 발생시킨다는 것만 알아두면 됩니다.&lt;/p&gt;
 </description>
     </item>
     
@@ -177,15 +223,6 @@ models/
       <guid>https://mingrammer.com/go-codelab/struct-and-interface</guid>
       <description>&lt;p&gt;모델 패키지 &lt;code&gt;models&lt;/code&gt;에는 클라이언트와 서버에서 사용할 센서들의 공용 메서드를 정의하는 &lt;code&gt;Sensor&lt;/code&gt; 인터페이스와 센서들의 공통 필드를 갖는 &lt;code&gt;SensorInfo&lt;/code&gt; 구조체를 정의해놓은 &lt;code&gt;sensor.go&lt;/code&gt; 파일이 있습니다.&lt;/p&gt;
 </description>
-    </item>
-    
-    <item>
-      <title>인터페이스 메서드</title>
-      <link>https://mingrammer.com/go-codelab/implement-interface-methods</link>
-      <pubDate>Mon, 14 Nov 2016 10:20:44 +0900</pubDate>
-      
-      <guid>https://mingrammer.com/go-codelab/implement-interface-methods</guid>
-      <description></description>
     </item>
     
     <item>
@@ -212,15 +249,6 @@ models/
       <pubDate>Mon, 14 Nov 2016 10:20:44 +0900</pubDate>
       
       <guid>https://mingrammer.com/go-codelab/how-client-works</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Faker 구조</title>
-      <link>https://mingrammer.com/go-codelab/faker-structure</link>
-      <pubDate>Mon, 14 Nov 2016 10:20:44 +0900</pubDate>
-      
-      <guid>https://mingrammer.com/go-codelab/faker-structure</guid>
       <description></description>
     </item>
     
