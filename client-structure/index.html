@@ -137,19 +137,183 @@
         <div class="content-title">
             6. 클라이언트 구조
         </div>
+        <br>
         <article id="content">
            
 
+<p>이전에 패키지를 다룰 때 우리는 메인 패키지라고 하는 조금 특별한 패키지에 대해 언급한 적이 있습니다. Go 프로그램이 실행가능한 바이너리 파일로 컴파일되기 위해선 메인 패키지가 반드시 필요합니다. 즉 실행 가능한 Go 프로그램들은 항상 메인 패키지를 가지고 있어야 하며 메인 패키지를 가진 프로그램은 반드시 <code>main</code> 함수를 선언해야합니다. <code>main</code> 함수는 조금 이따 다루겠습니다.</p>
+
+<p><br></p>
+
 <h3 id="클라이언트의-기본-동작-방식">클라이언트의 기본 동작 방식</h3>
 
-<p>클라이언트가 하는 일은 간단합니다. <code>models</code>에 정의된 센서들로부터 일정 간격으로 센서 데이터를 생성하고 이를 서버에 보내는 역할을 합니다. 기본적인 플로우는 다음과 같습니다.</p>
+<p>클라이언트 <code>sensor_client.go</code>가 하는 일은 간단합니다. <code>models</code>에 정의된 센서들로부터 일정 간격으로 센서 데이터를 생성하고 이를 서버에 보내는 역할을 합니다. 기본적인 플로우는 다음과 같습니다.</p>
 
 <ul>
-<li>센서값을 서버로 보내기위한 워커를 구동하기 위한 정보를 가진 워커 정보를 정의합니다.</li>
+<li>센서값을 서버로 보내기위한 워커(worker)를 구동하기 위한 정보를 가진 워커 구조체를 정의합니다.</li>
 <li>고루틴(Goroutine)을 사용해 워커 정보의 갯수만큼 워커를 구동합니다.</li>
 <li>각 워커는 일정 간격으로 데이터를 생성해 서로 독립적으로 서버에 데이터를 전송합니다.</li>
 <li>서버 데이터 전송이 일정횟수가 넘어가면 모든 워커를 종료시켜 클라이언트 프로그램을 종료합니다.</li>
 </ul>
+
+<p>위 플로우를 기반으로 실제 코드(<code>sensor_client.go</code>)의 각 부분에 대해 자세히 살펴보도록 하겠습니다.</p>
+
+<p><br></p>
+
+<h3 id="워커-worker-와-카운터-counter-구조체-정의하기">워커(worker)와 카운터(counter) 구조체 정의하기</h3>
+
+<p>우리는 각 센서 데이터를 독립적으로 서버에 보낼 수 있도록 고루틴 위에서 센서 워커를 돌릴 것 입니다. 따라서 워커를 돌리기 위해 필요한 정보들을 갖는 <code>worker</code> 구조체를 정의할 것입니다. 고루틴에 대해선 다음 장에서 더 자세히 살펴볼 것이며 지금은 일단 경량 스레드쯤으로 이해하시면 됩니다.</p>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">worker</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">ticker</span>      <span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nx">Ticker</span>
+	<span class="nx">sensor</span>      <span class="nx">models</span><span class="p">.</span><span class="nx">Sensor</span>
+	<span class="nx">sensorError</span> <span class="kt">float64</span>
+	<span class="nx">serverPort</span>  <span class="kt">int</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>각 워커는 일정 간격마다 데이터를 생성 및 전송하므로 일정 간격마다 신호를 생성할 수 있는 <code>ticker</code>를 필드로 넣습니다. 이 <code>ticker</code>의 타입은 <code>*time.Ticker</code>인데 이는 <code>time</code>이라는 표준 라이브러리 패키지에 정의되어 있으며 원하는 주기마다 <code>Ticker</code>로부터 신호를 받을 수 있습니다.</p>
+
+<p><code>sensor</code>는 각 센서 구조체들을 저장히기 위한 필드로 <code>Sensor</code>의 타입으로 선언되어 있습니다. <code>Sensor</code> 구조체는 <code>models</code> 패키지에 존재하므로 <code>models.Sensor</code>로 접근합니다. <a href="https://mingrammer.com/go-codelab/struct-and-interface">구조체와 인터페이스</a>에서 보았듯이 <code>Sensor</code> 인터페이스를 만족하면 그 어떤 구조체든 <code>Sensor</code> 타입으로 선언이 가능합니다. 따라서, 종류와 상관없이 각 센서들을 저장할 수 있습니다. <code>serverError</code>는 임의의 센서값을 생성할 때 사용되는 센서 오차값을 뜻하며 <code>serverPort</code>는 각 센서별로 서버의 어느 포트로 데이터를 보낼지 설정하기 위한 필드입니다.</p>
+
+<p>또한 우리는 데이터 전송 횟수를 제한하기 위해 <code>counter</code> 구조체를 정의할 것입니다.</p>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">counter</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">mutex</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span>
+	<span class="nx">n</span>     <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">counter</span><span class="p">)</span> <span class="nx">count</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">c</span><span class="p">.</span><span class="nx">mutex</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
+	<span class="nx">c</span><span class="p">.</span><span class="nx">n</span><span class="o">++</span>
+	<span class="nx">c</span><span class="p">.</span><span class="nx">mutex</span><span class="p">.</span><span class="nx">Unlock</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">counter</span><span class="p">)</span> <span class="nx">value</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">c</span><span class="p">.</span><span class="nx">n</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>바로 아래에서 살펴볼거지만 <code>counter</code>의 경우 여러개의 고루틴에서 동시에 사용하기 때문에 필드값을 변경할 때 동기화 처리를 해줘야합니다. 다행히도 Go는 동기화와 관련된 기능들을 <code>sync</code>라는 표준 라이브러리 패키지로 제공하고 있으며 <code>sycn.Mutex</code>를 통해 뮤텍스 처리를 할 수 있도록 해줍니다. 따라서, <code>sync.Mutex</code> 타입을 갖는 <code>mutex</code>를 필드로 가지면 <code>count()</code> 함수에서 볼 수 있듯이 특정값을 변경할 때 여러개의 고루틴이 동시에 값을 변경 할 수 없도록 <code>Lock</code>을 걸 수 있습니다.</p>
+
+<p>그럼 이제 <code>worker</code>와 <code>counter</code>가 실제로 어떻게 사용되고 있는지 살펴봅시다.</p>
+
+<p><br></p>
+
+<h3 id="센서-워커-sensorworker-함수-살펴보기">센서 워커 (sensorWorker) 함수 살펴보기</h3>
+
+<p><code>worker</code>에 정의된 워커 정보를 가지고 실제 센서 데이터를 서버로 보내는 워커 함수인 <code>sensorWorker</code>를 살펴봅시다.</p>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">sensorWorker</span><span class="p">(</span><span class="nx">done</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{},</span> <span class="nx">w</span> <span class="nx">worker</span><span class="p">,</span> <span class="nx">c</span> <span class="o">*</span><span class="nx">counter</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">for</span> <span class="p">{</span>
+		<span class="k">select</span> <span class="p">{</span>
+                <span class="c1">// done 채널이 닫히기까지 대기</span>
+		<span class="k">case</span> <span class="o">&lt;-</span><span class="nx">done</span><span class="p">:</span>
+			<span class="k">return</span>
+		<span class="c1">// ticker 신호 대기</span>
+		<span class="k">case</span> <span class="o">&lt;-</span><span class="nx">w</span><span class="p">.</span><span class="nx">ticker</span><span class="p">.</span><span class="nx">C</span><span class="p">:</span>
+                        <span class="c1">// 센서 데이터 생성</span>
+			<span class="nx">sensorData</span> <span class="o">:=</span> <span class="nx">w</span><span class="p">.</span><span class="nx">sensor</span><span class="p">.</span><span class="nx">GenerateSensorData</span><span class="p">(</span><span class="nx">w</span><span class="p">.</span><span class="nx">sensorError</span><span class="p">)</span>
+			 <span class="c1">// serverPort 값으로 서버 URL 생성</span>
+			<span class="nx">url</span> <span class="o">:=</span> <span class="nx">getRequestServerURL</span><span class="p">(</span><span class="nx">w</span><span class="p">.</span><span class="nx">serverPort</span><span class="p">)</span>
+
+			<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">sensorData</span><span class="p">.</span><span class="nx">SendingOutputString</span><span class="p">())</span>
+
+                        <span class="c1">// 서버로 데이터 전송</span>
+			<span class="nx">sendJSONSensorData</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">sensorData</span><span class="p">)</span>
+
+                        <span class="c1">// 전송할 때 마다 카운팅</span>
+			<span class="nx">c</span><span class="p">.</span><span class="nx">count</span><span class="p">()</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><code>sensorWorker</code>는 세 개의 인자를 받는데 각 인자는 다음을 의미합니다.</p>
+
+<ul>
+<li><code>done &lt;-chan struct{}</code> : 고루틴을 종료하기 위한 신호를 받는 받기 전용 채널(channel)입니다. 채널에 대한 자세한 내용은 다음 장에서 살펴보겠습니다. 지금은 이 <code>done</code>이 고루틴을 종료시키기 위한 채널 변수라고만 알아두면 됩니다.</li>
+<li><code>w worker</code> : 좀 전에 위에서 만든 <code>worker</code>를 받는 인자입니다. 워커 정보를 받기 위한 인자입니다.</li>
+<li><code>c *counter</code> : 전송 횟수를 카운팅 하기 위한 <code>*counter</code> 변수입니다. 여러개의 고루틴에서 사용하기 위해 포인터 타입으로 선언하였습니다.</li>
+</ul>
+
+<p>이 함수는 무한 루프 안에서 <code>select/case</code>문을 실행합니다. <code>switch/case</code>문에 대해서는 다음 장에서 더 자세히 살펴볼 것이며 지금은 <code>case</code>에 있는 채널에 값이 들어올 경우 해당 <code>case</code> 아래의 코드가 실행된다는 것만 알아두시면 됩니다. 따라서 이는 <code>worker</code>에 정의된 <code>ticker</code>의 <code>C</code> 채널로부터 신호를 받을 때마다 센서의 데이터를 생성하고 이를 서버로 전송합니다. 또한 <code>done</code>에 값이 들어올 경우엔 <code>return</code>을 실행하며 함수가 종료됩니다.</p>
+
+<p><br></p>
+
+<h3 id="main-함수-살펴보기">main 함수 살펴보기</h3>
+
+<p>위에서 언급했듯이 메인 패키지는 반드시 <code>main</code> 함수를 필요로하며 메인 패키지를 가진 Go 프로그램이 실행될 때 바로 이 <code>main</code> 함수가 실행됩니다.</p>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// 전송 횟수 카운팅을 위한 카운터 생성 </span>
+	<span class="kd">var</span> <span class="nx">sendCounter</span> <span class="nx">counter</span>
+        <span class="c1">// 동기화를 위한 일종의 세마포어. 이에 대해선 서버 섹션에서 자세히 설명하겠습니다.</span>
+	<span class="kd">var</span> <span class="nx">wg</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
+        <span class="c1">// 상수는 const로 정의합니다.</span>
+	<span class="kd">const</span> <span class="nx">numWorkers</span> <span class="p">=</span> <span class="mi">3</span>
+
+        <span class="c1">// 고루틴 종료 신호를 위한 채널 생성</span>
+	<span class="nx">done</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{})</span>
+
+        <span class="c1">// 워커의 갯수만큼의 카운트값을 갖는 세마포어 생성</span>
+        <span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">numWorkers</span><span class="p">)</span>    
+    
+        <span class="c1">// 각각의 Ticker와 Sensor의 인스턴스를 생성해 worker에 저장합니다.</span>
+	<span class="nx">workerList</span> <span class="o">:=</span> <span class="p">[</span><span class="nx">numWorkers</span><span class="p">]</span><span class="nx">worker</span><span class="p">{</span>
+		<span class="nx">worker</span><span class="p">{</span>
+			<span class="nx">ticker</span><span class="p">:</span>      <span class="nx">time</span><span class="p">.</span><span class="nx">NewTicker</span><span class="p">(</span><span class="mi">500</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Millisecond</span><span class="p">),</span> <span class="c1">// 0.5초 간격</span>
+			<span class="nx">sensor</span><span class="p">:</span>      <span class="nx">models</span><span class="p">.</span><span class="nx">GyroSensor</span><span class="p">{},</span> <span class="c1">// GyroSensor 인스턴스</span>
+			<span class="nx">sensorError</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span>
+			<span class="nx">serverPort</span><span class="p">:</span>  <span class="mi">8001</span><span class="p">,</span>
+		<span class="p">},</span>
+		<span class="nx">worker</span><span class="p">{</span>
+			<span class="nx">ticker</span><span class="p">:</span>      <span class="nx">time</span><span class="p">.</span><span class="nx">NewTicker</span><span class="p">(</span><span class="mi">500</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Millisecond</span><span class="p">),</span> <span class="c1">// 0.5초 간격</span>
+			<span class="nx">sensor</span><span class="p">:</span>      <span class="nx">models</span><span class="p">.</span><span class="nx">AccelSensor</span><span class="p">{},</span> <span class="c1">// AccelSensor 인스턴스</span>
+			<span class="nx">sensorError</span><span class="p">:</span> <span class="mf">12.0</span><span class="p">,</span>
+			<span class="nx">serverPort</span><span class="p">:</span>  <span class="mi">8002</span><span class="p">,</span>
+		<span class="p">},</span>
+		<span class="nx">worker</span><span class="p">{</span>
+			<span class="nx">ticker</span><span class="p">:</span>      <span class="nx">time</span><span class="p">.</span><span class="nx">NewTicker</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">),</span> <span class="c1">// 2초 간격</span>
+			<span class="nx">sensor</span><span class="p">:</span>      <span class="nx">models</span><span class="p">.</span><span class="nx">TempSensor</span><span class="p">{},</span> <span class="c1">// TempSensor 인스턴스</span>
+			<span class="nx">sensorError</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span>
+			<span class="nx">serverPort</span><span class="p">:</span>  <span class="mi">8003</span><span class="p">,</span>
+		<span class="p">},</span>
+	<span class="p">}</span>
+
+        <span class="c1">// workerList를 순회하며 각 워커를 가져옵니다.</span>
+        <span class="c1">// range로 순회하게되면 index와 value가 리턴되는데 현재는 index를 사용하지 않으므로 _로 무시합니다.</span>
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">w</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">workerList</span> <span class="p">{</span>
+		<span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">worker</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">sensorWorker</span><span class="p">(</span><span class="nx">done</span><span class="p">,</span> <span class="nx">w</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">sendCounter</span><span class="p">)</span>
+			<span class="c1">// 세마포어 카운트값 감소</span>
+			<span class="nx">wg</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
+		<span class="p">}(</span><span class="nx">w</span><span class="p">)</span>
+	<span class="p">}</span>
+	
+	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="nx">sendCounter</span><span class="p">.</span><span class="nx">value</span><span class="p">()</span> <span class="p">&gt;</span> <span class="mi">100</span> <span class="p">{</span>
+				<span class="nb">close</span><span class="p">(</span><span class="nx">done</span><span class="p">)</span>
+				<span class="k">return</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}()</span>
+        
+        <span class="c1">// 세마포어 대기</span>
+        <span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>	
+<span class="p">}</span>
+</code></pre></div>
+
+<p><code>main</code> 함수에선 3개의 <code>worker</code>를 만들고 <code>go</code>키워드를 사용해 <code>sensorWorker</code>를 실행하는 고루틴을 생성합니다. <code>go</code> 키워드에 대해선 다음 장에서 고루틴/채널과 함께 자세히 설명할 것입니다.</p>
+
+<p>이렇게 3개의 고루틴을 생성하게 되면 각 고루틴은 <code>sensorWorker</code>를 각각 독립적으로 실행하게되며, 각 워커마다 정의된 <code>Ticker</code>의 주기에 따라 서버에 센서 데이터를 전송한 후 전송 횟수를 카운팅 할 것입니다.</p>
+
+<p>그런데 아래를 보면 또 하나의 고루틴을 생성하고 있는걸 볼 수 있습니다. 이 고루틴은 무한 루프를 돌며 카운터의 값을 체크하고 있는데 값이 100을 넘어가면 <code>done</code> 채널을 닫은 후 <code>return</code>으로 함수를 종료시킵니다. 이는 직관적으로 위에서 생성한 <code>sensorWorker</code> 고루틴들의 데이터 전송 횟수가 100회를 넘어가면 고루틴들을 종료 시킨다는 것을 알 수 있습니다. 조금 더 자세히 말하자면, <code>done</code> 채널을 닫게되면 <code>sensorWorker</code>의 <code>case &lt;-done:</code>이 작동하게 되고 따라서 이 <code>case</code>문의 코드인 <code>return</code>이 실행되면서 모든 <code>sensorWorker</code> 고루틴들이 종료됩니다.</p>
+
+<p>즉, 클라이언트 프로그램은 센서의 갯수만큼 워커 고루틴들을 생성하여 주기적으로 센서 데이터를 서버로 전송하며,  총 전송 횟수가 100회를 넘어가면 모든 고루틴을 종료하고 프로그램을 종료하는 방식으로 동작함을 알 수 있습니다!</p>
+
+<p><br></p>
+
+<h3 id="도전">도전!</h3>
+
+<p>이전 장에서 만든 센서를 위한 워커를 생성하여 여러분만의 센서 데이터를 전송해보세요!</p>
 
         </article>
     </div>
