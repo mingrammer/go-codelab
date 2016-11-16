@@ -287,6 +287,7 @@
 		<span class="p">}(</span><span class="nx">w</span><span class="p">)</span>
 	<span class="p">}</span>
 	
+	<span class="c1">// 전송 횟수를 체크하기 위한 고루틴</span>
 	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
 		<span class="k">for</span> <span class="p">{</span>
 			<span class="k">if</span> <span class="nx">sendCounter</span><span class="p">.</span><span class="nx">value</span><span class="p">()</span> <span class="p">&gt;</span> <span class="mi">100</span> <span class="p">{</span>
