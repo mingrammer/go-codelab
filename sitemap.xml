@@ -37,6 +37,11 @@
   </url>
   
   <url>
+    <loc>https://mingrammer.com/go-codelab/goroutine-and-channel</loc>
+    <lastmod>2016-11-14T10:20:44+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://mingrammer.com/go-codelab/server-structure-and-net-http</loc>
     <lastmod>2016-11-14T10:20:44+09:00</lastmod>
   </url>

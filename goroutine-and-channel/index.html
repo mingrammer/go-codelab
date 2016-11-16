@@ -1,13 +1,11 @@
-
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-	<meta name="generator" content="Hugo 0.18-DEV" />
     <meta charset="utf-8">
 
     <base href="https://mingrammer.com/go-codelab">
     <title>Go codelab step-by-step page</title>
-    <link rel="canonical" href="https://mingrammer.com/go-codelab/codelab-introduction">
+    <link rel="canonical" href="https://mingrammer.com/go-codelab/goroutine-and-channel">
     <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
     <link rel="stylesheet" href="https://mingrammer.com/go-codelab/css/codelab.css"/>
     <link rel="stylesheet" href="https://mingrammer.com/go-codelab/css/syntax.css"/>
@@ -20,7 +18,7 @@
         
         
             
-                <li class="step-item step-item-active">
+                <li class="step-item step-item-passed">
     <a href="https://mingrammer.com/go-codelab/codelab-introduction">
         <p class="item-weight"> 1 </p>
         <p class="item-title"> 코드랩 소개 </p>
@@ -30,7 +28,7 @@
             
         
             
-                <li class="step-item">
+                <li class="step-item step-item-passed">
     <a href="https://mingrammer.com/go-codelab/install-and-env">
         <p class="item-weight"> 2 </p>
         <p class="item-title"> 설치 및 환경셋팅 </p>
@@ -40,7 +38,7 @@
             
         
             
-                <li class="step-item">
+                <li class="step-item step-item-passed">
     <a href="https://mingrammer.com/go-codelab/project-structure">
         <p class="item-weight"> 3 </p>
         <p class="item-title"> 프로젝트 구조 </p>
@@ -50,7 +48,7 @@
             
         
             
-                <li class="step-item">
+                <li class="step-item step-item-passed">
     <a href="https://mingrammer.com/go-codelab/package-and-import">
         <p class="item-weight"> 4 </p>
         <p class="item-title"> 패키지와 임포트 </p>
@@ -60,7 +58,7 @@
             
         
             
-                <li class="step-item">
+                <li class="step-item step-item-passed">
     <a href="https://mingrammer.com/go-codelab/struct-and-interface">
         <p class="item-weight"> 5 </p>
         <p class="item-title"> 구조체와 인터페이스 </p>
@@ -70,7 +68,7 @@
             
         
             
-                <li class="step-item">
+                <li class="step-item step-item-passed">
     <a href="https://mingrammer.com/go-codelab/client-structure">
         <p class="item-weight"> 6 </p>
         <p class="item-title"> 클라이언트 구조 </p>
@@ -80,7 +78,7 @@
             
         
             
-                <li class="step-item">
+                <li class="step-item step-item-active">
     <a href="https://mingrammer.com/go-codelab/goroutine-and-channel">
         <p class="item-weight"> 7 </p>
         <p class="item-title"> 고루틴과 채널 </p>
@@ -137,44 +135,12 @@
 
     <div class=preview-content>
         <div class="content-title">
-            1. 코드랩 소개
+            7. 고루틴과 채널
         </div>
         <article id="content">
            
-
-<p>본 코드랩은 GDG Devfest Incheon 2016에서 Google의 Open Source Language인 Go 언어에 대한 맛보기를 할 수 있도록 만들어졌습니다.
-이 코드랩의 단계를 차근차근 밟아나가게 되면, 마지막에 여러분은 Go언어의 대부분의 특징(Goroutine, Channel, Interface and Method with Duck Typing, Package Import, Error Handling with Multiple Return)을 확인해볼 수 있습니다.</p>
-
-<p>이번 시간엔 가상의 IoT 센서 클라이언트와 서버 간 통신에서 착안하여, 이를 Go언어를 통해 구현해보려고 합니다.</p>
-
-<p>순서는 다음과 같습니다.</p>
-
-<h4 id="1-설치-및-환경설정-install-and-env">1. <a href="https://mingrammer.com/go-codelab/install-and-env">설치 및 환경설정</a></h4>
-
-<h4 id="2-프로젝트-구조-project-structure">2. <a href="https://mingrammer.com/go-codelab/project-structure">프로젝트 구조</a></h4>
-
-<h4 id="3-패키지와-임포트-package-and-import">3. <a href="https://mingrammer.com/go-codelab/package-and-import">패키지와 임포트</a></h4>
-
-<h4 id="4-구조체와-인터페이스-struct-and-interface">4. <a href="https://mingrammer.com/go-codelab/struct-and-interface">구조체와 인터페이스</a></h4>
-
-<h4 id="5-클라이언트-구조-how-client-works">5. <a href="https://mingrammer.com/go-codelab/how-client-works">클라이언트 구조</a></h4>
-
-<h4 id="6-고루틴-채널-그리고-뮤텍스-go-routine-and-channel-and-mutex">6. <a href="https://mingrammer.com/go-codelab/go-routine-and-channel-and-mutex">고루틴, 채널 그리고 뮤텍스</a></h4>
-
-<h4 id="7-클라이언트의-동작-방식-how-client-works">7. <a href="https://mingrammer.com/go-codelab/how-client-works">클라이언트의 동작 방식</a></h4>
-
-<h4 id="8-서버-구조-및-net-http-server-structure-and-net-http">8. <a href="https://mingrammer.com/go-codelab/server-structure-and-net-http">서버 구조 및 net/http</a></h4>
-
-<h4 id="9-서버에서-채널-동작-방식-및-로그-핸들러-how-server-and-logger-works">9. <a href="https://mingrammer.com/go-codelab/how-server-and-logger-works">서버에서 채널 동작 방식 및 로그 핸들러</a></h4>
-
-<h4 id="10-go에서-예외-처리하기-error-handling-in-go">10. <a href="https://mingrammer.com/go-codelab/error-handling-in-go">Go에서 예외 처리하기</a></h4>
-
-<h4 id="11-애플리케이션-동작-방식-how-application-works">11. <a href="https://mingrammer.com/go-codelab/how-application-works">애플리케이션 동작 방식</a></h4>
-
         </article>
     </div>
 </div>
 
 </section>
-
-
