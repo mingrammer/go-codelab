@@ -122,13 +122,29 @@ pre span {
     left: 256px;
     right: 0;
     height: 60px;
+    color: #ffffff;
     background: #1e88e5;
 }
 
-.preview .preview-title {
-    padding-left: 40px;
+.preview .preview-title a {
+    padding: 6px 10px;
+    border-radius: 7px;
+    background: #fff;
+    color: #1e88e5;
+}
+
+.preview .preview-title > div {
+    height: 60px;
     line-height: 60px;
-    color: #ffffff;
+    padding: 0 30px;
+}
+
+.preview .preview-title .title-left {
+    float: left;
+}
+
+.preview .preview-title .title-right {
+    float: right;
 }
 
 .preview .preview-content {
