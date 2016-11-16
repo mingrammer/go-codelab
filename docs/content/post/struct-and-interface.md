@@ -149,6 +149,6 @@ func (st StructType) functionName(args) (returnTypes) {
 
 <br>
 
-### 도전
+### 도전!
 
-`struct`와 `interface`를 사용해 다른 센서들처럼 호환 가능한 여러분만의 센서를 만들어보세요.
+`struct`와 `interface`를 사용해 다른 센서들처럼 호환 가능한 여러분만의 센서를 만들어보세요! 새로운 센서의 `GenerateSensorData` 함수를 위한 여러분만의 랜덤 데이터 생성 함수를 `faker/range.go`에도 추가해보세요!
