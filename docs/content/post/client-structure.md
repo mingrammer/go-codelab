@@ -154,6 +154,7 @@ func main() {
 		}(w)
 	}
 	
+	// 전송 횟수를 체크하기 위한 고루틴
 	go func() {
 		for {
 			if sendCounter.value() > 100 {
