@@ -1,35 +1,62 @@
 +++
 title = "서버 구조 및 net/http"
 date = "2016-11-14T10:20:44+09:00"
-weight = 7
+weight = 8
 +++
 
-### 서버의 기본 동작 방식
-서버는 기본적으로 3개의 포트 번호에 대한 HTTP Server를 생성합니다. 각 포트 번호를 달리한 것은 서로 다른 측정값 종류를 받기 위함이여, 각 번호는 다음의 의미를 갖습니다.
+### `Server`의 기본 동작 방식
+`Server`는 기본적으로 3개의 포트 번호에 대한 HTTP 서버를 생성합니다. 각 포트 번호를 달리한 것은 서로 다른 측정값 종류를 받기 위함이여, 각 번호는 다음의 의미를 갖습니다.
 
 #### 8001번은 자이로스코프 센서의 데이터를,
 #### 8002번은 가속도 센서의 데이터를,
 #### 8003번은 온도 및 습도계의 데이터를 받습니다.
 
-센서의 코드에서 봤듯이, HTTP 프로토콜을 이용하기 위해선 [`net/http`](https://golang.org/pkg/net/http/) 패키지가 필요합니다. 센서 클라이언트에서는 단순히 POST 요청을 보내면 됐기에 패키지를 `import`하고 추가작업이 필요하지 않았습니다.
+`Sensor`의 코드에서 봤듯이, HTTP 프로토콜을 이용하기 위해선 [`net/http`](https://golang.org/pkg/net/http/) 패키지가 필요합니다. `Sensor` 클라이언트에서는 단순히 POST 요청을 보내면 되기에 패키지를 `import`하고 필요한 API를 사용하는 것으로 끝났습니다.
 
-그러나, `net/http` 패키지에서 서버를 생성하는 메서드인 [`ListenAndServe()`](https://golang.org/pkg/net/http/#ListenAndServe) 메서드를 확인해보면, 인자로 [핸들러 인터페이스](https://golang.org/pkg/net/http/#Handler)를 요구하고 있습니다. 이 핸들러 인터페이스를 다시 확인해보면, 결국 [`ServeHTTP()`](https://golang.org/pkg/net/http/#HandlerFunc)라는 메서드를 요구합니다.
+그러나 `net/http` 패키지에서 서버를 생성하는 메서드인 [`ListenAndServe()`](https://golang.org/pkg/net/http/#ListenAndServe) 메서드를 확인해보면, 인자로 [`Handler Interface`](https://golang.org/pkg/net/http/#Handler)를 요구하고 있습니다. 이 `Handler Interface`를 다시 확인해보면, 결국 [`ServeHTTP()`](https://golang.org/pkg/net/http/#HandlerFunc)라는 메서드를 요구합니다.
 
-따라서, 우리는 ServeHTTP() 메서드가 구현된 핸들러 인터페이스가 필요합니다. 이를 위해, 우리는 각 데이터 종류에 대한 인터페이스를 다음과 같이 만들어줘야 합니다.
+<br>
+### `Handler Interface` 구현하기
+
+따라서, 우리는 `ServeHTTP()` 메서드가 구현된 `Handler Interface`가 필요합니다. 이를 위해, 우리는 각 데이터 종류에 대한 `Interface`를 다음과 같이 만들어줘야 합니다.
 
 ```go
-// GyroHandler : Gyroscopte sensor handler to implement ServeHTTP method
 type GyroHandler struct {
 
 }
 
-// AccelHandler : Accelerator sensro handler to implement ServeHTTP method
 type AccelHandler struct {
 
 }
 
-// TempHandler 	: Temperature sensor handler to implement ServeHTTP method
 type TempHandler struct {
 
 }
 ```
+
+위와 같이 핸들러를 만들어주고, 이 핸들러들이 쓸 `ServeHTTP()` 메서드를 구현해야합니다. 앞에서 우리가 구조체와 인터페이스에 대해 배웠을 때, 다음과 같은 코드를 봤습니다.
+
+```go
+func (st StructType) functionName(args) (returnTypes) {
+    // procssing with 'st'
+}
+```
+특정 메서드를 특정 구조체에 연결하기 위해 `Pointer Receiver`를 사용했습니다. 우리의 경우, `main()` 메서드에서 만들었던 `Handler Instance`를 생성했기 때문에 이 핸들러 인스턴스에서 사용할 수 있는 `ServeHTTP()` 메서드를 구현해줘야합니다.
+
+```go
+func (m *TempHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+	// 온도계 및 습도계에서 받은 데이터를 처리합니다.
+}
+
+func (m *GyroHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+	// 자이로 센서에서 받은 데이터를 처리합니다.
+}
+
+func (m *AccelHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+	// 가속도 센서에서 받은 데이터를 처리합니다.
+}
+```
+
+<br>
+### 도전
+`구조체와 인터페이스` 단계에서 만들었던 여러분들만의 센서에 대해 `Handler Interface`와 `ServeHTTP()` 메서드를 정의해보세요.

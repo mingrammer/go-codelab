@@ -1,7 +1,7 @@
 +++
 title = "서버에서의 채널 동작 방식 및 로그 핸들러"
 date = "2016-11-14T10:20:44+09:00"
-weight = 8
+weight = 9
 +++
 
 ### Data Pipeline으로서 Channel
@@ -62,14 +62,14 @@ log/
 ```
 약어가 의미하듯이 엑셀.로그는 가속도 센서의 측정값을, 자이로.로그는 자이로 센서의 측정값을, 그리고 템프.로그는 온도 및 습도계의 측정값을 저장합니다. 로그를 본격적으로 저장하기 전에, 우리가 로그를 저장할 폴더가 존재하는지 확인해야합니다. 이를 외해 [`os.Open('log')`](https://golang.org/pkg/os/#Open)이라는 메서드를 사용할 것입니다.만약 이 메서드가 로그 폴더를 정상적으로 찾아내면, 그에 대한 파일 타입을 반환할 것입니다. 아닐 경우, 로그 폴더를 [`os.Mkdir('log', os.ModePerm)`](https://golang.org/pkg/os/#Mkdir)이라는 메서드를 이용해 생성할 것입니다.
 
-로그 폴더가 정상적으로 존재하는 경우, `Log Handler`인 fileLogger()` 메서드는 채널에 값이 들어오기를 기다립니다. 아래의 `for, range` 문구가 그 역할을 합니다.
+로그 폴더가 정상적으로 존재하는 경우, `Log Handler`인 `fileLogger()` 메서드는 채널에 값이 들어오기를 기다립니다. 아래의 `for := range` 문구가 그 역할을 합니다.
 ```
 for logData := range logStream
 ```
 이 `for, range` 문은 main 메서드에서 전달받은 채널에 데이터가 존재할지 기다리고, 존재하는 경우 바로 내부 코드를 실행합니다. 이런 과정은 프로그램이 강제로 종료하거나, 외부에서 채널을 종료(Close)하기까지 계속 반복됩니다.
 
 채널에 데이터가 들어오게 되면 받은 데이터 구조체에서 해당 데이터가 저장될 위치를 읽어와 이를 디렉토리 주소로 조합하고 해당 로그파일을 열게됩니다. 
-```
+```go
 joinee := []string{logDir, logData.location}
 filePath := strings.Join(joinee, "/")
 
@@ -77,7 +77,7 @@ fileHandle, err := os.OpenFile(filePath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 06
 ```
 해당 파일이 정상적으로 열릴 경우, 다음 단계로 넘어가면 됩니다. (만약 에러가 발생하면 이에 대한 예외처리가 필요합니다.) 이제 파일에 로그를 남겨줄 `logger`를 만들겁니다. 여기서 우리는 [log 패키지](https://golang.org/pkg/log)를 이용해 직접 해당 파일로 로그를 남기는 로거를 직접 만들어보겠습니다. 아래의 [New()](https://golang.org/pkg/log/#New) 메서드는 특정 `Writer` 인터페이스로 로그를 남길 수 있도록 합니다. 여러분의 경우, 파일에 로그를 남기기로 했으니, 위에서 열어준 `fileHandle`을 이용하면 됩니다.
 
-```
+```go
 logger := log.New(fileHandle, "", log.LstdFlags)
 logger.Printf("[%s Data Received]\n%s\n", logData.sensorName, logData.content)
 ```
