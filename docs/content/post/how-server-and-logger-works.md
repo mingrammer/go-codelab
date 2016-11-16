@@ -1,7 +1,7 @@
 +++
 title = "서버에서의 채널 동작 방식 및 로그 핸들러"
 date = "2016-11-14T10:20:44+09:00"
-weight = 10
+weight = 8
 +++
 
 ### Data Pipeline으로서 Channel
