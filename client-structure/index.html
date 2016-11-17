@@ -290,7 +290,7 @@
 	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">w</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">workerList</span> <span class="p">{</span>
 		<span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">worker</span><span class="p">)</span> <span class="p">{</span>
 			<span class="nx">sensorWorker</span><span class="p">(</span><span class="nx">done</span><span class="p">,</span> <span class="nx">w</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">sendCounter</span><span class="p">)</span>
-			<span class="c1">// 세마포어 카운트값 감소</span>
+			<span class="c1">// 고루틴 하나가 끝났음을 알립니다.</span>
 			<span class="nx">wg</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
 		<span class="p">}(</span><span class="nx">w</span><span class="p">)</span>
 	<span class="p">}</span>
@@ -305,7 +305,7 @@
 		<span class="p">}</span>
 	<span class="p">}()</span>
         
-        <span class="c1">// 세마포어 대기</span>
+        <span class="c1">// 고루틴들이 종료되기 전까지 대기</span>
         <span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>	
 <span class="p">}</span>
 </code></pre></div>
