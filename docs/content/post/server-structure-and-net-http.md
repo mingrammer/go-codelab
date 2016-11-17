@@ -57,8 +57,27 @@ func (m *AccelHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 }
 ```
 
-이제 다음 페이지에선 
+<br>
+### 데이터 까보기
+이제 HTTP 프로토콜을 통해서 받은 데이터를 해독해봅시다. 먼저, HTTP를 통해 받은 데이터는 `Request`에 들어있겠죠? 그래서 우리는 `*http.Request` 객체를 사용하겠습니다. 클라이언트 측에선 센서에 대한 데이터를 JSON 형식으로 보냈습니다. 따라서 우리는 Go언어에서 제공해주는 [JSON 패키지](https://golang.org/pkg/encoding/json/#Unmarshal)를 이용해 해독해보겠습니다. JSON 패키지에서 데이터를 해독하기 위해 제공하는 방법으로는 두가지가 있습니다. 하나는 [`Unmarshal`](https://golang.org/pkg/encoding/json/#Unmarshal)이고, 다른 하나는 [`Decoder`](https://golang.org/pkg/encoding/json/#Decoder) 타입을 이용하는 것입니다. 그러나 링크들을 확인해보면 서로 다른 타입에 대해 해독한다는 것을 확인할 수 있습니다. 우리가 JSON 데이터를 가져올 `*http.Request` 구조체를 확인해보면, request의 `Body`는 `io.ReadCloser` 인터페이스로 이루어져 있음을 확인할 수 있습니다. 이 `io.ReadCloser`인터페이스는 다시 `io.Reader` 인터페이스로 이루어져있습니다. 공교롭게도, JSON 패키지의 `NewDecoder()` 메서드는 `io.Reader` 인터페이스를 받기 때문에 결국 우리는 데이터를 해독하기 위해 Decoder를 사용해야합니다. 그래서 우리는 다음과 같이 데이터를 해독하려고 합니다.
+```go
+var data models.TempSensor					// 해독한 데이터를 저장할 공간을 만들어줍니다.
+
+decoder := json.NewDecoder(req.Body)	// Request의 Body를 해독하기 위해 JSON 패키지에서 Decoder를 새로 생성해줍니다.
+err := decoder.Decode(&data)				// 생성한 Decoder를 이용해서 데이터를 해독하고 저장합니다.
+if err != nil {										// 해독하는 중 발생할 수 있는 에러를 처리하기 위한 문구입니다. 이건 다음 페이지에서 설명할게요 :)
+	fmt.Println("Error Occurred When Parsing Temperature Data")
+}
+defer req.Body.Close()							// Request의 Body를 더 이상 읽을 필요가 없으면 닫아줍니다.
+```
+
+그럼 해독한 데이터를 어떻게 로그 핸들러에게 전달해줘야할까요? 이것은 다음 페이지에서 자세하게 얘기할게요. 대신 `ServeHTTP()` 메서드 마지막에 이 코드만 추가해주세요.
+```go
+m.buf <- logContent{content: fmt.Sprintf("%s", data), location: tempLog, sensorName: data.Name}
+```
+
+이제 다음 페이지에선 해독한 데이터를 로그 핸들러에게 전달해보겠습니다.
 
 <br>
 ### 도전
-`구조체와 인터페이스` 단계에서 만들었던 여러분들만의 센서에 대해 `Handler Interface`와 `ServeHTTP()` 메서드를 정의해보세요.
+남은 기본 센서들과 이전 단계에서 만들었던 여러분들만의 센서에 대해 `Handler Interface`와 `ServeHTTP()` 메서드를 정의해보세요.
