@@ -149,7 +149,7 @@ func main() {
 	for _, w := range workerList {
 		go func(w worker) {
 			sensorWorker(done, w, &sendCounter)
-			// 세마포어 카운트값 감소
+			// 고루틴 하나가 끝났음을 알립니다.
 			wg.Done()
 		}(w)
 	}
@@ -164,7 +164,7 @@ func main() {
 		}
 	}()
         
-        // 세마포어 대기
+        // 고루틴들이 종료되기 전까지 대기
         wg.Wait()	
 }
 ```
