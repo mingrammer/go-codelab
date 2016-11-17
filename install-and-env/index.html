@@ -151,19 +151,25 @@
 
 <h3 id="이모-여기-순대국-sdk-하나요">이모! 여기 순대국(SDK) 하나요!</h3>
 
-<p>어떤 언어를 쓰던 간에 해당 언어에 대한 SDK가 필요하겠죠. 그리고 해당 언어를 잘 쓰기 위해 환경설정이 필요하고요. 여기선 <code>Windows</code>와 <code>Mac/Linux</code> 기준으로 나눠서 설명하겠습니다.</p>
+<p>어떤 언어를 쓰던 간에 해당 언어에 대한 SDK가 필요하겠죠. 그리고 해당 언어를 잘 쓰기 위해 환경설정이 필요하고요. 이번 장에선 설치와 환경설정 하는 방법을 설명하려고 합니다.</p>
+
+<p><br></p>
 
 <h3 id="sdk-설치">SDK 설치</h3>
 
-<p><code>Windows</code>의 경우 Go언어 공식 홈페이지에서 설치 파일을 다운받고 실행해줍니다. 친절한 인스톨러가 잘 도와줄 것입니다.</p>
+<p>공식 홈페이지 <a href="https://golang.org/dl/">https://golang.org/dl/</a>에서 인스톨러를 다운로드받아 설치할 수 있습니다.</p>
 
-<p><code>Mac/Linux</code>는 내장 패키지 매니저를 통해서 실행할 수 있습니다. Ubuntu의 경우 다음과 같은 명령어를 입력해주면 됩니다.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>sudo apt install golang
+<p><code>OS X/Linux</code>에선 패키지 매니저로도 설치할 수 있습니다.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">// OS X
+brew install go
+
+// Ubuntu
+sudo apt install golang
 </code></pre></div>
 
-<p>설치가 완료되면 터미널(혹은 명령 프롬프트)에서 <code>go</code>만 입력하고 결과를 확인합니다. 다음과 같은 결과가 나오면 기본 설치는 잘 된 것입니다.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>lkaybob@lkaybob-530u4c:/$ go
-Go is a tool <span class="k">for</span> managing Go <span class="nb">source</span> code.
+<p>설치가 완료되면 터미널(혹은 명령 프롬프트)에서 <code>go</code>를 입력하여 결과를 확인합니다. 다음과 같은 결과가 나오면 기본 설치는 잘 된 것입니다.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">lkaybob@lkaybob-530u4c:/<span class="nv">$ </span>go
+Go is a tool <span class="k">for</span> managing Go <span class="nb">source </span>code.
 
 Usage:
 
@@ -171,37 +177,54 @@ Usage:
 ...	
 </code></pre></div>
 
+<p><br></p>
+
 <h3 id="환경변수-gopath-설정">환경변수(GOPATH) 설정</h3>
 
 <p>Go언어에서는 Workspace라는 개념이 있습니다. 쉽게 말하자면, 여러분이 Go언어만을 사용해서 개발할 수 있는 공간입니다. 이 Workspace를 구성하면, Go언어로 개발하면서 사용하게 될 패키지들을 한 곳에서 관리할 수 있는 장점이 존재합니다. 이 Workspace는 예시로 다음과 같은 구조로 구성되어 있습니다. (Go언어 공식 홈페이지의 예시입니다.)</p>
 
-<pre><code>bin/
-    hello                          # command executable
-    outyet                         # command executable
-pkg/
-    linux_amd64/
-        github.com/golang/example/
-            stringutil.a           # package object
-src/
-    github.com/golang/example/
-        .git/                      # Git repository metadata
-	hello/
-	    hello.go               # command source
-	outyet/
-	    main.go                # command source
-	    main_test.go           # test source
-    golang.org/x/image/
-        .git/                      # Git repository metadata
-    ... (many more repositories and packages omitted) ...
+<pre><code>$GOPATH/
+        bin/
+                hello
+                outyet                      
+        pkg/
+                linux_amd64/
+                        github.com/golang/example/
+                                stringutil.a
+        src/
+                github.com/golang/example/
+                        .git/   
+                        hello/
+                	           hello.go 
+                        outyet/
+                	           main.go  
+                	           main_test.go
+                golang.org/x/image/
+                        .git/   
+                ... (many more repositories and packages omitted) ...
 </code></pre>
 
-<p>이 Workspace의 위치는 는 GOPATH라는 환경변수에 결정되기에 이를 위한 설정이 필요합니다.</p>
+<ul>
+<li><strong>GOPATH</strong> : Workspace 루트 디렉토리를 의미합니다. Go의 커맨드라인 명령어들은 이 디렉토리를 기준으로 동작합니다.</li>
+<li><strong>src</strong> : Go 소스 파일들이 위치합니다.</li>
+<li><strong>pkg</strong> : 패키지 오브젝트들이 위치합니다.</li>
+<li><strong>bin</strong> : 실행 가능한 커맨드들이 위치합니다.</li>
+</ul>
+
+<p>이 Workspace의 위치는 는 <strong>GOPATH</strong>라는 환경변수에 결정되기에 이를 위한 설정이 필요합니다.</p>
 
 <p><code>Windows</code>의 경우 &lsquo;내 컴퓨터&rsquo; 아이콘을 우클릭해서 속성으로 들어가면 &lsquo;시스템 속성&rsquo; 창이 뜹니다. 이 창의 좌측 목록을 보면 &lsquo;고급 시스템 설정&rsquo;이라는 항목을 누르면 또 다른 창이 뜹니다. 이 창의 아래쪽을 보면 &lsquo;환경변수&rsquo;로 들어갑니다.</p>
 
 <p>여기서 조심해야할 것은 환경변수를 잘못 건드리면 Windows를 정상적으로 사용 못할 수 있으니 조심하셔야합니다. 여기서 우리는 환경변수를 새로 만들 것이기 때문에 &lsquo;새로 만들기&rsquo;를 클릭합니다. (위와 아래 목록 중 아래 목록에 하는 것을 추천합니다.) 변수 이름은 <code>GOPATH</code>로 지정하고, 값은 여러분이 지정할 Workspace의 위치를 입력합니다. 만약 바탕화면에서 <code>GoDev</code>라는 폴더를 만들었으면 다음과 같은 경로를 입력해주면 됩니다.</p>
 
-<p><code>Tip</code> Workspace로 지정할 폴더를 탐색기에서 열고, 주소창의 경로를 복사 붙여넣기하면 쉽게 됩니다.</p>
+<p><strong>Tip</strong> : Workspace로 지정할 폴더를 탐색기에서 열고, 주소창의 경로를 복사 붙여넣기하면 쉽게 됩니다.</p>
+
+<p><code>OS X/Linux</code>의 경우, 터미널에서 <code>export</code> 명령어를 통해 설정할 수 있습니다.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /path/to     <span class="c"># 원하는 위치로 이동합니다.</span>
+mkdir work     <span class="c"># 원하는 위치에 Workspace 디렉토리를 만듭니다.</span>
+<span class="nb">export </span><span class="nv">GOPATH</span><span class="o">=</span>/path/to/work      <span class="c"># 해당 디렉토리를 GOPATH로 설정합니다.</span>
+mkdir work/src      <span class="c"># 소스 파일 디렉토리를 생성합니다.</span>
+</code></pre></div>
 
         </article>
     </div>
