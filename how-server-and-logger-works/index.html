@@ -158,7 +158,7 @@
 <h3 id="양방향-채널-단방향-채널">양방향 채널? 단방향 채널!</h3>
 
 <p>기본적으로 채널을 생성하게 되면 채널은 양방향의 성격을 가지게 됩니다. 다시 말해, 채널은 특별한 언급이 없으면 어디서든 데이터를 저장하고, 불러올 수 있도록 전제하고 있습니다. 이해가 잘 안 간다고요? 그럼 예시로 설명해보죠.</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">ShowMeTheChannel</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="kd">func</span> <span class="nx">ShowMeTheChannel</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nx">data</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
 
 	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
@@ -174,13 +174,13 @@
 <p>채널을 이용한 간단한 메서드를 만들어 봤습니다. <code>data</code>라는 채널은 int형 파이프라인으로 선언되었습니다. 그리고 <code>ShowMeTheChannel()</code>이라는 메서드는 반복문 10번씩 두 번 돌면서 각각 데이터를 저장하고, 불러옵니다. 이 메서드는 채널의 양 끝에 대한 사용권을 모두 가지고 있죠. 이것을 우리는 양방향 채널(Bidirectional Channel)이라고 합니다.</p>
 
 <p>여려분이 만들 프로그램은 각 데이터 종류에 대한 핸들러와 <code>fileLogger()</code>메서드가 채널을 사용합니다. 만약 각 요소에서 데이터를 활용할 방향성에 대해 정의하지 않으면, 자신의 권한과 상관없이 데이터를 마음껏 저장하고 불러올 수 있겠죠. 이건 우리가 이상적으로 생각하는 모습이 아닙니다. 그래서 우리는 각 핸들러와 메서드가 사용할 채널의 방향성을 지정해줌으로서 파이프라인에서의 데이터의 흐름을 한 방향으로 보장하도록 하려고 합니다. 고맙게도 고언어에서는 이에 대해서도 미리 <a href="https://golang.org/ref/spec#Channel_types">준비</a>를 해놨습니다.</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kd">chan</span> <span class="nx">T</span>          <span class="c1">// 이런 형식으로 사용권을 받으면 채널에서 T 타입 데이터를 불러오고 저장할 수 있습니다.</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="kd">chan</span> <span class="nx">T</span>          <span class="c1">// 이런 형식으로 사용권을 받으면 채널에서 T 타입 데이터를 불러오고 저장할 수 있습니다.</span>
 <span class="kd">chan</span><span class="o">&lt;-</span> <span class="kt">float64</span>  <span class="c1">// 이런 형식으로 받게 되면 채널에서 T 타입 데이터를 불러오기만 할 수 있습니다.</span>
 <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">int</span>      <span class="c1">// 이런 형식으로 받으면 T 타입 데이터를 채널에 저장만 할 수 있습니다.</span>
 </code></pre></div>
 
 <p>그렇다면 우리는 <code>ServeHTTP()</code> 메서드에선 채널에서 데이터를 보내기만 하도록, <code>fileLogger()</code> 메서드에선 채널에서 데이터를 받기만 하도록 지정해줘야겠죠. 따라서 우리는 각 메서드의 정의에서 채널의 방향성을 아래와 같이 지정해줘야합니다. 이렇게 바꿔주면 에러가 날까봐 걱정인가요? 지금까지 잘 따라왔다면 에러없이 잘 작동할 것입니다. :)</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">GyroHandler</span> <span class="kd">struct</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="kd">type</span> <span class="nx">GyroHandler</span> <span class="kd">struct</span> <span class="p">{</span>
 	<span class="nx">buf</span> <span class="kd">chan</span><span class="o">&lt;-</span> <span class="nx">logContent</span>
 <span class="p">}</span>
 
@@ -216,14 +216,14 @@
 <p>이 <code>for, range</code> 문은 main 메서드에서 전달받은 채널에 데이터가 존재할지 기다리고, 존재하는 경우 바로 내부 코드를 실행합니다. 이런 과정은 프로그램이 강제로 종료하거나, 외부에서 채널을 종료(Close)하기까지 계속 반복됩니다.</p>
 
 <p>채널에 데이터가 들어오게 되면 받은 데이터 구조체에서 해당 데이터가 저장될 위치를 읽어와 이를 디렉토리 주소로 조합하고 해당 로그파일을 열게됩니다.</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="nx">joinee</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="nx">logDir</span><span class="p">,</span> <span class="nx">logData</span><span class="p">.</span><span class="nx">location</span><span class="p">}</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="nx">joinee</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="nx">logDir</span><span class="p">,</span> <span class="nx">logData</span><span class="p">.</span><span class="nx">location</span><span class="p">}</span>
 <span class="nx">filePath</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">Join</span><span class="p">(</span><span class="nx">joinee</span><span class="p">,</span> <span class="s">&quot;/&quot;</span><span class="p">)</span>
 
 <span class="nx">fileHandle</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">OpenFile</span><span class="p">(</span><span class="nx">filePath</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">O_CREATE</span><span class="p">|</span><span class="nx">os</span><span class="p">.</span><span class="nx">O_WRONLY</span><span class="p">|</span><span class="nx">os</span><span class="p">.</span><span class="nx">O_APPEND</span><span class="p">,</span> <span class="mo">0666</span><span class="p">)</span>
 </code></pre></div>
 
 <p>해당 파일이 정상적으로 열릴 경우, 다음 단계로 넘어가면 됩니다. (만약 에러가 발생하면 이에 대한 예외처리가 필요합니다.) 이제 파일에 로그를 남겨줄 <code>logger</code>를 만들겁니다. 여기서 우리는 <a href="https://golang.org/pkg/log">log 패키지</a>를 이용해 직접 해당 파일로 로그를 남기는 로거를 직접 만들어보겠습니다. 아래의 <a href="https://golang.org/pkg/log/#New">New()</a> 메서드는 특정 <code>Writer</code> 인터페이스로 로그를 남길 수 있도록 합니다. 여러분의 경우, 파일에 로그를 남기기로 했으니, 위에서 열어준 <code>fileHandle</code>을 이용하면 됩니다.</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="nx">logger</span> <span class="o">:=</span> <span class="nx">log</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="nx">fileHandle</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="nx">log</span><span class="p">.</span><span class="nx">LstdFlags</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="nx">logger</span> <span class="o">:=</span> <span class="nx">log</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="nx">fileHandle</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="nx">log</span><span class="p">.</span><span class="nx">LstdFlags</span><span class="p">)</span>
 <span class="nx">logger</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;[%s Data Received]\n%s\n&quot;</span><span class="p">,</span> <span class="nx">logData</span><span class="p">.</span><span class="nx">sensorName</span><span class="p">,</span> <span class="nx">logData</span><span class="p">.</span><span class="nx">content</span><span class="p">)</span>
 </code></pre></div>
 
@@ -236,24 +236,24 @@
 <p>이제 <code>main()</code> 메서드에서 우리가 정의해줬던 것들을 실제로 실행할 수 있게 해보겠습니다.</p>
 
 <p>먼저, HTTP 핸들러 메서드에서 로그 핸들러로 기록할 로그의 내용을 전달해주는 채널, 각 센서에 대한 핸들러를 정의해줍니다.</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="nx">logBuf</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="nx">logContent</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="nx">logBuf</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="nx">logContent</span><span class="p">)</span>
 <span class="nx">gyroHander</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">GyroHandler</span><span class="p">{</span><span class="nx">buf</span><span class="p">:</span> <span class="nx">logBuf</span><span class="p">}</span>
 <span class="nx">accelHandler</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">AccelHandler</span><span class="p">{</span><span class="nx">buf</span><span class="p">:</span> <span class="nx">logBuf</span><span class="p">}</span>
 <span class="nx">tempHandler</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">TempHandler</span><span class="p">{</span><span class="nx">buf</span><span class="p">:</span> <span class="nx">logBuf</span><span class="p">}</span>
 </code></pre></div>
 
 <p>그 다음엔 실제 HTTP 서버를 실행하는 <code>ListenAndServe()</code> 메서드를 실행합니다. 여기서 주의할 것은, 그냥 실행하면 맨 위의 한 개 서버만 생성이 됩니다. <code>ListenAndServe()</code> 메서드가 실행되면 그 즉시 해당 핸들러에 대해 HTTP 요청을 대기 시작하기 때문입니다. 우리는 3개의 센서에 대한 서버가 동시에 돌아가는 것을 윈하는 것이죠? 이 때 고루틴을 적용해줍니다! 단순히 실행할 메서드 앞에 <code>go</code>를 붙여주면 됩니다.</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="k">go</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ListenAndServe</span><span class="p">(</span><span class="s">&quot;:8001&quot;</span><span class="p">,</span> <span class="nx">gyroHander</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="k">go</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ListenAndServe</span><span class="p">(</span><span class="s">&quot;:8001&quot;</span><span class="p">,</span> <span class="nx">gyroHander</span><span class="p">)</span>
 <span class="k">go</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ListenAndServe</span><span class="p">(</span><span class="s">&quot;:8002&quot;</span><span class="p">,</span> <span class="nx">accelHandler</span><span class="p">)</span>
 <span class="k">go</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ListenAndServe</span><span class="p">(</span><span class="s">&quot;:8003&quot;</span><span class="p">,</span> <span class="nx">tempHandler</span><span class="p">)</span>
 </code></pre></div>
 
 <p>그리고 동시에 파일로거도 실행이 되어야겠죠? <code>fileLogger()</code> 메서드도 고루틴을 이용해 실행해줍니다.</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="k">go</span> <span class="nx">fileLogger</span><span class="p">(</span><span class="nx">logBuf</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="k">go</span> <span class="nx">fileLogger</span><span class="p">(</span><span class="nx">logBuf</span><span class="p">)</span>
 </code></pre></div>
 
 <p>이제 바로 실행을 해볼까요? 실행이 잘 되나요? 아마 안 될 겁니다. 왜냐하면 고루틴들이 일을 하고 있지만, 프로그램 메인 프로세스가 먼저 종료되었기 때문입니다. 기본적으로 고루틴들이 종료되기를 기다리지 않는다는 것이죠. 그래서 우리는 메인 스레드가 고루틴을 기다릴 수 있도록 한 가지를 더 추가할 것입니다. 바로 <a href="https://golang.org/pkg/sync/#WaitGroup"><code>WaitGroup</code></a>입니다. 이 <code>WaitGroup</code>에서 우리는 <code>Wait()</code>이라는 메서드를 사용해서 고루틴들이 끝나기기 까지 기다려야하지만, 그 전에 얼마나 많은 고루틴을 기다려야하는지를 정의해야합니다. 이 때 우리는 <code>Add()</code> 메서드를 이용하며, 얼마나 더 많은 고루틴을 기다릴지 <code>WaitGroup</code>에 알려줍니다. 우리의 경우 4개의 고루틴을 기다려야겠죠? (주의할 것은 <code>WaitGroup</code>은 <code>sync</code> 패키지에 정의되어 있는 타입이기 때문에 이 또한 <code>import</code>해줘야 합니다!!)</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="s">&quot;sync&quot;</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="kn">import</span> <span class="s">&quot;sync&quot;</span>
 
 <span class="o">...</span>
 
@@ -261,7 +261,7 @@
 </code></pre></div>
 
 <p>그리고 고루틴들을 실행하고 기다려주도록 <code>Wait()</code> 메서드를 실행해줍니다.</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
 </code></pre></div>
 
 <p>이제 <code>WaitGroup</code>까지 만들어줬으면 프로그램을 실행해봅니다! 만약 정상적으로 프로그램이 실행된다면 로그 파일에 다음과 같이 표시 될 것 입니다!</p>
