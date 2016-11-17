@@ -93,9 +93,15 @@ func main() {
 }
 ```
 
-그런데 `sensor.go`의 `import`문을 보면 `github.com/mingrammer/go-codelab/faker`와 같이 조금 특이한 형태의 임포트문을 볼 수 있습니다. Go는 Github나 Bitbucket와 같은 곳에 호스팅 되어있는 외부 패키지와 소스코드를 패키지로써 사용할 수 있게 해줍니다. 즉, 위 임포트문은 github.com에 호스팅 되어있는 mingrammer 유저의 `go-codelab/faker` 패키지를 사용하겠다는 의미입니다. Go에서는 표준 라이브러리가 아닌 패키지의 경우 `$GOPATH/src`를 기준으로 패키지를 불러오기 때문에 이런 외부 패키지가 `import`문에 선언되어 있을 때  `go get`이라는 명령어를 사용하면 해당 위치의 패키지 구조를 `$GOPATH/src` 하위로 다운로드 받아 해당 패키지를 사용할 수 있게 해줍니다.  
+그런데 `sensor.go`의 `import`문을 보면 `github.com/mingrammer/go-codelab/faker`와 같이 조금 특이한 형태의 임포트문을 볼 수 있습니다. Go는 Github나 Bitbucket와 같은 곳에 호스팅 되어있는 외부 패키지와 소스코드를 패키지로써 사용할 수 있게 해줍니다. 즉, 위 임포트문은 github.com에 호스팅 되어있는 mingrammer 유저의 `go-codelab/faker` 패키지를 사용하겠다는 의미입니다. Go에서는 표준 라이브러리가 아닌 패키지의 경우 `$GOPATH/src`를 기준으로 패키지를 불러오기 때문에 이런 외부 패키지가 `import`문에 선언되어 있을 때  `go get`이라는 명령어를 사용하면 해당 위치의 패키지 구조를 `$GOPATH/src` 하위로 다운로드 받아 해당 패키지를 사용할 수 있게 해줍니다. 
 
-우리 프로젝트의 경우 전체 Go 프로젝트 구조는 다음과 같습니다.
+다음 명령어를 통해 이제 튜토리얼을 다운로드 받아봅시다.
+
+```bash
+go get github.com/mingrammer/go-codelab
+```
+
+튜토리얼 설치가 끝나면 전체 Go 프로젝트 구조는 다음과 같아집니다.
 
 ```
 GOPATH/
