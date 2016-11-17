@@ -41,7 +41,7 @@
                 <li class="step-item">
     <a href="https://mingrammer.com/go-codelab/project-structure">
         <p class="item-weight"> 3 </p>
-        <p class="item-title"> 프로젝트 구조 </p>
+        <p class="item-title"> 튜토리얼 구조 </p>
     </a>
 </li>
 
@@ -170,7 +170,7 @@
 <p>공식 홈페이지 <a href="https://golang.org/dl/">https://golang.org/dl/</a>에서 인스톨러를 다운로드받아 설치할 수 있습니다.</p>
 
 <p><code>OS X/Linux</code>에선 패키지 매니저로도 설치할 수 있습니다.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>// OS X
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">// OS X
 brew install go
 
 // Ubuntu
@@ -178,8 +178,8 @@ sudo apt install golang
 </code></pre></div>
 
 <p>설치가 완료되면 터미널(혹은 명령 프롬프트)에서 <code>go</code>를 입력하여 결과를 확인합니다. 다음과 같은 결과가 나오면 기본 설치는 잘 된 것입니다.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>lkaybob@lkaybob-530u4c:/$ go
-Go is a tool <span class="k">for</span> managing Go <span class="nb">source</span> code.
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">lkaybob@lkaybob-530u4c:/<span class="nv">$ </span>go
+Go is a tool <span class="k">for</span> managing Go <span class="nb">source </span>code.
 
 Usage:
 
@@ -238,20 +238,20 @@ Usage:
 <h4 id="os-x-linux">OS X/Linux</h4>
 
 <p><code>export</code> 명령어를 통해 설정할 수 있습니다.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span><span class="nb">cd</span> /path/to     <span class="c1"># 원하는 위치로 이동합니다.</span>
-mkdir work     <span class="c1"># 원하는 위치에 Workspace 디렉토리를 만듭니다.</span>
-<span class="nb">export</span> <span class="nv">GOPATH</span><span class="o">=</span>/path/to/work      <span class="c1"># 해당 디렉토리를 GOPATH로 설정합니다.</span>
-mkdir work/src      <span class="c1"># 소스 파일 디렉토리를 생성합니다.</span>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /path/to     <span class="c"># 원하는 위치로 이동합니다.</span>
+mkdir work     <span class="c"># 원하는 위치에 Workspace 디렉토리를 만듭니다.</span>
+<span class="nb">export </span><span class="nv">GOPATH</span><span class="o">=</span>/path/to/work      <span class="c"># 해당 디렉토리를 GOPATH로 설정합니다.</span>
+mkdir work/src      <span class="c"># 소스 파일 디렉토리를 생성합니다.</span>
 </code></pre></div>
 
 <p>또한 <code>.profile</code>, <code>.bash_profile</code>, <code>.zsh_profile</code>에 경로를 등록할 수도 있습니다.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>// .profile 
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">// .profile 
 // .bash_profile
 // .zsh_profile
 // 여러분이 사용하는 쉘에 따라 설정하시면 됩니다.
 ...
 
-<span class="nb">export</span> <span class="nv">GOPATH</span><span class="o">=</span>/path/to/work
+<span class="nb">export </span><span class="nv">GOPATH</span><span class="o">=</span>/path/to/work
 
 ...
 </code></pre></div>

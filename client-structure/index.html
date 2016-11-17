@@ -41,7 +41,7 @@
                 <li class="step-item step-item-passed">
     <a href="https://mingrammer.com/go-codelab/project-structure">
         <p class="item-weight"> 3 </p>
-        <p class="item-title"> 프로젝트 구조 </p>
+        <p class="item-title"> 튜토리얼 구조 </p>
     </a>
 </li>
 
@@ -181,7 +181,7 @@
 <h3 id="워커-worker-와-카운터-counter-구조체-정의하기">워커(worker)와 카운터(counter) 구조체 정의하기</h3>
 
 <p>우리는 각 센서 데이터를 독립적으로 서버에 보낼 수 있도록 고루틴 위에서 센서 워커를 돌릴 것 입니다. 따라서 워커를 돌리기 위해 필요한 정보들을 갖는 <code>worker</code> 구조체를 정의할 것입니다. 고루틴에 대해선 다음 장에서 더 자세히 살펴볼 것이며 지금은 일단 경량 스레드쯤으로 이해하시면 됩니다.</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="kd">type</span> <span class="nx">worker</span> <span class="kd">struct</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">worker</span> <span class="kd">struct</span> <span class="p">{</span>
 	<span class="nx">ticker</span>      <span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nx">Ticker</span>
 	<span class="nx">sensor</span>      <span class="nx">models</span><span class="p">.</span><span class="nx">Sensor</span>
 	<span class="nx">sensorError</span> <span class="kt">float64</span>
@@ -194,7 +194,7 @@
 <p><code>sensor</code>는 각 센서 구조체들을 저장히기 위한 필드로 <code>Sensor</code>의 타입으로 선언되어 있습니다. <code>Sensor</code> 구조체는 <code>models</code> 패키지에 존재하므로 <code>models.Sensor</code>로 접근합니다. <a href="https://mingrammer.com/go-codelab/struct-and-interface">구조체와 인터페이스</a>에서 보았듯이 <code>Sensor</code> 인터페이스를 만족하면 그 어떤 구조체든 <code>Sensor</code> 타입으로 선언이 가능합니다. 따라서, 종류와 상관없이 각 센서들을 저장할 수 있습니다. <code>serverError</code>는 임의의 센서값을 생성할 때 사용되는 센서 오차값을 뜻하며 <code>serverPort</code>는 각 센서별로 서버의 어느 포트로 데이터를 보낼지 설정하기 위한 필드입니다.</p>
 
 <p>또한 우리는 데이터 전송 횟수를 제한하기 위해 <code>counter</code> 구조체를 정의할 것입니다.</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="kd">type</span> <span class="nx">counter</span> <span class="kd">struct</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">counter</span> <span class="kd">struct</span> <span class="p">{</span>
 	<span class="nx">mutex</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span>
 	<span class="nx">n</span>     <span class="kt">int</span>
 <span class="p">}</span>
@@ -219,7 +219,7 @@
 <h3 id="센서-워커-sensorworker-함수-살펴보기">센서 워커 (sensorWorker) 함수 살펴보기</h3>
 
 <p><code>worker</code>에 정의된 워커 정보를 가지고 실제 센서 데이터를 서버로 보내는 워커 함수인 <code>sensorWorker</code>를 살펴봅시다.</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="kd">func</span> <span class="nx">sensorWorker</span><span class="p">(</span><span class="nx">done</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{},</span> <span class="nx">w</span> <span class="nx">worker</span><span class="p">,</span> <span class="nx">c</span> <span class="o">*</span><span class="nx">counter</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">sensorWorker</span><span class="p">(</span><span class="nx">done</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{},</span> <span class="nx">w</span> <span class="nx">worker</span><span class="p">,</span> <span class="nx">c</span> <span class="o">*</span><span class="nx">counter</span><span class="p">)</span> <span class="p">{</span>
 	<span class="k">for</span> <span class="p">{</span>
 		<span class="k">select</span> <span class="p">{</span>
                 <span class="c1">// done 채널이 닫히기까지 대기</span>
@@ -259,7 +259,7 @@
 <h3 id="main-함수-살펴보기">main 함수 살펴보기</h3>
 
 <p>위에서 언급했듯이 메인 패키지는 반드시 <code>main</code> 함수를 필요로하며 메인 패키지를 가진 Go 프로그램이 실행될 때 바로 이 <code>main</code> 함수가 실행됩니다.</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
         <span class="c1">// 전송 횟수 카운팅을 위한 카운터 생성 </span>
 	<span class="kd">var</span> <span class="nx">sendCounter</span> <span class="nx">counter</span>
         <span class="c1">// 동기화를 위한 일종의 세마포어. 이에 대해선 서버 섹션에서 자세히 설명하겠습니다.</span>

@@ -41,7 +41,7 @@
                 <li class="step-item step-item-active">
     <a href="https://mingrammer.com/go-codelab/project-structure">
         <p class="item-weight"> 3 </p>
-        <p class="item-title"> 프로젝트 구조 </p>
+        <p class="item-title"> 튜토리얼 구조 </p>
     </a>
 </li>
 
@@ -153,29 +153,23 @@
     </div>
     <div class=preview-content>
         <div class="content-title">
-            3. 프로젝트 구조
+            3. 튜토리얼 구조
         </div>
         <br>
         <article id="content">
-           
-
-<h3 id="센서들의-종류">센서들의 종류</h3>
-
-<p>본 프로젝트는 크게 3부분(Server, Sensor, Log Handler)으로 나뉠 수 있습니다.</p>
+           <p>이 튜토리얼은 크게 3부분(Client, Server, Log Handler)으로 나뉩니다.</p>
 
 <p><img src="https://mingrammer.com/go-codelab/img/project_structure.png" alt="Alt project_structure" /></p>
 
 <p><code>Sensor</code>는 IoT 기기의 <code>Sensor</code>로, 이 구조에선 Client를 의미하며, <code>sensor_client.go</code>에서 정의되어있습니다. 이 프로젝트에서는 다음의 3개의 <code>Sensor</code>들이 존재합니다.</p>
 
-<blockquote>
-<h4 id="자이로-센서-gyroscope-sensor"><strong>자이로 센서 (Gyroscope Sensor)</strong></h4>
+<ul>
+<li><strong>자이로 센서 (Gyroscope Sensor)</strong></li>
+<li><strong>가속도 센서 (Accelometer Sensor)</strong></li>
+<li><strong>온도 및 습도계 (Temperature Sensor)</strong></li>
+</ul>
 
-<h4 id="가속도-센서-accelometer-sensor"><strong>가속도 센서 (Accelometer Sensor)</strong></h4>
-
-<h4 id="온도-및-습도계-temperature-sensor"><strong>온도 및 습도계 (Temperature Sensor)</strong></h4>
-</blockquote>
-
-<p>이들 센서의 종류는 잠시 후 설명할 <code>model</code> 패키지에 정의되어 있으며, 센서들은 일정 시간 간격마다 <code>Server</code>에게 <code>Sensor</code>에서 발생한 측정값을 보내줍니다. 이 측정값으로는 각속도(Angle Velocity), 선속도(Gravitational Velocity), 온도 및 습도(Temperature and Humidity)가 있습니다.</p>
+<p>이들 센서의 종류는 잠시 후 설명할 <code>models</code> 패키지에 정의되어 있으며, 센서들은 일정 시간 간격마다 <code>Server</code>에게 <code>Sensor</code>에서 발생한 측정값을 보내줍니다. 이 측정값으로는 각속도(Angle Velocity), 선속도(Gravitational Velocity), 온도 및 습도(Temperature and Humidity)가 있습니다.</p>
 
 <p>그러나, 우리는 가상의 센서를 구현하는 것이기 때문에, 실제 측정값을 넣지 못하는 관계로, <code>faker</code>라는 것을 이용해, 가상의 난수값을 측정값으로 설정하여 서버에 보내줄 것입니다.</p>
 
