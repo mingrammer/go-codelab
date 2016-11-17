@@ -158,7 +158,7 @@
 <p>Go에서 <code>고루틴(Goroutine</code>)이란, Go 런타임에 의해 관리되는 경량 스레드입니다. 고루틴을 사용하면 비동기적으로 여러개의 함수를 실행할 수 있으며 우리는 이를 활용해 각 센서 데이터를 동시에 서버에 전송할 수 있습니다.</p>
 
 <p>고루틴은 <code>go</code> 키워드를 사용해 생성할 수 있는데 두 가지 방법으로 생성할 수 있습니다. 하나는 일반 함수를 사용하는 것이며 다른 하나는 익명 함수를 사용하는 것입니다.</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">work</span><span class="p">(</span><span class="nx">n</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="kd">func</span> <span class="nx">work</span><span class="p">(</span><span class="nx">n</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
                 <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
         <span class="p">}</span>
@@ -186,11 +186,11 @@
 <p>근데 만약에 고루틴을 사용하다가 고루틴끼리 데이터를 주고 받아야하는 경우가 생기면 어떻게 해야할까요? 바로 <code>채널(Channel)</code>을 사용하면 됩니다. 채널이란 동시에 실행되는 고루틴들을 연결해주는 일종의 파이프(pipe)입니다.</p>
 
 <p>채널을 사용하면 고루틴에서 다른 고루틴으로 값을 전달할 수 있으며 다른 고루틴으로부터 값을 전달받을 수도 있습니다. 채널은 <code>chan</code> 키워드로 생성할 수 있으며 채널에 들어가는 데어터는 그 어떤 타입이라도 가능합니다. 예를 들면 정수값을 주고받는 채널의 경우 다음과 같이 선언할 수 있습니다.</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="nx">ourChannel</span> <span class="kd">chan</span> <span class="kt">int</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="nx">ourChannel</span> <span class="kd">chan</span> <span class="kt">int</span>
 </code></pre></div>
 
 <p>다음과 같이 고루틴끼리 채널을 통해 데이터를 주고 받을 수 있습니다.</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">routine1</span><span class="p">(</span><span class="nx">ourChannel</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="kd">func</span> <span class="nx">routine1</span><span class="p">(</span><span class="nx">ourChannel</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// 채널에 값을 넣습니다.</span>
         <span class="nx">ourChannel</span><span class="o">&lt;-</span> <span class="s">&quot;data&quot;</span>
 <span class="p">}</span>
@@ -211,7 +211,7 @@
 </code></pre></div>
 
 <p>위에서 볼 수 있듯이 채널은 기본적으로 데이터를 주고 받을 수 있는 양방향 파이프입니다. 그런데 프로그램을 개발하다보면 어떤 고루틴은 받기만, 또 어떤 고루틴은 보내기만 하는 경우가 생길 수 있습니다. 이 경우엔 양방향 채널을 쓰는 대신 단방향 채널을 사용할 수 있습니다.</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="c1">// 보내기 전용 단방향 채널을 사용합니다.</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="c1">// 보내기 전용 단방향 채널을 사용합니다.</span>
 <span class="kd">func</span> <span class="nx">routine1</span><span class="p">(</span><span class="nx">ourChannel</span><span class="o">&lt;-</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// 채널에 값을 넣습니다.</span>
         <span class="nx">ourChannel</span><span class="o">&lt;-</span> <span class="s">&quot;data&quot;</span>
@@ -230,7 +230,7 @@
 </code></pre></div>
 
 <p>마지막으로, 어떤 고루틴이 특정 채널로부터 값을 받기까지 대기해야 하는 상황을 생각해봅시다.  바로 이 때 우리가 이전 장에서 보았던 <code>switch/case</code>문을 사용할 수 있습니다. Go에서의 <code>switch/case</code>문은 우리가 원래 알고 있던 그것과 동일합니다. 다만, Go에서는 이를 채널과 함께 사용할 수도 있습니다.</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">waitFromChannel</span><span class="p">(</span><span class="o">&lt;-</span><span class="nx">ourChannel</span> <span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="o">&lt;-</span><span class="nx">yourChannel</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">&gt;)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="kd">func</span> <span class="nx">waitFromChannel</span><span class="p">(</span><span class="o">&lt;-</span><span class="nx">ourChannel</span> <span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="o">&lt;-</span><span class="nx">yourChannel</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">&gt;)</span> <span class="p">{</span>
         <span class="k">switch</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">ourChannel</span><span class="p">:</span>
                 <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Received from ourChannel&quot;</span><span class="p">)</span>

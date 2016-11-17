@@ -16,7 +16,7 @@ weight = 3
 > #### **가속도 센서 (Accelometer Sensor)**
 > #### **온도 및 습도계 (Temperature Sensor)**
 
- 이들 센서의 종류는 잠시 후 설명할 `model` 패키지에 정의되어 있으며, 센서들은 일정 시간 간격마다 `Server`에게 `Sensor`에서 발생한 측정값을 보내줍니다. 이 측정값으로는 각속도(Angule Velocity), 선속도(Gravitational Velocity), 온도 및 습도(Temperature and Humidity)가 있습니다.
+ 이들 센서의 종류는 잠시 후 설명할 `model` 패키지에 정의되어 있으며, 센서들은 일정 시간 간격마다 `Server`에게 `Sensor`에서 발생한 측정값을 보내줍니다. 이 측정값으로는 각속도(Angle Velocity), 선속도(Gravitational Velocity), 온도 및 습도(Temperature and Humidity)가 있습니다.
 
  그러나, 우리는 가상의 센서를 구현하는 것이기 때문에, 실제 측정값을 넣지 못하는 관계로, `faker`라는 것을 이용해, 가상의 난수값을 측정값으로 설정하여 서버에 보내줄 것입니다.
 
