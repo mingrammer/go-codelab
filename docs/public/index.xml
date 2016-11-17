@@ -32,19 +32,17 @@
 
 &lt;h4 id=&#34;4-구조체와-인터페이스-struct-and-interface&#34;&gt;4. &lt;a href=&#34;https://mingrammer.com/go-codelab/struct-and-interface&#34;&gt;구조체와 인터페이스&lt;/a&gt;&lt;/h4&gt;
 
-&lt;h4 id=&#34;5-클라이언트-구조-how-client-works&#34;&gt;5. &lt;a href=&#34;https://mingrammer.com/go-codelab/how-client-works&#34;&gt;클라이언트 구조&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;5-클라이언트-구조-client-structure&#34;&gt;5. &lt;a href=&#34;https://mingrammer.com/go-codelab/client-structure&#34;&gt;클라이언트 구조&lt;/a&gt;&lt;/h4&gt;
 
-&lt;h4 id=&#34;6-고루틴-채널-그리고-뮤텍스-go-routine-and-channel-and-mutex&#34;&gt;6. &lt;a href=&#34;https://mingrammer.com/go-codelab/go-routine-and-channel-and-mutex&#34;&gt;고루틴, 채널 그리고 뮤텍스&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;6-고루틴과-채널-goroutine-and-channel&#34;&gt;6. &lt;a href=&#34;https://mingrammer.com/go-codelab/goroutine-and-channel&#34;&gt;고루틴과 채널&lt;/a&gt;&lt;/h4&gt;
 
-&lt;h4 id=&#34;7-클라이언트의-동작-방식-how-client-works&#34;&gt;7. &lt;a href=&#34;https://mingrammer.com/go-codelab/how-client-works&#34;&gt;클라이언트의 동작 방식&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;7-서버-구조-및-net-http-server-structure-and-net-http&#34;&gt;7. &lt;a href=&#34;https://mingrammer.com/go-codelab/server-structure-and-net-http&#34;&gt;서버 구조 및 net/http&lt;/a&gt;&lt;/h4&gt;
 
-&lt;h4 id=&#34;8-서버-구조-및-net-http-server-structure-and-net-http&#34;&gt;8. &lt;a href=&#34;https://mingrammer.com/go-codelab/server-structure-and-net-http&#34;&gt;서버 구조 및 net/http&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;8-서버에서-채널-동작-방식-및-로그-핸들러-how-server-and-logger-works&#34;&gt;8. &lt;a href=&#34;https://mingrammer.com/go-codelab/how-server-and-logger-works&#34;&gt;서버에서 채널 동작 방식 및 로그 핸들러&lt;/a&gt;&lt;/h4&gt;
 
-&lt;h4 id=&#34;9-서버에서-채널-동작-방식-및-로그-핸들러-how-server-and-logger-works&#34;&gt;9. &lt;a href=&#34;https://mingrammer.com/go-codelab/how-server-and-logger-works&#34;&gt;서버에서 채널 동작 방식 및 로그 핸들러&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;9-go에서-예외-처리하기-error-handling-in-go&#34;&gt;9. &lt;a href=&#34;https://mingrammer.com/go-codelab/error-handling-in-go&#34;&gt;Go에서 예외 처리하기&lt;/a&gt;&lt;/h4&gt;
 
-&lt;h4 id=&#34;10-go에서-예외-처리하기-error-handling-in-go&#34;&gt;10. &lt;a href=&#34;https://mingrammer.com/go-codelab/error-handling-in-go&#34;&gt;Go에서 예외 처리하기&lt;/a&gt;&lt;/h4&gt;
-
-&lt;h4 id=&#34;11-애플리케이션-동작-방식-how-application-works&#34;&gt;11. &lt;a href=&#34;https://mingrammer.com/go-codelab/how-application-works&#34;&gt;애플리케이션 동작 방식&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;10-애플리케이션-동작-방식-how-application-works&#34;&gt;10. &lt;a href=&#34;https://mingrammer.com/go-codelab/how-application-works&#34;&gt;애플리케이션 동작 방식&lt;/a&gt;&lt;/h4&gt;
 </description>
     </item>
     
@@ -54,7 +52,18 @@
       <pubDate>Mon, 14 Nov 2016 10:20:44 +0900</pubDate>
       
       <guid>https://mingrammer.com/go-codelab/install-and-env</guid>
-      <description></description>
+      <description>
+
+&lt;h3 id=&#34;설치&#34;&gt;설치&lt;/h3&gt;
+
+&lt;p&gt;Go 설치과정은 굉장히 간단합니다. 그냥 인스톨러를 다운로드받아 실행하여 설치하시면 됩니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://golang.org/dl/&#34;&gt;https://golang.org/dl/&lt;/a&gt;에서 OS별 인스톨러를 다운받아 설치할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;go-기본-환경셋팅&#34;&gt;Go 기본 환경셋팅&lt;/h3&gt;
+</description>
     </item>
     
     <item>
