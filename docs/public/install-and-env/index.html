@@ -211,15 +211,23 @@ Usage:
 <li><strong>bin</strong> : 실행 가능한 커맨드들이 위치합니다.</li>
 </ul>
 
-<p>이 Workspace를 Go 프로젝트 디렉토리로 사용하기 위해서는 <strong>GOPATH</strong>라는 환경변수에 등록해야하므로 이를 위한 설정이 필요합니다.</p>
+<p>이 Workspace를 Go 프로젝트 디렉토리로 사용하기 위해서는 <strong>GOPATH</strong>라는 환경변수로 등록해야합니다.</p>
 
-<p><code>Windows</code>의 경우 &lsquo;내 컴퓨터&rsquo; 아이콘을 우클릭해서 속성으로 들어가면 &lsquo;시스템 속성&rsquo; 창이 뜹니다. 이 창의 좌측 목록을 보면 &lsquo;고급 시스템 설정&rsquo;이라는 항목을 누르면 또 다른 창이 뜹니다. 이 창의 아래쪽을 보면 &lsquo;환경변수&rsquo;로 들어갑니다.</p>
+<p><br></p>
+
+<h4 id="windows">Windows</h4>
+
+<p>의 경우 &lsquo;내 컴퓨터&rsquo; 아이콘을 우클릭해서 속성으로 들어가면 &lsquo;시스템 속성&rsquo; 창이 뜹니다. 이 창의 좌측 목록을 보면 &lsquo;고급 시스템 설정&rsquo;이라는 항목을 누르면 또 다른 창이 뜹니다. 이 창의 아래쪽을 보면 &lsquo;환경변수&rsquo;로 들어갑니다.</p>
 
 <p>여기서 조심해야할 것은 환경변수를 잘못 건드리면 Windows를 정상적으로 사용 못할 수 있으니 조심하셔야합니다. 여기서 우리는 환경변수를 새로 만들 것이기 때문에 &lsquo;새로 만들기&rsquo;를 클릭합니다. (위와 아래 목록 중 아래 목록에 하는 것을 추천합니다.) 변수 이름은 <code>GOPATH</code>로 지정하고, 값은 여러분이 지정할 Workspace의 위치를 입력합니다. 만약 바탕화면에서 <code>GoDev</code>라는 폴더를 만들었으면 다음과 같은 경로를 입력해주면 됩니다.</p>
 
 <p><strong>Tip</strong> : Workspace로 지정할 폴더를 탐색기에서 열고, 주소창의 경로를 복사 붙여넣기하면 쉽게 됩니다.</p>
 
-<p><code>OS X/Linux</code>의 경우, 터미널에서 <code>export</code> 명령어를 통해 설정할 수 있습니다.</p>
+<p><br></p>
+
+<h4 id="os-x-linux">OS X/Linux</h4>
+
+<p><code>export</code> 명령어를 통해 설정할 수 있습니다.</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /path/to     <span class="c"># 원하는 위치로 이동합니다.</span>
 mkdir work     <span class="c"># 원하는 위치에 Workspace 디렉토리를 만듭니다.</span>
 <span class="nb">export </span><span class="nv">GOPATH</span><span class="o">=</span>/path/to/work      <span class="c"># 해당 디렉토리를 GOPATH로 설정합니다.</span>
