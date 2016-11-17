@@ -66,7 +66,7 @@ $GOPATH/
 * **pkg** : 패키지 오브젝트들이 위치합니다.
 * **bin** : 실행 가능한 커맨드들이 위치합니다.
 
-이 Workspace의 위치는 는 **GOPATH**라는 환경변수에 결정되기에 이를 위한 설정이 필요합니다.
+이 Workspace를 Go 프로젝트 디렉토리로 사용하기 위해서는 **GOPATH**라는 환경변수에 등록해야하므로 이를 위한 설정이 필요합니다.
 
 `Windows`의 경우 '내 컴퓨터' 아이콘을 우클릭해서 속성으로 들어가면 '시스템 속성' 창이 뜹니다. 이 창의 좌측 목록을 보면 '고급 시스템 설정'이라는 항목을 누르면 또 다른 창이 뜹니다. 이 창의 아래쪽을 보면 '환경변수'로 들어갑니다.
 
@@ -81,4 +81,18 @@ cd /path/to     # 원하는 위치로 이동합니다.
 mkdir work     # 원하는 위치에 Workspace 디렉토리를 만듭니다.
 export GOPATH=/path/to/work      # 해당 디렉토리를 GOPATH로 설정합니다.
 mkdir work/src      # 소스 파일 디렉토리를 생성합니다.
+```
+
+또한 `.profile`, `.bash_profile`, `.zsh_profile`에 경로를 등록할 수도 있습니다.
+
+```bash
+// .profile 
+// .bash_profile
+// .zsh_profile
+// 여러분이 사용하는 쉘에 따라 설정하시면 됩니다.
+...
+
+export GOPATH=/path/to/work
+
+...
 ```

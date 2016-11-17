@@ -211,7 +211,7 @@ Usage:
 <li><strong>bin</strong> : 실행 가능한 커맨드들이 위치합니다.</li>
 </ul>
 
-<p>이 Workspace의 위치는 는 <strong>GOPATH</strong>라는 환경변수에 결정되기에 이를 위한 설정이 필요합니다.</p>
+<p>이 Workspace를 Go 프로젝트 디렉토리로 사용하기 위해서는 <strong>GOPATH</strong>라는 환경변수에 등록해야하므로 이를 위한 설정이 필요합니다.</p>
 
 <p><code>Windows</code>의 경우 &lsquo;내 컴퓨터&rsquo; 아이콘을 우클릭해서 속성으로 들어가면 &lsquo;시스템 속성&rsquo; 창이 뜹니다. 이 창의 좌측 목록을 보면 &lsquo;고급 시스템 설정&rsquo;이라는 항목을 누르면 또 다른 창이 뜹니다. 이 창의 아래쪽을 보면 &lsquo;환경변수&rsquo;로 들어갑니다.</p>
 
@@ -224,6 +224,18 @@ Usage:
 mkdir work     <span class="c"># 원하는 위치에 Workspace 디렉토리를 만듭니다.</span>
 <span class="nb">export </span><span class="nv">GOPATH</span><span class="o">=</span>/path/to/work      <span class="c"># 해당 디렉토리를 GOPATH로 설정합니다.</span>
 mkdir work/src      <span class="c"># 소스 파일 디렉토리를 생성합니다.</span>
+</code></pre></div>
+
+<p>또한 <code>.profile</code>, <code>.bash_profile</code>, <code>.zsh_profile</code>에 경로를 등록할 수도 있습니다.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">// .profile 
+// .bash_profile
+// .zsh_profile
+// 여러분이 사용하는 쉘에 따라 설정하시면 됩니다.
+...
+
+<span class="nb">export </span><span class="nv">GOPATH</span><span class="o">=</span>/path/to/work
+
+...
 </code></pre></div>
 
         </article>
