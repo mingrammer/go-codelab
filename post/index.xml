@@ -116,7 +116,7 @@ Usage:
 &lt;li&gt;&lt;strong&gt;bin&lt;/strong&gt; : 실행 가능한 커맨드들이 위치합니다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;이 Workspace의 위치는 는 &lt;strong&gt;GOPATH&lt;/strong&gt;라는 환경변수에 결정되기에 이를 위한 설정이 필요합니다.&lt;/p&gt;
+&lt;p&gt;이 Workspace를 Go 프로젝트 디렉토리로 사용하기 위해서는 &lt;strong&gt;GOPATH&lt;/strong&gt;라는 환경변수에 등록해야하므로 이를 위한 설정이 필요합니다.&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;Windows&lt;/code&gt;의 경우 &amp;lsquo;내 컴퓨터&amp;rsquo; 아이콘을 우클릭해서 속성으로 들어가면 &amp;lsquo;시스템 속성&amp;rsquo; 창이 뜹니다. 이 창의 좌측 목록을 보면 &amp;lsquo;고급 시스템 설정&amp;rsquo;이라는 항목을 누르면 또 다른 창이 뜹니다. 이 창의 아래쪽을 보면 &amp;lsquo;환경변수&amp;rsquo;로 들어갑니다.&lt;/p&gt;
 
@@ -129,6 +129,18 @@ Usage:
 mkdir work     &lt;span class=&#34;c&#34;&gt;# 원하는 위치에 Workspace 디렉토리를 만듭니다.&lt;/span&gt;
 &lt;span class=&#34;nb&#34;&gt;export &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;GOPATH&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/path/to/work      &lt;span class=&#34;c&#34;&gt;# 해당 디렉토리를 GOPATH로 설정합니다.&lt;/span&gt;
 mkdir work/src      &lt;span class=&#34;c&#34;&gt;# 소스 파일 디렉토리를 생성합니다.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;또한 &lt;code&gt;.profile&lt;/code&gt;, &lt;code&gt;.bash_profile&lt;/code&gt;, &lt;code&gt;.zsh_profile&lt;/code&gt;에 경로를 등록할 수도 있습니다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;// .profile 
+// .bash_profile
+// .zsh_profile
+// 여러분이 사용하는 쉘에 따라 설정하시면 됩니다.
+...
+
+&lt;span class=&#34;nb&#34;&gt;export &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;GOPATH&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/path/to/work
+
+...
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
     </item>
