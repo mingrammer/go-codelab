@@ -19,5 +19,6 @@ weight = 1
 #### 6. [고루틴과 채널](/goroutine-and-channel)
 #### 7. [서버 구조 및 net/http](/server-structure-and-net-http)
 #### 8. [서버에서 채널 동작 방식 및 로그 핸들러](/how-server-and-logger-works)
-#### 9. [Go에서 예외 처리하기](/error-handling-in-go)
+#### 9. [에러 핸들링](/error-handling-in-go)
 #### 10. [애플리케이션 동작 방식](/how-application-works)
+#### 11. [축하합니다!](/next-to-go)
