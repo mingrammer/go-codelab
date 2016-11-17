@@ -6,17 +6,8 @@
     <description>Recent content in Posts on Go codelab step-by-step page</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 17 Nov 2016 23:42:42 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 14 Nov 2016 10:20:44 +0900</lastBuildDate>
     <atom:link href="https://mingrammer.com/go-codelab/post/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>next to go</title>
-      <link>https://mingrammer.com/go-codelab/next-to-go</link>
-      <pubDate>Thu, 17 Nov 2016 23:42:42 +0900</pubDate>
-      
-      <guid>https://mingrammer.com/go-codelab/next-to-go</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>코드랩 소개</title>
@@ -49,9 +40,11 @@
 
 &lt;h4 id=&#34;8-서버에서-채널-동작-방식-및-로그-핸들러-how-server-and-logger-works&#34;&gt;8. &lt;a href=&#34;https://mingrammer.com/go-codelab/how-server-and-logger-works&#34;&gt;서버에서 채널 동작 방식 및 로그 핸들러&lt;/a&gt;&lt;/h4&gt;
 
-&lt;h4 id=&#34;9-go에서-예외-처리하기-error-handling-in-go&#34;&gt;9. &lt;a href=&#34;https://mingrammer.com/go-codelab/error-handling-in-go&#34;&gt;Go에서 예외 처리하기&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;9-에러-핸들링-error-handling-in-go&#34;&gt;9. &lt;a href=&#34;https://mingrammer.com/go-codelab/error-handling-in-go&#34;&gt;에러 핸들링&lt;/a&gt;&lt;/h4&gt;
 
 &lt;h4 id=&#34;10-애플리케이션-동작-방식-how-application-works&#34;&gt;10. &lt;a href=&#34;https://mingrammer.com/go-codelab/how-application-works&#34;&gt;애플리케이션 동작 방식&lt;/a&gt;&lt;/h4&gt;
+
+&lt;h4 id=&#34;11-축하합니다-next-to-go&#34;&gt;11. &lt;a href=&#34;https://mingrammer.com/go-codelab/next-to-go&#34;&gt;축하합니다!&lt;/a&gt;&lt;/h4&gt;
 </description>
     </item>
     
@@ -1156,7 +1149,7 @@ Gravitational Velocity of Z-axis : 491.804754
     </item>
     
     <item>
-      <title>마무리하며...</title>
+      <title>축하합니다!</title>
       <link>https://mingrammer.com/go-codelab/next-to-go</link>
       <pubDate>Thu, 17 Nov 2016 23:41:33 +0900</pubDate>
       
