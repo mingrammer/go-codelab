@@ -548,7 +548,7 @@ models/
       <guid>https://mingrammer.com/go-codelab/goroutine-and-channel</guid>
       <description>
 
-&lt;p&gt;이번에는 이전 장에서 많이 등장했던 고루틴과 채널을 간단히 다뤄보도록 하겠습니다. 사실 고루틴과 채널은 Go에서 굉장히 중요한 개념입니다. 이 장에서는 튜토리얼 수준에서 필요한 만큼의 설명만 하도록 하겠습니다.&lt;/p&gt;
+&lt;p&gt;이번에는 이전 장에서 많이 등장했던 고루틴과 채널에 대해 간단히 다뤄보도록 하겠습니다. 고루틴과 채널은 Go에서 굉장히 중요한 개념입니다. 이 장에서는 우리 튜토리얼에서 필요한 만큼의 설명만 하도록 하겠습니다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 
