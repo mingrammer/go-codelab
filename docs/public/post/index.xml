@@ -6,8 +6,17 @@
     <description>Recent content in Posts on Go codelab step-by-step page</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 14 Nov 2016 10:20:44 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 17 Nov 2016 23:42:42 +0900</lastBuildDate>
     <atom:link href="https://mingrammer.com/go-codelab/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>next to go</title>
+      <link>https://mingrammer.com/go-codelab/next-to-go</link>
+      <pubDate>Thu, 17 Nov 2016 23:42:42 +0900</pubDate>
+      
+      <guid>https://mingrammer.com/go-codelab/next-to-go</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>코드랩 소개</title>
@@ -1143,6 +1152,27 @@ Gravitational Velocity of Z-axis : 491.804754
 &lt;h3 id=&#34;도전&#34;&gt;도전&lt;/h3&gt;
 
 &lt;p&gt;여러분이 직접 정의했던 센서들에 대해서도 로그가 잘 남는지 확인해보세요. 안 된다면 어디서 문제인지 한 번 찾아보고 해결해보세요!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>마무리하며...</title>
+      <link>https://mingrammer.com/go-codelab/next-to-go</link>
+      <pubDate>Thu, 17 Nov 2016 23:41:33 +0900</pubDate>
+      
+      <guid>https://mingrammer.com/go-codelab/next-to-go</guid>
+      <description>&lt;p&gt;이로써 우리는 튜토리얼을 통해 Go 언어의 특징들을 확인해볼 수 있었습니다. 사회가 복잡해지면서 개발자들은 다양한 문제들을 직면하게 되었습니다. 그 예로, 빠른 처리를 위해서 동시성(Concurrency)는 기본적으로 갖춰야하지만, 하드웨어에 부담을 덜어야하고, 프로그램 규모가 커지면 개발 속도가 상대적으로 느려지는 문제 등 현대의 프로그래밍 언어들로는 해결하기 어려운 문제들이 많았습니다.&lt;/p&gt;
+
+&lt;p&gt;Go 언어는 이러한 문제들을 해결하기 위해 섬세하게 고안된 프로그래밍 언어입니다. 언어 자체가 기본적으로 동시성을 제공하고, 인터페이스와 덕타이핑(Duck Typing), 그리고 다양한 패키지들을 기본적으로 제공하며, 외부 패키지들의 연관성(Dependency)을 쉽게 관리할 수 있는 것처럼 개발자들의 고민을 해결해줄 수 있는 장치들이 많이 존재합니다.&lt;/p&gt;
+
+&lt;p&gt;아래의 참고자료들을 통해 Go 언어의 매력에 대해 더 알아보고, Go 언어가 여러분들에게 의미있는 문제 해결방법이 되기를 기원합니다!&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tour.golang.org&#34;&gt;A Tour of Go&lt;/a&gt; : Go언어의 문법을 전반적으로 배울 수 있는 온라인 코드랩 페이지입니다.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://golang.org/doc/effective_go.html&#34;&gt;Effective Go&lt;/a&gt; : Go언어를 효율적으로 사용하는 가이드라인을 정리한 것입니다.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://awesome-go.com/&#34;&gt;Awesome Go&lt;/a&gt; : Go언어를 이용해 공개된 오픈소스 프로그램들의 추천 목록입니다.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.facebook.com/groups/golangko/&#34;&gt;Golang Korea&lt;/a&gt; : Facebook 그룹 기반의 한국 Golang 커뮤니티입니다.&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
