@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Go codelab step-by-step page</title>
+    <title>Post-rsses on Go codelab step-by-step page</title>
     <link>https://mingrammer.com/go-codelab/post/index.xml</link>
-    <description>Recent content in Posts on Go codelab step-by-step page</description>
+    <description>Recent content in Post-rsses on Go codelab step-by-step page</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 14 Nov 2016 10:20:44 +0900</lastBuildDate>
@@ -75,7 +75,7 @@
 &lt;p&gt;공식 홈페이지 &lt;a href=&#34;https://golang.org/dl/&#34;&gt;https://golang.org/dl/&lt;/a&gt;에서 인스톨러를 다운로드받아 설치할 수 있습니다.&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;OS X/Linux&lt;/code&gt;에선 패키지 매니저로도 설치할 수 있습니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span&gt;&lt;/span&gt;// OS X
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;// OS X
 brew install go
 
 // Ubuntu
@@ -144,20 +144,20 @@ Usage:
 &lt;h4 id=&#34;os-x-linux&#34;&gt;OS X/Linux&lt;/h4&gt;
 
 &lt;p&gt;&lt;code&gt;export&lt;/code&gt; 명령어를 통해 설정할 수 있습니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; /path/to     &lt;span class=&#34;c1&#34;&gt;# 원하는 위치로 이동합니다.&lt;/span&gt;
-mkdir work     &lt;span class=&#34;c1&#34;&gt;# 원하는 위치에 Workspace 디렉토리를 만듭니다.&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;GOPATH&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/path/to/work      &lt;span class=&#34;c1&#34;&gt;# 해당 디렉토리를 GOPATH로 설정합니다.&lt;/span&gt;
-mkdir work/src      &lt;span class=&#34;c1&#34;&gt;# 소스 파일 디렉토리를 생성합니다.&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; /path/to     &lt;span class=&#34;c&#34;&gt;# 원하는 위치로 이동합니다.&lt;/span&gt;
+mkdir work     &lt;span class=&#34;c&#34;&gt;# 원하는 위치에 Workspace 디렉토리를 만듭니다.&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;export &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;GOPATH&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/path/to/work      &lt;span class=&#34;c&#34;&gt;# 해당 디렉토리를 GOPATH로 설정합니다.&lt;/span&gt;
+mkdir work/src      &lt;span class=&#34;c&#34;&gt;# 소스 파일 디렉토리를 생성합니다.&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;또한 &lt;code&gt;.profile&lt;/code&gt;, &lt;code&gt;.bash_profile&lt;/code&gt;, &lt;code&gt;.zsh_profile&lt;/code&gt;에 경로를 등록할 수도 있습니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span&gt;&lt;/span&gt;// .profile 
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;// .profile 
 // .bash_profile
 // .zsh_profile
 // 여러분이 사용하는 쉘에 따라 설정하시면 됩니다.
 ...
 
-&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;GOPATH&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/path/to/work
+&lt;span class=&#34;nb&#34;&gt;export &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;GOPATH&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/path/to/work
 
 ...
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -276,7 +276,7 @@ models/
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;그럼 이제 우리 튜토리얼의 패키지들을 살펴봅시다. &lt;code&gt;faker&lt;/code&gt;의 &lt;code&gt;range.go&lt;/code&gt; 파일과 &lt;code&gt;models&lt;/code&gt;의 &lt;code&gt;sensor.go&lt;/code&gt;를 보면 상단에 다음과 같은 코드를 볼 수 있습니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// faker/range.go&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// faker/range.go&lt;/span&gt;
 &lt;span class=&#34;kn&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;faker&lt;/span&gt;
 
 &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
@@ -284,7 +284,7 @@ models/
 	&lt;span class=&#34;s&#34;&gt;&amp;quot;time&amp;quot;&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// models/sensor.go&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// models/sensor.go&lt;/span&gt;
 &lt;span class=&#34;kn&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;models&lt;/span&gt;
 
 &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
@@ -303,7 +303,7 @@ models/
 &lt;h3 id=&#34;임포트&#34;&gt;임포트&lt;/h3&gt;
 
 &lt;p&gt;위의 &lt;code&gt;range.go&lt;/code&gt;와 &lt;code&gt;sensor.go&lt;/code&gt; 파일을 보면 &lt;code&gt;package&lt;/code&gt; 아래에서 &lt;code&gt;import&lt;/code&gt;문을 볼 수 있습니다.  &lt;code&gt;import&lt;/code&gt;문을 통해 표준 또는 외부 패키지를 불러와 사용할 수 있습니다. 위 코드에서 보이는 &lt;code&gt;math/rand&lt;/code&gt;, &lt;code&gt;time&lt;/code&gt;, &lt;code&gt;fmt&lt;/code&gt;, &lt;code&gt;strings&lt;/code&gt;는 Go의 표준 라이브러리 패키지입니다. 표준 라이브러리 패키지의 경우 해당 패키지명만 그대로 선언해주면 바로 사용할 수 있습니다. 다음은 콘솔에 값을 출력하는 코드입니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 단일 import문은 이렇게 쓸 수 있습니다.&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 단일 import문은 이렇게 쓸 수 있습니다.&lt;/span&gt;
 &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
 
 &lt;span class=&#34;c1&#34;&gt;// 다중 import문은 이렇게 쓸 수 있습니다.&lt;/span&gt;
@@ -358,7 +358,7 @@ models/
 &lt;p&gt;앞에서 잠깐 살펴본 모델 패키지 &lt;code&gt;models&lt;/code&gt;에는 클라이언트와 서버에서 사용할 센서들의 공용 메서드를 정의하는 &lt;code&gt;Sensor interface&lt;/code&gt;와 센서들의 공통 필드를 갖는 &lt;code&gt;SensorInfo struct&lt;/code&gt;를 정의해놓은 &lt;code&gt;sensor.go&lt;/code&gt; 파일이 있습니다.&lt;/p&gt;
 
 &lt;p&gt;구조체와 인터페이스가 무엇인지 살펴보기 전에 실제 &lt;code&gt;sensor.go&lt;/code&gt;의 코드의 일부를 봅시다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// Sensor is common interface for any sensors&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Sensor is common interface for any sensors&lt;/span&gt;
 &lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Sensor&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;interface&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
     &lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
@@ -376,7 +376,7 @@ models/
 &lt;h3 id=&#34;구조체-struct&#34;&gt;구조체 (Struct)&lt;/h3&gt;
 
 &lt;p&gt;구조체 &lt;code&gt;struct&lt;/code&gt;는 여러 필드를 가질 수 있는 일종의 확장 타입입니다. C 언어에서의 &lt;code&gt;struct&lt;/code&gt;와 거의 유사합니다.&lt;code&gt;struct&lt;/code&gt;는 다음과 같이 구성됩니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;StructName&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;StructName&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
     &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;embededStruct&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
     &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;varname&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;vartype&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;`&amp;lt;tag&amp;gt;`&lt;/span&gt;
     &lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;
@@ -386,7 +386,7 @@ models/
 &lt;p&gt;&lt;code&gt;StructName&lt;/code&gt;은 구조체의 이름을 뜻하며 &lt;code&gt;varname&lt;/code&gt;은 필드명, &lt;code&gt;vartype&lt;/code&gt;은 필드의 타입, &lt;code&gt;tag&lt;/code&gt;는 잠시후 다시 설명할 해당 필드가 인코딩 되었을 때의 키값을 정의하는 태그입니다. 참고로 Go에서는 변수를 선언할 때 &lt;code&gt;var name type&lt;/code&gt;처럼 타입을 변수명 뒤에 선언합니다. 필드의 타입은 그 어떤 타입도 가능합니다. &lt;code&gt;embededStruct&lt;/code&gt;는 조금 이따 살펴보겠습니다.&lt;/p&gt;
 
 &lt;p&gt;우선 실제 구조체를 살펴보기 위해 &lt;code&gt;SensorInfo&lt;/code&gt; 코드를 봅시다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;SensorInfo&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;SensorInfo&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 	&lt;span class=&#34;nx&#34;&gt;Name&lt;/span&gt;    &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;    &lt;span class=&#34;s&#34;&gt;`json:&amp;quot;name&amp;quot;`&lt;/span&gt;
 	&lt;span class=&#34;nx&#34;&gt;Type&lt;/span&gt;    &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;    &lt;span class=&#34;s&#34;&gt;`json:&amp;quot;type&amp;quot;`&lt;/span&gt;
 	&lt;span class=&#34;nx&#34;&gt;GenTime&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Time&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;`json:&amp;quot;gen_time&amp;quot;`&lt;/span&gt;
@@ -405,7 +405,7 @@ models/
 &lt;p&gt;이 태그는 필수는 아니며 필요에 따라 선택적으로 설정할 수 있습니다.&lt;/p&gt;
 
 &lt;p&gt;이제 아까 언급한 &lt;code&gt;embededStruct&lt;/code&gt;를 다시 살펴봅시다. &lt;code&gt;sensor.go&lt;/code&gt;에 있는 실제 코드를 보겠습니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// GyroSensor produces x-y-z axes angle velocity values&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// GyroSensor produces x-y-z axes angle velocity values&lt;/span&gt;
 &lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;GyroSensor&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 	&lt;span class=&#34;nx&#34;&gt;SensorInfo&lt;/span&gt;
 	&lt;span class=&#34;nx&#34;&gt;AngleVelocityX&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;float64&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;`json:&amp;quot;x_axis_angle_velocity&amp;quot;`&lt;/span&gt;
@@ -419,7 +419,7 @@ models/
 &lt;p&gt;&lt;code&gt;Embedding&lt;/code&gt;을 사용하게되면 코드 중복을 피할 수 있으며, 코드의 재사용성이 증가하게 됩니다. 얼핏보면 Java, C++, Python에서의 상속과 비슷해 보이지만 다릅니다. 상속은 하위 클래스가 상위 클래스의 모든걸 가져오는 구조인 반면 &lt;code&gt;Embedding&lt;/code&gt;은 필요한 구조체의 필드들을 가져와 재사용하겠다는 의미를 가집니다. 즉, 일종의 구조체 모듈인셈입니다. Go 프로그래밍을 하게되면 앞으로 이러한 &lt;code&gt;Embedding&lt;/code&gt;을 많이 볼 수 있을 것입니다.&lt;/p&gt;
 
 &lt;p&gt;구조체는 다음과 같이 사용할 수 있으며, 앞으로도 계속 보게될 것입니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gyroSensor&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;GyroSensor&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;nx&#34;&gt;gyroSensor&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;GyroSensor&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
                 &lt;span class=&#34;c1&#34;&gt;// Embedded 구조체 필드의 경우 다음과 같이 초기화합니다.&lt;/span&gt;
 		&lt;span class=&#34;nx&#34;&gt;SensorInfo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;SensorInfo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 			&lt;span class=&#34;nx&#34;&gt;Name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;    &lt;span class=&#34;s&#34;&gt;&amp;quot;GyroSensor&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
@@ -438,7 +438,7 @@ models/
 &lt;h3 id=&#34;인터페이스-interface&#34;&gt;인터페이스 (Interface)&lt;/h3&gt;
 
 &lt;p&gt;인터페이스 &lt;code&gt;interface&lt;/code&gt;는 일종의 메서드 시그니쳐의 모음입니다. Java에서의 인터페이스와 유사하며, 어떤 타입이 특정 인터페이스의 메서드들을 모두 구현하고 있으면 그 타입은 해당 인터페이스 타입을 갖게됩니다. &lt;code&gt;interface&lt;/code&gt;는 다음과 같이 구성됩니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;InterfaceName&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;interface&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;InterfaceName&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;interface&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
     &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;method&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;signature&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
     &lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
@@ -447,7 +447,7 @@ models/
 &lt;p&gt;&lt;code&gt;InterfaceName&lt;/code&gt;은 인터페이스의 이름을 뜻하며, &lt;code&gt;method signature&lt;/code&gt;는 메서드의 시그니쳐입니다.&lt;/p&gt;
 
 &lt;p&gt;실제 인터페이스를 살펴보기 위해 &lt;code&gt;Sensor&lt;/code&gt; 코드를 봅시다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Sensor&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;interface&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Sensor&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;interface&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 	&lt;span class=&#34;nx&#34;&gt;SendingOutputString&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;
 	&lt;span class=&#34;nx&#34;&gt;ReceivingOutputString&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;
 	&lt;span class=&#34;nx&#34;&gt;GenerateSensorData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;epsilon&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;float64&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Sensor&lt;/span&gt;
@@ -457,7 +457,7 @@ models/
 &lt;p&gt;&lt;code&gt;Sensor&lt;/code&gt;라는 인터페이스에 &lt;code&gt;SendingOutputString() string&lt;/code&gt;, &lt;code&gt;ReceivingOutputString string&lt;/code&gt;, &lt;code&gt;GenerateSensorData(epsilon float64) Sensor&lt;/code&gt;라는 메서드 시그니쳐들이 있습니다. 만약 어떤 타입이 이 시그니쳐들을 갖는 메서드들을 모두 구현한다면 그 타입은 &lt;code&gt;Sensor interface&lt;/code&gt; 타입을 갖게되며, &lt;code&gt;Sensor&lt;/code&gt;를 인자로 받는 그 어떤 함수의 인자로도 들어갈 수 있습니다.&lt;/p&gt;
 
 &lt;p&gt;다음은 실제 &lt;code&gt;GyroSensor&lt;/code&gt; 구조체에 구현된 메서드들입니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;GyroSensor&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;SendingOutputString&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;GyroSensor&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;SendingOutputString&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
     &lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 
@@ -471,7 +471,7 @@ models/
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;code&gt;GyroSensor&lt;/code&gt;는 &lt;code&gt;Sensor&lt;/code&gt; 인터페이스의 모든 메서드들을 구현하고 있으므로 &lt;code&gt;Sensor interface&lt;/code&gt; 타입이 됩니다. 즉, &lt;code&gt;Sensor&lt;/code&gt; 타입으로 사용할 수 있게 됩니다. 참고로 Go에서는 특정 타입의 메서드를 다음과 같이 선언할 수 있습니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// StructType 타입의 st 변수를 &amp;#39;리시버 (receiver)&amp;#39;라고 하며, 리시버를 특정 구조체 타입으로 선언하면 그 타입의 메서드가 됩니다.  &lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// StructType 타입의 st 변수를 &amp;#39;리시버 (receiver)&amp;#39;라고 하며, 리시버를 특정 구조체 타입으로 선언하면 그 타입의 메서드가 됩니다.  &lt;/span&gt;
 &lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;st&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;StructType&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;functionName&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;returnTypes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
     &lt;span class=&#34;c1&#34;&gt;// procssing with &amp;#39;st&amp;#39;&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
@@ -517,7 +517,7 @@ models/
 &lt;h3 id=&#34;워커-worker-와-카운터-counter-구조체-정의하기&#34;&gt;워커(worker)와 카운터(counter) 구조체 정의하기&lt;/h3&gt;
 
 &lt;p&gt;우리는 각 센서 데이터를 독립적으로 서버에 보낼 수 있도록 고루틴 위에서 센서 워커를 돌릴 것 입니다. 따라서 워커를 돌리기 위해 필요한 정보들을 갖는 &lt;code&gt;worker&lt;/code&gt; 구조체를 정의할 것입니다. 고루틴에 대해선 다음 장에서 더 자세히 살펴볼 것이며 지금은 일단 경량 스레드쯤으로 이해하시면 됩니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;worker&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;worker&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 	&lt;span class=&#34;nx&#34;&gt;ticker&lt;/span&gt;      &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Ticker&lt;/span&gt;
 	&lt;span class=&#34;nx&#34;&gt;sensor&lt;/span&gt;      &lt;span class=&#34;nx&#34;&gt;models&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Sensor&lt;/span&gt;
 	&lt;span class=&#34;nx&#34;&gt;sensorError&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;float64&lt;/span&gt;
@@ -530,7 +530,7 @@ models/
 &lt;p&gt;&lt;code&gt;sensor&lt;/code&gt;는 각 센서 구조체들을 저장하기 위한 필드로 &lt;code&gt;Sensor&lt;/code&gt;의 타입으로 선언되어 있습니다. &lt;code&gt;Sensor&lt;/code&gt; 구조체는 &lt;code&gt;models&lt;/code&gt; 패키지에 존재하므로 &lt;code&gt;models.Sensor&lt;/code&gt;로 접근합니다. &lt;a href=&#34;https://mingrammer.com/go-codelab/struct-and-interface&#34;&gt;구조체와 인터페이스&lt;/a&gt;에서 보았듯이 &lt;code&gt;Sensor&lt;/code&gt; 인터페이스를 만족하면 그 어떤 구조체든 &lt;code&gt;Sensor&lt;/code&gt; 타입으로 선언이 가능합니다. 따라서, 종류와 상관없이 각 센서들을 저장할 수 있습니다. &lt;code&gt;serverError&lt;/code&gt;는 임의의 센서값을 생성할 때 사용되는 센서 오차값을 뜻하며 &lt;code&gt;serverPort&lt;/code&gt;는 각 센서별로 서버의 어느 포트로 데이터를 보낼지 설정하기 위한 필드입니다.&lt;/p&gt;
 
 &lt;p&gt;또한 우리는 데이터 전송 횟수를 제한하기 위해 &lt;code&gt;counter&lt;/code&gt; 구조체를 정의할 것입니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;counter&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;counter&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 	&lt;span class=&#34;nx&#34;&gt;mutex&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;sync&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Mutex&lt;/span&gt;
 	&lt;span class=&#34;nx&#34;&gt;n&lt;/span&gt;     &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
@@ -555,7 +555,7 @@ models/
 &lt;h3 id=&#34;센서-워커-sensorworker-함수-살펴보기&#34;&gt;센서 워커 (sensorWorker) 함수 살펴보기&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;worker&lt;/code&gt;에 정의된 워커 정보를 가지고 실제 센서 데이터를 서버로 보내는 워커 함수인 &lt;code&gt;sensorWorker&lt;/code&gt;를 살펴봅시다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;sensorWorker&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;done&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{},&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;w&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;worker&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;c&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;counter&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;sensorWorker&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;done&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{},&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;w&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;worker&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;c&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;counter&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 	&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 		&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
                 &lt;span class=&#34;c1&#34;&gt;// done 채널이 닫히기까지 대기&lt;/span&gt;
@@ -595,7 +595,7 @@ models/
 &lt;h3 id=&#34;main-함수-살펴보기&#34;&gt;main 함수 살펴보기&lt;/h3&gt;
 
 &lt;p&gt;위에서 언급했듯이 메인 패키지는 반드시 &lt;code&gt;main&lt;/code&gt; 함수를 필요로하며 메인 패키지를 가진 Go 프로그램이 실행될 때 바로 이 &lt;code&gt;main&lt;/code&gt; 함수가 실행됩니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
         &lt;span class=&#34;c1&#34;&gt;// 전송 횟수 카운팅을 위한 카운터 생성 &lt;/span&gt;
 	&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;sendCounter&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;counter&lt;/span&gt;
         &lt;span class=&#34;c1&#34;&gt;// 동기화를 위한 일종의 세마포어. 이에 대해선 서버 섹션에서 자세히 설명하겠습니다.&lt;/span&gt;
@@ -689,7 +689,7 @@ models/
 &lt;p&gt;Go에서 &lt;code&gt;고루틴(Goroutine&lt;/code&gt;)이란, Go 런타임에 의해 관리되는 경량 스레드입니다. 고루틴을 사용하면 비동기적으로 여러개의 함수를 실행할 수 있으며 우리는 이를 활용해 각 센서 데이터를 동시에 서버에 전송할 수 있습니다.&lt;/p&gt;
 
 &lt;p&gt;고루틴은 &lt;code&gt;go&lt;/code&gt; 키워드를 사용해 생성할 수 있는데 두 가지 방법으로 생성할 수 있습니다. 하나는 일반 함수를 사용하는 것이며 다른 하나는 익명 함수를 사용하는 것입니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;work&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;work&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
         &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
                 &lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
         &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
@@ -717,11 +717,11 @@ models/
 &lt;p&gt;근데 만약에 고루틴을 사용하다가 고루틴끼리 데이터를 주고 받아야하는 경우가 생기면 어떻게 해야할까요? 바로 &lt;code&gt;채널(Channel)&lt;/code&gt;을 사용하면 됩니다. 채널이란 동시에 실행되는 고루틴들을 연결해주는 일종의 파이프(pipe)입니다.&lt;/p&gt;
 
 &lt;p&gt;채널을 사용하면 고루틴에서 다른 고루틴으로 값을 전달할 수 있으며 다른 고루틴으로부터 값을 전달받을 수도 있습니다. 채널은 &lt;code&gt;chan&lt;/code&gt; 키워드로 생성할 수 있으며 채널에 들어가는 데어터는 그 어떤 타입이라도 가능합니다. 예를 들면 정수값을 주고받는 채널의 경우 다음과 같이 선언할 수 있습니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ourChannel&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;nx&#34;&gt;ourChannel&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;다음과 같이 고루틴끼리 채널을 통해 데이터를 주고 받을 수 있습니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;routine1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ourChannel&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;routine1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ourChannel&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
         &lt;span class=&#34;c1&#34;&gt;// 채널에 값을 넣습니다.&lt;/span&gt;
         &lt;span class=&#34;nx&#34;&gt;ourChannel&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;quot;data&amp;quot;&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
@@ -742,7 +742,7 @@ models/
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;위에서 볼 수 있듯이 채널은 기본적으로 데이터를 주고 받을 수 있는 양방향 파이프입니다. 그런데 프로그램을 개발하다보면 어떤 고루틴은 받기만, 또 어떤 고루틴은 보내기만 하는 경우가 생길 수 있습니다. 이 경우엔 양방향 채널을 쓰는 대신 단방향 채널을 사용할 수 있습니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 보내기 전용 단방향 채널을 사용합니다.&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 보내기 전용 단방향 채널을 사용합니다.&lt;/span&gt;
 &lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;routine1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ourChannel&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
         &lt;span class=&#34;c1&#34;&gt;// 채널에 값을 넣습니다.&lt;/span&gt;
         &lt;span class=&#34;nx&#34;&gt;ourChannel&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;quot;data&amp;quot;&lt;/span&gt;
@@ -761,7 +761,7 @@ models/
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;마지막으로, 어떤 고루틴이 특정 채널로부터 값을 받기까지 대기해야 하는 상황을 생각해봅시다.  바로 이 때 우리가 이전 장에서 보았던 &lt;code&gt;switch/case&lt;/code&gt;문을 사용할 수 있습니다. Go에서의 &lt;code&gt;switch/case&lt;/code&gt;문은 우리가 원래 알고 있던 그것과 동일합니다. 다만, Go에서는 이를 채널과 함께 사용할 수도 있습니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;waitFromChannel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ourChannel&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;yourChannel&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;waitFromChannel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ourChannel&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;yourChannel&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
         &lt;span class=&#34;k&#34;&gt;switch&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
         &lt;span class=&#34;k&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ourChannel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
                 &lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;Received from ourChannel&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
@@ -785,7 +785,7 @@ models/
 
 &lt;h3 id=&#34;server-의-기본-동작-방식&#34;&gt;&lt;code&gt;Server&lt;/code&gt;의 기본 동작 방식&lt;/h3&gt;
 
-&lt;p&gt;&lt;code&gt;Server&lt;/code&gt;는 기본적으로 3개의 포트 번호에 대한 HTTP 서버를 생성합니다. 각 포트 번호를 달리한 것은 서로 다른 측정값 종류를 받기 위함이여, 각 번호는 다음의 의미를 갖습니다.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Server&lt;/code&gt;는 기본적으로 3개의 포트 번호에 대한 HTTP 서버를 생성합니다. 각 포트 번호를 달리한 것은 서로 다른 종류의 센서값을 받기 위함이며, 각 번호는 다음의 의미를 갖습니다.&lt;/p&gt;
 
 &lt;h4 id=&#34;8001번은-자이로스코프-센서의-데이터를&#34;&gt;8001번은 자이로스코프 센서의 데이터를,&lt;/h4&gt;
 
@@ -793,7 +793,7 @@ models/
 
 &lt;h4 id=&#34;8003번은-온도-및-습도계의-데이터를-받습니다&#34;&gt;8003번은 온도 및 습도계의 데이터를 받습니다.&lt;/h4&gt;
 
-&lt;p&gt;&lt;code&gt;Sensor&lt;/code&gt;의 코드에서 봤듯이, HTTP 프로토콜을 이용하기 위해선 &lt;a href=&#34;https://golang.org/pkg/net/http/&#34;&gt;&lt;code&gt;net/http&lt;/code&gt;&lt;/a&gt; 패키지가 필요합니다. &lt;code&gt;Sensor&lt;/code&gt; 클라이언트에서는 단순히 POST 요청을 보내면 되기에 패키지를 &lt;code&gt;import&lt;/code&gt;하고 필요한 API를 사용하는 것으로 끝났습니다.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Sensor&lt;/code&gt;의 코드에서 봤듯이, HTTP 프로토콜을 이용하기 위해선 &lt;a href=&#34;https://golang.org/pkg/net/http/&#34;&gt;&lt;code&gt;net/http&lt;/code&gt;&lt;/a&gt; 패키지가 필요합니다. &lt;code&gt;Sensor&lt;/code&gt; 클라이언트에서는 단순히 POST 요청을 보내면 되므로 패키지를 &lt;code&gt;import&lt;/code&gt;하고 필요한 API를 사용하는 것으로 끝났습니다.&lt;/p&gt;
 
 &lt;p&gt;그러나 &lt;code&gt;net/http&lt;/code&gt; 패키지에서 서버를 생성하는 메서드인 &lt;a href=&#34;https://golang.org/pkg/net/http/#ListenAndServe&#34;&gt;&lt;code&gt;ListenAndServe()&lt;/code&gt;&lt;/a&gt; 메서드를 확인해보면, 인자로 &lt;a href=&#34;https://golang.org/pkg/net/http/#Handler&#34;&gt;&lt;code&gt;Handler Interface&lt;/code&gt;&lt;/a&gt;를 요구하고 있습니다. 이 &lt;code&gt;Handler Interface&lt;/code&gt;를 다시 확인해보면, 결국 &lt;a href=&#34;https://golang.org/pkg/net/http/#HandlerFunc&#34;&gt;&lt;code&gt;ServeHTTP()&lt;/code&gt;&lt;/a&gt;라는 메서드를 요구합니다.&lt;/p&gt;
 
@@ -801,8 +801,8 @@ models/
 
 &lt;h3 id=&#34;handler-interface-구현하기&#34;&gt;&lt;code&gt;Handler Interface&lt;/code&gt; 구현하기&lt;/h3&gt;
 
-&lt;p&gt;따라서, 우리는 &lt;code&gt;ServeHTTP()&lt;/code&gt; 메서드가 구현된 &lt;code&gt;Handler Interface&lt;/code&gt;가 필요합니다. 이를 위해, 우리는 각 데이터 종류에 대한 &lt;code&gt;Interface&lt;/code&gt;를 다음과 같이 만들어줘야 합니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;GyroHandler&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;p&gt;우리는 &lt;code&gt;ServeHTTP()&lt;/code&gt; 메서드가 구현된 &lt;code&gt;Handler Interface&lt;/code&gt;가 필요하므로  &lt;code&gt;Handler Interface&lt;/code&gt;를 만족시키기 위한 각 센서에 대한 핸들러를 정의해줘야 합니다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;GyroHandler&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 
 &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 
@@ -815,14 +815,8 @@ models/
 &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;위와 같이 핸들러를 만들어주고, 이 핸들러들이 쓸 &lt;code&gt;ServeHTTP()&lt;/code&gt; 메서드를 구현해야합니다. 앞에서 우리가 구조체와 인터페이스에 대해 배웠을 때, 다음과 같은 코드를 봤습니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;st&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;StructType&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;functionName&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;returnTypes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;// procssing with &amp;#39;st&amp;#39;&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;특정 메서드를 특정 구조체에 연결하기 위해 &lt;code&gt;Pointer Receiver&lt;/code&gt;를 사용했습니다. 우리의 경우, &lt;code&gt;main()&lt;/code&gt; 메서드에서 만들었던 &lt;code&gt;Handler Instance&lt;/code&gt;를 생성했기 때문에 이 핸들러 인스턴스에서 사용할 수 있는 &lt;code&gt;ServeHTTP()&lt;/code&gt; 메서드를 구현해줘야합니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;m&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;TempHandler&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ServeHTTP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;w&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ResponseWriter&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;req&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Request&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;p&gt;위의 핸들러들이 &lt;code&gt;Handler Interface&lt;/code&gt;를 만족하기 위해선 &lt;code&gt;ServeHTTP()&lt;/code&gt; 메서드를 구현해야 합니다. 구조체의 메서드를 정의하기위해 &lt;code&gt;Pointer Receiver&lt;/code&gt;를 사용합니다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;m&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;TempHandler&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ServeHTTP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;w&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ResponseWriter&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;req&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Request&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 	&lt;span class=&#34;c1&#34;&gt;// 온도계 및 습도계에서 받은 데이터를 처리합니다.&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 
@@ -840,7 +834,7 @@ models/
 &lt;h3 id=&#34;데이터-까보기&#34;&gt;데이터 까보기&lt;/h3&gt;
 
 &lt;p&gt;이제 HTTP 프로토콜을 통해서 받은 데이터를 해독해봅시다. 먼저, HTTP를 통해 받은 데이터는 &lt;code&gt;Request&lt;/code&gt;에 들어있겠죠? 그래서 우리는 &lt;code&gt;*http.Request&lt;/code&gt; 객체를 사용하겠습니다. 클라이언트 측에선 센서에 대한 데이터를 JSON 형식으로 보냈습니다. 따라서 우리는 Go언어에서 제공해주는 &lt;a href=&#34;https://golang.org/pkg/encoding/json/#Unmarshal&#34;&gt;JSON 패키지&lt;/a&gt;를 이용해 해독해보겠습니다. JSON 패키지에서 데이터를 해독하기 위해 제공하는 방법으로는 두가지가 있습니다. 하나는 &lt;a href=&#34;https://golang.org/pkg/encoding/json/#Unmarshal&#34;&gt;&lt;code&gt;Unmarshal&lt;/code&gt;&lt;/a&gt;이고, 다른 하나는 &lt;a href=&#34;https://golang.org/pkg/encoding/json/#Decoder&#34;&gt;&lt;code&gt;Decoder&lt;/code&gt;&lt;/a&gt; 타입을 이용하는 것입니다. 그러나 링크들을 확인해보면 서로 다른 타입에 대해 해독한다는 것을 확인할 수 있습니다. 우리가 JSON 데이터를 가져올 &lt;code&gt;*http.Request&lt;/code&gt; 구조체를 확인해보면, request의 &lt;code&gt;Body&lt;/code&gt;는 &lt;code&gt;io.ReadCloser&lt;/code&gt; 인터페이스로 이루어져 있음을 확인할 수 있습니다. 이 &lt;code&gt;io.ReadCloser&lt;/code&gt;인터페이스는 다시 &lt;code&gt;io.Reader&lt;/code&gt; 인터페이스로 이루어져있습니다. 공교롭게도, JSON 패키지의 &lt;code&gt;NewDecoder()&lt;/code&gt; 메서드는 &lt;code&gt;io.Reader&lt;/code&gt; 인터페이스를 받기 때문에 결국 우리는 데이터를 해독하기 위해 Decoder를 사용해야합니다. 그래서 우리는 다음과 같이 데이터를 해독하려고 합니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;models&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;TempSensor&lt;/span&gt;					&lt;span class=&#34;c1&#34;&gt;// 해독한 데이터를 저장할 공간을 만들어줍니다.&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;models&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;TempSensor&lt;/span&gt;					&lt;span class=&#34;c1&#34;&gt;// 해독한 데이터를 저장할 공간을 만들어줍니다.&lt;/span&gt;
 
 &lt;span class=&#34;nx&#34;&gt;decoder&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;json&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;NewDecoder&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;req&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Body&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;	&lt;span class=&#34;c1&#34;&gt;// Request의 Body를 해독하기 위해 JSON 패키지에서 Decoder를 새로 생성해줍니다.&lt;/span&gt;
 &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;decoder&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Decode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;				&lt;span class=&#34;c1&#34;&gt;// 생성한 Decoder를 이용해서 데이터를 해독하고 저장합니다.&lt;/span&gt;
@@ -851,16 +845,16 @@ models/
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;그럼 해독한 데이터를 어떻게 로그 핸들러에게 전달해줘야할까요? 이것은 다음 페이지에서 자세하게 얘기할게요. 대신 &lt;code&gt;ServeHTTP()&lt;/code&gt; 메서드 마지막에 이 코드만 추가해주세요.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;buf&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;logContent&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;content&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Sprintf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;%s&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;location&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;tempLog&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;sensorName&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;nx&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;buf&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;logContent&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;content&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Sprintf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;%s&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;location&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;tempLog&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;sensorName&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;이제 다음 페이지에선 해독한 데이터를 로그 핸들러에게 전달해보겠습니다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;도전&#34;&gt;도전&lt;/h3&gt;
+&lt;h3 id=&#34;도전&#34;&gt;도전!&lt;/h3&gt;
 
-&lt;p&gt;남은 기본 센서들과 이전 단계에서 만들었던 여러분들만의 센서에 대해 &lt;code&gt;Handler Interface&lt;/code&gt;와 &lt;code&gt;ServeHTTP()&lt;/code&gt; 메서드를 정의해보세요.&lt;/p&gt;
+&lt;p&gt;남은 기본 센서들과 이전 단계에서 만들었던 여러분들만의 센서에 대해 &lt;code&gt;Handler Interface&lt;/code&gt;와 &lt;code&gt;ServeHTTP()&lt;/code&gt; 메서드를 정의해보세요!&lt;/p&gt;
 </description>
     </item>
     
@@ -877,7 +871,7 @@ models/
 &lt;p&gt;이렇게 &lt;code&gt;Server&lt;/code&gt;는 HTTP Protocol을 통해 받은 데이터를 로그 파일에 남길 형식으로 가공하여 로그 핸들러에게 전달해줍니다. 여기서 로그 핸들러는 &lt;code&gt;sensor_server.go&lt;/code&gt;에서 함수로 구현되어 현재 고루틴 상에서 실행되고 있습니다. 그렇다면 각 HTTP 핸들러는 로그 핸들러인 &lt;code&gt;fileLogger()&lt;/code&gt; 메서드에게 데이터를 어떻게 보내야할까요? 여기서 사용되는 것이 채널입니다.&lt;/p&gt;
 
 &lt;p&gt;sensor_server.go 내에서 &lt;code&gt;LogContent&lt;/code&gt;에 대한 채널을 만들어줍니다. 그리고 이 채널을 &lt;code&gt;ServeHTTP()&lt;/code&gt;를 구현한 각 핸들러 구조체를 생성할 때 인자로 같이 넘겨줍니다. 물론 이렇게 사용하려면, 구조체 정의에서도 다음과 같이 정의해줘야 사용할 수 있겠죠?&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;GyroHandler&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;GyroHandler&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 	&lt;span class=&#34;nx&#34;&gt;buf&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;logContent&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 
@@ -898,7 +892,7 @@ models/
 &lt;h3 id=&#34;양방향-채널-단방향-채널&#34;&gt;양방향 채널? 단방향 채널!&lt;/h3&gt;
 
 &lt;p&gt;기본적으로 채널을 생성하게 되면 채널은 양방향의 성격을 가지게 됩니다. 다시 말해, 채널은 특별한 언급이 없으면 어디서든 데이터를 저장하고, 불러올 수 있도록 전제하고 있습니다. 이해가 잘 안 간다고요? 그럼 예시로 설명해보죠.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ShowMeTheChannel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ShowMeTheChannel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 	&lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;make&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 
 	&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
@@ -914,13 +908,13 @@ models/
 &lt;p&gt;채널을 이용한 간단한 메서드를 만들어 봤습니다. &lt;code&gt;data&lt;/code&gt;라는 채널은 int형 파이프라인으로 선언되었습니다. 그리고 &lt;code&gt;ShowMeTheChannel()&lt;/code&gt;이라는 메서드는 반복문 10번씩 두 번 돌면서 각각 데이터를 저장하고, 불러옵니다. 이 메서드는 채널의 양 끝에 대한 사용권을 모두 가지고 있죠. 이것을 우리는 양방향 채널(Bidirectional Channel)이라고 합니다.&lt;/p&gt;
 
 &lt;p&gt;여려분이 만들 프로그램은 각 데이터 종류에 대한 핸들러와 &lt;code&gt;fileLogger()&lt;/code&gt;메서드가 채널을 사용합니다. 만약 각 요소에서 데이터를 활용할 방향성에 대해 정의하지 않으면, 자신의 권한과 상관없이 데이터를 마음껏 저장하고 불러올 수 있겠죠. 이건 우리가 이상적으로 생각하는 모습이 아닙니다. 그래서 우리는 각 핸들러와 메서드가 사용할 채널의 방향성을 지정해줌으로서 파이프라인에서의 데이터의 흐름을 한 방향으로 보장하도록 하려고 합니다. 고맙게도 고언어에서는 이에 대해서도 미리 &lt;a href=&#34;https://golang.org/ref/spec#Channel_types&#34;&gt;준비&lt;/a&gt;를 해놨습니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;T&lt;/span&gt;        		  &lt;span class=&#34;c1&#34;&gt;// 이런 형식으로 사용권을 받으면 채널에서 T 타입 데이터를 불러오고 저장할 수 있습니다.&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;T&lt;/span&gt;        		  &lt;span class=&#34;c1&#34;&gt;// 이런 형식으로 사용권을 받으면 채널에서 T 타입 데이터를 불러오고 저장할 수 있습니다.&lt;/span&gt;
 &lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;float64&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;// 이런 형식으로 받게 되면 채널에서 T 타입 데이터를 불러오기만 할 수 있습니다.&lt;/span&gt;
 &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;     	 &lt;span class=&#34;c1&#34;&gt;// 이런 형식으로 받으면 T 타입 데이터를 채널에 저장만 할 수 있습니다.&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;그렇다면 우리는 &lt;code&gt;ServeHTTP()&lt;/code&gt; 메서드에선 채널에서 데이터를 보내기만 하도록, &lt;code&gt;fileLogger()&lt;/code&gt; 메서드에선 채널에서 데이터를 받기만 하도록 지정해줘야겠죠. 따라서 우리는 각 메서드의 정의에서 채널의 방향성을 아래와 같이 지정해줘야합니다. 이렇게 바꿔주면 에러가 날까봐 걱정인가요? 지금까지 잘 따라왔다면 에러없이 잘 작동할 것입니다. :)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;GyroHandler&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;GyroHandler&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 	&lt;span class=&#34;nx&#34;&gt;buf&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;logContent&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 
@@ -958,14 +952,14 @@ models/
 &lt;p&gt;이 &lt;code&gt;for, range&lt;/code&gt; 문은 main 메서드에서 전달받은 채널에 데이터가 존재할지 기다리고, 존재하는 경우 바로 내부 코드를 실행합니다. 이런 과정은 프로그램이 강제로 종료하거나, 외부에서 채널을 종료(Close)하기까지 계속 반복됩니다.&lt;/p&gt;
 
 &lt;p&gt;채널에 데이터가 들어오게 되면 받은 데이터 구조체에서 해당 데이터가 저장될 위치를 읽어와 이를 디렉토리 주소로 조합하고 해당 로그파일을 열게됩니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;joinee&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;logDir&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;logData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;location&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;nx&#34;&gt;joinee&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;logDir&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;logData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;location&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;span class=&#34;nx&#34;&gt;filePath&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;strings&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Join&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;joinee&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 
 &lt;span class=&#34;nx&#34;&gt;fileHandle&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;OpenFile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;filePath&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;O_CREATE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;O_WRONLY&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;O_APPEND&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mo&#34;&gt;0666&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;해당 파일이 정상적으로 열릴 경우, 다음 단계로 넘어가면 됩니다. (만약 에러가 발생하면 이에 대한 예외처리가 필요합니다.) 이제 파일에 로그를 남겨줄 &lt;code&gt;logger&lt;/code&gt;를 만들겁니다. 여기서 우리는 &lt;a href=&#34;https://golang.org/pkg/log&#34;&gt;log 패키지&lt;/a&gt;를 이용해 직접 해당 파일로 로그를 남기는 로거를 직접 만들어보겠습니다. 아래의 &lt;a href=&#34;https://golang.org/pkg/log/#New&#34;&gt;New()&lt;/a&gt; 메서드는 특정 &lt;code&gt;Writer&lt;/code&gt; 인터페이스로 로그를 남길 수 있도록 합니다. 여러분의 경우, 파일에 로그를 남기기로 했으니, 위에서 열어준 &lt;code&gt;fileHandle&lt;/code&gt;을 이용하면 됩니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;logger&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;New&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;fileHandle&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;LstdFlags&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;nx&#34;&gt;logger&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;New&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;fileHandle&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;LstdFlags&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;span class=&#34;nx&#34;&gt;logger&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;[%s Data Received]\n%s\n&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;logData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sensorName&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;logData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;content&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -978,24 +972,24 @@ models/
 &lt;p&gt;이제 &lt;code&gt;main()&lt;/code&gt; 메서드에서 우리가 정의해줬던 것들을 실제로 실행할 수 있게 해보겠습니다.&lt;/p&gt;
 
 &lt;p&gt;먼저, HTTP 핸들러 메서드에서 로그 핸들러로 기록할 로그의 내용을 전달해주는 채널, 각 센서에 대한 핸들러를 정의해줍니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;logBuf&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;make&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;logContent&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;nx&#34;&gt;logBuf&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;make&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;logContent&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;span class=&#34;nx&#34;&gt;gyroHander&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;GyroHandler&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;buf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;logBuf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;span class=&#34;nx&#34;&gt;accelHandler&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;AccelHandler&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;buf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;logBuf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;span class=&#34;nx&#34;&gt;tempHandler&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;TempHandler&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;buf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;logBuf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;그 다음엔 실제 HTTP 서버를 실행하는 &lt;code&gt;ListenAndServe()&lt;/code&gt; 메서드를 실행합니다. 여기서 주의할 것은, 그냥 실행하면 맨 위의 한 개 서버만 생성이 됩니다. &lt;code&gt;ListenAndServe()&lt;/code&gt; 메서드가 실행되면 그 즉시 해당 핸들러에 대해 HTTP 요청을 대기 시작하기 때문입니다. 우리는 3개의 센서에 대한 서버가 동시에 돌아가는 것을 윈하는 것이죠? 이 때 고루틴을 적용해줍니다! 단순히 실행할 메서드 앞에 &lt;code&gt;go&lt;/code&gt;를 붙여주면 됩니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;go&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ListenAndServe&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;:8001&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;gyroHander&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;k&#34;&gt;go&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ListenAndServe&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;:8001&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;gyroHander&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;span class=&#34;k&#34;&gt;go&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ListenAndServe&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;:8002&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;accelHandler&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;span class=&#34;k&#34;&gt;go&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ListenAndServe&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;:8003&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;tempHandler&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;그리고 동시에 파일로거도 실행이 되어야겠죠? &lt;code&gt;fileLogger()&lt;/code&gt; 메서드도 고루틴을 이용해 실행해줍니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;go&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;fileLogger&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;logBuf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;k&#34;&gt;go&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;fileLogger&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;logBuf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;이제 바로 실행을 해볼까요? 실행이 잘 되나요? 아마 안 될 겁니다. 왜냐하면 고루틴들이 일을 하고 있지만, 프로그램 메인 프로세스가 먼저 종료되었기 때문입니다. 기본적으로 고루틴들이 종료되기를 기다리지 않는다는 것이죠. 그래서 우리는 메인 스레드가 고루틴을 기다릴 수 있도록 한 가지를 더 추가할 것입니다. 바로 &lt;a href=&#34;https://golang.org/pkg/sync/#WaitGroup&#34;&gt;&lt;code&gt;WaitGroup&lt;/code&gt;&lt;/a&gt;입니다. 이 &lt;code&gt;WaitGroup&lt;/code&gt;에서 우리는 &lt;code&gt;Wait()&lt;/code&gt;이라는 메서드를 사용해서 고루틴들이 끝나기기 까지 기다려야하지만, 그 전에 얼마나 많은 고루틴을 기다려야하는지를 정의해야합니다. 이 때 우리는 &lt;code&gt;Add()&lt;/code&gt; 메서드를 이용하며, 얼마나 더 많은 고루틴을 기다릴지 &lt;code&gt;WaitGroup&lt;/code&gt;에 알려줍니다. 우리의 경우 4개의 고루틴을 기다려야겠죠? (주의할 것은 &lt;code&gt;WaitGroup&lt;/code&gt;은 &lt;code&gt;sync&lt;/code&gt; 패키지에 정의되어 있는 타입이기 때문에 이 또한 &lt;code&gt;import&lt;/code&gt;해줘야 합니다!!)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;quot;sync&amp;quot;&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;quot;sync&amp;quot;&lt;/span&gt;
 
 &lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;
 
@@ -1003,7 +997,7 @@ models/
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;그리고 고루틴들을 실행하고 기다려주도록 &lt;code&gt;Wait()&lt;/code&gt; 메서드를 실행해줍니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;wg&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Wait&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;nx&#34;&gt;wg&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Wait&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;이제 &lt;code&gt;WaitGroup&lt;/code&gt;까지 만들어줬으면 프로그램을 실행하기 위한 코드들을 모두 추가했습니다! 다음 페이지에선 실제로 어플리케이션을 실행하고 결과를 확인해보곘습니다.&lt;/p&gt;
@@ -1027,13 +1021,13 @@ models/
 &lt;h3 id=&#34;리턴값이-여러개&#34;&gt;리턴값이 여러개!&lt;/h3&gt;
 
 &lt;p&gt;Go언어에서 에러 핸들링을 논하기 전에, Go 언어의 가장 강력한 특징을 하나 소개하려고 합니다. Go 언어는 &lt;code&gt;Multiple Return&lt;/code&gt;(다중 리턴)을 지원합니다! 대부분의 프로그래밍 언어들은 단일 리턴만을 지원했지만, Go 언어에선 다중 리턴을 지원해줍니다. 아래의 코드를 한 번 볼까요?&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;functionName&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Parameters&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ReturnType1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ReturnType2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;functionName&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Parameters&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ReturnType1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ReturnType2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 	&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;RetrunValue1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ReturnValue2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;위의 함수 정에서 뒤쪽에 리턴값을 정의하는 부분을 볼까요? 괄호를 이용해서 두 개의 리턴타입을 정해줬습니다. 그리고 리턴 문구에서는 반환할 두 개의 값을 지정해주고 있습니다. 그렇다면 이 메서드를 불렀을 때 두 개의 리턴값을 어떻게 받아야할까요?&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;returnValue1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;returnValue2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;...&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;functionName&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;input1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;input2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;returnValue1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;returnValue2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;...&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;functionName&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;input1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;input2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;간단합니다! 메서드를 정의할 때 의미했던 리턴값들을 저장할 변수를 컴마(,)로 구분하여 차례대로 할당을 받으면 됩니다. (보통 짧은 선언문을 이용해서 바로 할당받아 사용합니다.)&lt;/p&gt;
@@ -1043,17 +1037,17 @@ models/
 &lt;h3 id=&#34;에러-핸들링의-실체&#34;&gt;에러 핸들링의 실체&lt;/h3&gt;
 
 &lt;p&gt;그럼 이전에 로그파일을 열어줄 때 사용했던 &lt;code&gt;os.OpenFile()&lt;/code&gt; 메서드를 다시 볼까요?&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;fileHandle&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;OpenFile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;filePath&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;O_CREATE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;O_WRONLY&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;O_APPEND&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mo&#34;&gt;0666&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;nx&#34;&gt;fileHandle&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;OpenFile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;filePath&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;O_CREATE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;O_WRONLY&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;O_APPEND&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mo&#34;&gt;0666&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;code&gt;fileHandle&lt;/code&gt;이라는 값 이외에도 err라는 값을 할당받을 수 있군요. 그럼 이것은 어떤 것을 의미할까요? &lt;code&gt;os.OpenFile()&lt;/code&gt; 메서드의 정의를 한 번 확인해보죠!&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;OpenFile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;flag&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;perm&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;FileMode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;File&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;error&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;OpenFile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;flag&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;perm&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;FileMode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;File&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;error&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;리턴값의 종류를 확인해보면 &lt;code&gt;*File&lt;/code&gt;이라는 타입과 &lt;code&gt;error&lt;/code&gt;라는 타입을 받을 수 있음을 확인할 수 있습니다. &lt;code&gt;*File&lt;/code&gt; 타입은 특정파일에 대한 &lt;code&gt;FileHandle&lt;/code&gt;임을 알 수 있습니다. 그렇다면 &lt;code&gt;error&lt;/code&gt;라는 타입은 어떤 것일까요? 이는 &lt;a href=&#34;https://golang.org/pkg/builtin/#error&#34;&gt;Go언어 자체에서 에러들을 표현하기 위해 만든 &lt;code&gt;Interface&lt;/code&gt;&lt;/a&gt;입니다.&lt;/p&gt;
 
 &lt;p&gt;error 인터페이스는 &lt;code&gt;Error()&lt;/code&gt;라는 메서드를 가지며, 인터페이스가 불리게 될 경우, 다시 말해 에러가 발생할 경우 &lt;code&gt;Error()&lt;/code&gt;라는 인터페이스는 해당 에러의 정보를 반환합니다. 에러가 발생하지 않는다면 이러한 에러 인터페이스는 발생하지 않고, 이를 리턴 타입으로 가지는 메서드에서는 이에 대해 nil값을 반환하게 됩니다. (에러가 없으니 당연히 존재하지 않겠죠?) 따라서 우리가 특정 파일을 열고, 여기에 문제가 있는지 확인하기 위해선 다음과 같이 구성하면 됩니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;fileHandle&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;OpenFile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;filePath&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;O_CREATE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;O_WRONLY&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;O_APPEND&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mo&#34;&gt;0666&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;nx&#34;&gt;fileHandle&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;OpenFile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;filePath&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;O_CREATE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;O_WRONLY&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;O_APPEND&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mo&#34;&gt;0666&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 
 &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 	&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Fatal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;Error Opening File\n&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
