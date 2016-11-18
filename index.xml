@@ -1004,17 +1004,17 @@ models/
 
 &lt;h3 id=&#34;리턴값이-여러개&#34;&gt;리턴값이 여러개!&lt;/h3&gt;
 
-&lt;p&gt;Go언어에서 에러 핸들링을 논하기 전에, Go 언어의 가장 강력한 특징을 하나 소개하려고 합니다. Go 언어는 &lt;code&gt;Multiple Return&lt;/code&gt;(다중 리턴)을 지원합니다! 대부분의 프로그래밍 언어들은 단일 리턴만을 지원했지만, Go 언어에선 다중 리턴을 지원해줍니다. 아래의 코드를 한 번 볼까요?&lt;/p&gt;
+&lt;p&gt;Go 언어에서 에러 핸들링을 논하기 전에, Go 언어의 가장 강력한 특징을 하나 소개하려고 합니다. Go 언어는 &lt;code&gt;Multiple Return&lt;/code&gt;(다중 리턴)을 지원합니다! 대부분의 프로그래밍 언어들은 단일 리턴만을 지원하지만, Go 언어에선 다중 리턴을 지원합니다. 아래의 코드를 한 번 볼까요?&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;functionName&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Parameters&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ReturnType1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ReturnType2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 	&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;RetrunValue1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ReturnValue2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;위의 함수 정에서 뒤쪽에 리턴값을 정의하는 부분을 볼까요? 괄호를 이용해서 두 개의 리턴타입을 정해줬습니다. 그리고 리턴 문구에서는 반환할 두 개의 값을 지정해주고 있습니다. 그렇다면 이 메서드를 불렀을 때 두 개의 리턴값을 어떻게 받아야할까요?&lt;/p&gt;
+&lt;p&gt;위의 함수 중에서 뒤쪽에 리턴값을 정의하는 부분을 볼까요? 괄호를 이용해서 두 개의 리턴타입을 정해줬습니다. 그리고 리턴문에서는 반환할 두 개의 값을 지정해주고 있습니다. 그렇다면 이 메서드를 실행했을 때 두 개의 리턴값을 어떻게 받아야할까요?&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;returnValue1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;returnValue2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;...&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;functionName&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;input1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;input2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;간단합니다! 메서드를 정의할 때 의미했던 리턴값들을 저장할 변수를 컴마(,)로 구분하여 차례대로 할당을 받으면 됩니다. (보통 짧은 선언문을 이용해서 바로 할당받아 사용합니다.)&lt;/p&gt;
+&lt;p&gt;간단합니다! 메서드의 리턴값들을 저장할 변수를 콤마(,)로 구분하여 차례대로 할당을 받으면 됩니다. (보통 짧은 선언문을 이용해서 바로 할당받아 사용합니다.)&lt;/p&gt;
 
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 
@@ -1030,7 +1030,7 @@ models/
 
 &lt;p&gt;리턴값의 종류를 확인해보면 &lt;code&gt;*File&lt;/code&gt;이라는 타입과 &lt;code&gt;error&lt;/code&gt;라는 타입을 받을 수 있음을 확인할 수 있습니다. &lt;code&gt;*File&lt;/code&gt; 타입은 특정파일에 대한 &lt;code&gt;FileHandle&lt;/code&gt;임을 알 수 있습니다. 그렇다면 &lt;code&gt;error&lt;/code&gt;라는 타입은 어떤 것일까요? 이는 &lt;a href=&#34;https://golang.org/pkg/builtin/#error&#34;&gt;Go언어 자체에서 에러들을 표현하기 위해 만든 &lt;code&gt;Interface&lt;/code&gt;&lt;/a&gt;입니다.&lt;/p&gt;
 
-&lt;p&gt;error 인터페이스는 &lt;code&gt;Error()&lt;/code&gt;라는 메서드를 가지며, 인터페이스가 불리게 될 경우, 다시 말해 에러가 발생할 경우 &lt;code&gt;Error()&lt;/code&gt;라는 인터페이스는 해당 에러의 정보를 반환합니다. 에러가 발생하지 않는다면 이러한 에러 인터페이스는 발생하지 않고, 이를 리턴 타입으로 가지는 메서드에서는 이에 대해 nil값을 반환하게 됩니다. (에러가 없으니 당연히 존재하지 않겠죠?) 따라서 우리가 특정 파일을 열고, 여기에 문제가 있는지 확인하기 위해선 다음과 같이 구성하면 됩니다.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;error&lt;/code&gt; 인터페이스는 &lt;code&gt;Error()&lt;/code&gt;라는 메서드를 가지며, 에러가 발생할 경우 &lt;code&gt;Error()&lt;/code&gt;라는 메서드는 해당 에러의 정보를 반환합니다. 에러가 발생하지 않는다면 이러한 에러 인터페이스 대신 nil값(null을 의미합니다.)을 반환하게 됩니다. (에러가 없으니 당연히 존재하지 않겠죠?) 따라서 우리가 특정 파일을 열고, 여기에 문제가 있는지 확인하기 위해선 다음과 같이 작성하면 됩니다.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;nx&#34;&gt;fileHandle&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;OpenFile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;filePath&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;O_CREATE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;O_WRONLY&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;O_APPEND&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mo&#34;&gt;0666&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 
 &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
@@ -1044,7 +1044,7 @@ models/
 
 &lt;h3 id=&#34;도전&#34;&gt;도전!&lt;/h3&gt;
 
-&lt;p&gt;이 프로그램에선 &lt;code&gt;erorr&lt;/code&gt;를 반환하는 메서드가 많이 있습니다. 이 메서드들을 찾아서 발생할 수 있는 각 에러에 대한 메세지를 직접 정의해보세요.&lt;/p&gt;
+&lt;p&gt;이 프로그램에선 &lt;code&gt;erorr&lt;/code&gt;를 반환하는 메서드가 많이 있습니다. 이 메서드들을 찾아서 발생할 수 있는 각 에러에 대한 메세지를 직접 정의해보세요!&lt;/p&gt;
 </description>
     </item>
     
