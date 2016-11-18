@@ -124,4 +124,4 @@ git clone git@github.com:mingrammer/go-codelab.git
 
 다음 페이지에선 우리의 튜토리얼이 어떻게 구성되어있는지 확인해보겠습니다.
 
-**Tip** : Go 언어 프로젝트를 가져오는 다른 방법으로는 [`go get`](https://golang.org/cmd/go/#hdr-Download_and_install_packages_and_dependencies)이라는 명령어를 사용하는 것이 있습니다.
+**Tip** : Go 언어 프로젝트를 가져오는 다른 방법으로는 [go get](https://golang.org/cmd/go/#hdr-Download_and_install_packages_and_dependencies)이라는 명령어를 사용하는 것이 있습니다.

@@ -191,7 +191,7 @@
 
 <p>각 워커는 일정 간격마다 데이터를 생성 및 전송하므로 일정 간격마다 신호를 생성할 수 있는 <code>ticker</code>를 필드로 넣습니다. 이 <code>ticker</code>의 타입은 <code>*time.Ticker</code>인데 이는 <code>time</code>이라는 표준 라이브러리 패키지에 정의되어 있으며 원하는 주기마다 <code>Ticker</code>로부터 신호를 받을 수 있습니다.</p>
 
-<p><code>sensor</code>는 각 센서 구조체들을 저장히기 위한 필드로 <code>Sensor</code>의 타입으로 선언되어 있습니다. <code>Sensor</code> 구조체는 <code>models</code> 패키지에 존재하므로 <code>models.Sensor</code>로 접근합니다. <a href="https://mingrammer.com/go-codelab/struct-and-interface">구조체와 인터페이스</a>에서 보았듯이 <code>Sensor</code> 인터페이스를 만족하면 그 어떤 구조체든 <code>Sensor</code> 타입으로 선언이 가능합니다. 따라서, 종류와 상관없이 각 센서들을 저장할 수 있습니다. <code>serverError</code>는 임의의 센서값을 생성할 때 사용되는 센서 오차값을 뜻하며 <code>serverPort</code>는 각 센서별로 서버의 어느 포트로 데이터를 보낼지 설정하기 위한 필드입니다.</p>
+<p><code>sensor</code>는 각 센서 구조체들을 저장하기 위한 필드로 <code>Sensor</code>의 타입으로 선언되어 있습니다. <code>Sensor</code> 구조체는 <code>models</code> 패키지에 존재하므로 <code>models.Sensor</code>로 접근합니다. <a href="https://mingrammer.com/go-codelab/struct-and-interface">구조체와 인터페이스</a>에서 보았듯이 <code>Sensor</code> 인터페이스를 만족하면 그 어떤 구조체든 <code>Sensor</code> 타입으로 선언이 가능합니다. 따라서, 종류와 상관없이 각 센서들을 저장할 수 있습니다. <code>serverError</code>는 임의의 센서값을 생성할 때 사용되는 센서 오차값을 뜻하며 <code>serverPort</code>는 각 센서별로 서버의 어느 포트로 데이터를 보낼지 설정하기 위한 필드입니다.</p>
 
 <p>또한 우리는 데이터 전송 횟수를 제한하기 위해 <code>counter</code> 구조체를 정의할 것입니다.</p>
 <div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="kd">type</span> <span class="nx">counter</span> <span class="kd">struct</span> <span class="p">{</span>

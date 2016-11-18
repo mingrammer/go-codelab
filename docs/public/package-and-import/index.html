@@ -239,15 +239,16 @@ models/
 <span class="p">}</span>
 </code></pre></div>
 
-<p>그런데 <code>sensor.go</code>의 <code>import</code>문을 보면 <code>github.com/mingrammer/go-codelab/faker</code>와 같이 조금 특이한 형태의 임포트문을 볼 수 있습니다. Go는 Github나 Bitbucket와 같은 곳에 호스팅 되어있는 외부 패키지와 소스코드를 패키지로써 사용할 수 있게 해줍니다. 즉, 위 임포트문은 github.com에 호스팅 되어있는 mingrammer 유저의 <code>go-codelab/faker</code> 패키지를 사용하겠다는 의미입니다. Go에서는 표준 라이브러리가 아닌 패키지의 경우 <code>$GOPATH/src</code>를 기준으로 패키지를 불러오기 때문에 이런 외부 패키지가 <code>import</code>문에 선언되어 있을 때  <code>go get</code>이라는 명령어를 사용하면 해당 위치의 패키지 구조를 <code>$GOPATH/src</code> 하위로 다운로드 받아 해당 패키지를 사용할 수 있게 해줍니다.</p>
+<p>그런데 <code>sensor.go</code>의 <code>import</code>문을 보면 <code>github.com/mingrammer/go-codelab/faker</code>와 같이 조금 특이한 형태의 <code>import</code>문을 볼 수 있습니다. Go는 Github나 Bitbucket와 같은 곳에 호스팅 되어있는 외부 패키지와 소스코드를 패키지로써 사용할 수 있게 해줍니다. 즉, 위 임포트문은 github.com에 호스팅 되어있는 mingrammer 유저의 <code>go-codelab/faker</code> 패키지를 사용하겠다는 의미입니다. Go에서는 표준 라이브러리가 아닌 패키지의 경우 <code>$GOPATH/src</code>를 기준으로 패키지를 불러오기 때문에 이런 외부 패키지가 <code>import</code>문에 선언되어 있을 때  <code>go get</code>이라는 명령어를 사용하면 해당 위치의 패키지 구조를 <code>$GOPATH/src</code> 하위로 다운로드 받아 해당 패키지를 사용할 수 있게 해줍니다.</p>
 
 <p>다음 명령어를 통해 이제 튜토리얼을 다운로드 받아봅시다.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>go get github.com/mingrammer/go-codelab
-</code></pre></div>
+
+<pre><code>go get github.com/mingrammer/go-codelab
+</code></pre>
 
 <p>튜토리얼 설치가 끝나면 전체 Go 프로젝트 구조는 다음과 같아집니다.</p>
 
-<pre><code>GOPATH/
+<pre><code>$GOPATH/
         bin/
         pkg/
         src/

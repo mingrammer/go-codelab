@@ -184,7 +184,7 @@ git clone git@github.com:mingrammer/go-codelab.git
 
 &lt;p&gt;다음 페이지에선 우리의 튜토리얼이 어떻게 구성되어있는지 확인해보겠습니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Tip&lt;/strong&gt; : Go 언어 프로젝트를 가져오는 다른 방법으로는 &lt;a href=&#34;https://golang.org/cmd/go/#hdr-Download_and_install_packages_and_dependencies&#34;&gt;&lt;code&gt;go get&lt;/code&gt;&lt;/a&gt;이라는 명령어를 사용하는 것이 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Tip&lt;/strong&gt; : Go 언어 프로젝트를 가져오는 다른 방법으로는 &lt;a href=&#34;https://golang.org/cmd/go/#hdr-Download_and_install_packages_and_dependencies&#34;&gt;go get&lt;/a&gt;이라는 명령어를 사용하는 것이 있습니다.&lt;/p&gt;
 </description>
     </item>
     
@@ -317,15 +317,16 @@ models/
 &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;그런데 &lt;code&gt;sensor.go&lt;/code&gt;의 &lt;code&gt;import&lt;/code&gt;문을 보면 &lt;code&gt;github.com/mingrammer/go-codelab/faker&lt;/code&gt;와 같이 조금 특이한 형태의 임포트문을 볼 수 있습니다. Go는 Github나 Bitbucket와 같은 곳에 호스팅 되어있는 외부 패키지와 소스코드를 패키지로써 사용할 수 있게 해줍니다. 즉, 위 임포트문은 github.com에 호스팅 되어있는 mingrammer 유저의 &lt;code&gt;go-codelab/faker&lt;/code&gt; 패키지를 사용하겠다는 의미입니다. Go에서는 표준 라이브러리가 아닌 패키지의 경우 &lt;code&gt;$GOPATH/src&lt;/code&gt;를 기준으로 패키지를 불러오기 때문에 이런 외부 패키지가 &lt;code&gt;import&lt;/code&gt;문에 선언되어 있을 때  &lt;code&gt;go get&lt;/code&gt;이라는 명령어를 사용하면 해당 위치의 패키지 구조를 &lt;code&gt;$GOPATH/src&lt;/code&gt; 하위로 다운로드 받아 해당 패키지를 사용할 수 있게 해줍니다.&lt;/p&gt;
+&lt;p&gt;그런데 &lt;code&gt;sensor.go&lt;/code&gt;의 &lt;code&gt;import&lt;/code&gt;문을 보면 &lt;code&gt;github.com/mingrammer/go-codelab/faker&lt;/code&gt;와 같이 조금 특이한 형태의 &lt;code&gt;import&lt;/code&gt;문을 볼 수 있습니다. Go는 Github나 Bitbucket와 같은 곳에 호스팅 되어있는 외부 패키지와 소스코드를 패키지로써 사용할 수 있게 해줍니다. 즉, 위 임포트문은 github.com에 호스팅 되어있는 mingrammer 유저의 &lt;code&gt;go-codelab/faker&lt;/code&gt; 패키지를 사용하겠다는 의미입니다. Go에서는 표준 라이브러리가 아닌 패키지의 경우 &lt;code&gt;$GOPATH/src&lt;/code&gt;를 기준으로 패키지를 불러오기 때문에 이런 외부 패키지가 &lt;code&gt;import&lt;/code&gt;문에 선언되어 있을 때  &lt;code&gt;go get&lt;/code&gt;이라는 명령어를 사용하면 해당 위치의 패키지 구조를 &lt;code&gt;$GOPATH/src&lt;/code&gt; 하위로 다운로드 받아 해당 패키지를 사용할 수 있게 해줍니다.&lt;/p&gt;
 
 &lt;p&gt;다음 명령어를 통해 이제 튜토리얼을 다운로드 받아봅시다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span&gt;&lt;/span&gt;go get github.com/mingrammer/go-codelab
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre&gt;&lt;code&gt;go get github.com/mingrammer/go-codelab
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;튜토리얼 설치가 끝나면 전체 Go 프로젝트 구조는 다음과 같아집니다.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;GOPATH/
+&lt;pre&gt;&lt;code&gt;$GOPATH/
         bin/
         pkg/
         src/
@@ -526,7 +527,7 @@ models/
 
 &lt;p&gt;각 워커는 일정 간격마다 데이터를 생성 및 전송하므로 일정 간격마다 신호를 생성할 수 있는 &lt;code&gt;ticker&lt;/code&gt;를 필드로 넣습니다. 이 &lt;code&gt;ticker&lt;/code&gt;의 타입은 &lt;code&gt;*time.Ticker&lt;/code&gt;인데 이는 &lt;code&gt;time&lt;/code&gt;이라는 표준 라이브러리 패키지에 정의되어 있으며 원하는 주기마다 &lt;code&gt;Ticker&lt;/code&gt;로부터 신호를 받을 수 있습니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;sensor&lt;/code&gt;는 각 센서 구조체들을 저장히기 위한 필드로 &lt;code&gt;Sensor&lt;/code&gt;의 타입으로 선언되어 있습니다. &lt;code&gt;Sensor&lt;/code&gt; 구조체는 &lt;code&gt;models&lt;/code&gt; 패키지에 존재하므로 &lt;code&gt;models.Sensor&lt;/code&gt;로 접근합니다. &lt;a href=&#34;https://mingrammer.com/go-codelab/struct-and-interface&#34;&gt;구조체와 인터페이스&lt;/a&gt;에서 보았듯이 &lt;code&gt;Sensor&lt;/code&gt; 인터페이스를 만족하면 그 어떤 구조체든 &lt;code&gt;Sensor&lt;/code&gt; 타입으로 선언이 가능합니다. 따라서, 종류와 상관없이 각 센서들을 저장할 수 있습니다. &lt;code&gt;serverError&lt;/code&gt;는 임의의 센서값을 생성할 때 사용되는 센서 오차값을 뜻하며 &lt;code&gt;serverPort&lt;/code&gt;는 각 센서별로 서버의 어느 포트로 데이터를 보낼지 설정하기 위한 필드입니다.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sensor&lt;/code&gt;는 각 센서 구조체들을 저장하기 위한 필드로 &lt;code&gt;Sensor&lt;/code&gt;의 타입으로 선언되어 있습니다. &lt;code&gt;Sensor&lt;/code&gt; 구조체는 &lt;code&gt;models&lt;/code&gt; 패키지에 존재하므로 &lt;code&gt;models.Sensor&lt;/code&gt;로 접근합니다. &lt;a href=&#34;https://mingrammer.com/go-codelab/struct-and-interface&#34;&gt;구조체와 인터페이스&lt;/a&gt;에서 보았듯이 &lt;code&gt;Sensor&lt;/code&gt; 인터페이스를 만족하면 그 어떤 구조체든 &lt;code&gt;Sensor&lt;/code&gt; 타입으로 선언이 가능합니다. 따라서, 종류와 상관없이 각 센서들을 저장할 수 있습니다. &lt;code&gt;serverError&lt;/code&gt;는 임의의 센서값을 생성할 때 사용되는 센서 오차값을 뜻하며 &lt;code&gt;serverPort&lt;/code&gt;는 각 센서별로 서버의 어느 포트로 데이터를 보낼지 설정하기 위한 필드입니다.&lt;/p&gt;
 
 &lt;p&gt;또한 우리는 데이터 전송 횟수를 제한하기 위해 &lt;code&gt;counter&lt;/code&gt; 구조체를 정의할 것입니다.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;counter&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
