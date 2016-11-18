@@ -1044,7 +1044,7 @@ models/
 
 &lt;h3 id=&#34;도전&#34;&gt;도전!&lt;/h3&gt;
 
-&lt;p&gt;이 프로그램에선 &lt;code&gt;erorr&lt;/code&gt;를 반환하는 메서드가 많이 있습니다. 이 메서드들을 찾아서 발생할 수 있는 각 에러에 대한 메세지를 직접 정의해보세요!&lt;/p&gt;
+&lt;p&gt;이 프로그램에선 &lt;code&gt;error&lt;/code&gt;를 반환하는 메서드가 많이 있습니다. 이 메서드들을 찾아서 발생할 수 있는 각 에러에 대한 메시지를 직접 정의해보세요!&lt;/p&gt;
 </description>
     </item>
     
