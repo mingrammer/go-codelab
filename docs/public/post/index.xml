@@ -866,7 +866,7 @@ models/
       <guid>https://mingrammer.com/go-codelab/how-server-and-logger-works</guid>
       <description>
 
-&lt;h3 id=&#34;data-pipeline으로서-channel&#34;&gt;Data Pipeline으로서 Channel&lt;/h3&gt;
+&lt;h3 id=&#34;data-pipe으로서-channel&#34;&gt;Data Pipe으로서 Channel&lt;/h3&gt;
 
 &lt;p&gt;이렇게 &lt;code&gt;Server&lt;/code&gt;는 HTTP Protocol을 통해 받은 데이터를 로그 파일에 남길 형식으로 가공하여 로그 핸들러에게 전달해줍니다. 여기서 로그 핸들러는 &lt;code&gt;sensor_server.go&lt;/code&gt;에서 함수로 구현되어 현재 고루틴 상에서 실행되고 있습니다. 그렇다면 각 HTTP 핸들러는 로그 핸들러인 &lt;code&gt;fileLogger()&lt;/code&gt; 메서드에게 데이터를 어떻게 보내야할까요? 여기서 사용되는 것이 채널입니다.&lt;/p&gt;
 
@@ -891,29 +891,13 @@ models/
 
 &lt;h3 id=&#34;양방향-채널-단방향-채널&#34;&gt;양방향 채널? 단방향 채널!&lt;/h3&gt;
 
-&lt;p&gt;기본적으로 채널을 생성하게 되면 채널은 양방향의 성격을 가지게 됩니다. 다시 말해, 채널은 특별한 언급이 없으면 어디서든 데이터를 저장하고, 불러올 수 있도록 전제하고 있습니다. 이해가 잘 안 간다고요? 그럼 예시로 설명해보죠.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ShowMeTheChannel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-	&lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;make&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-
-	&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-		&lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;
-	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-
-	&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;++&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-		&lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;채널을 이용한 간단한 메서드를 만들어 봤습니다. &lt;code&gt;data&lt;/code&gt;라는 채널은 int형 파이프라인으로 선언되었습니다. 그리고 &lt;code&gt;ShowMeTheChannel()&lt;/code&gt;이라는 메서드는 반복문 10번씩 두 번 돌면서 각각 데이터를 저장하고, 불러옵니다. 이 메서드는 채널의 양 끝에 대한 사용권을 모두 가지고 있죠. 이것을 우리는 양방향 채널(Bidirectional Channel)이라고 합니다.&lt;/p&gt;
-
-&lt;p&gt;여려분이 만들 프로그램은 각 데이터 종류에 대한 핸들러와 &lt;code&gt;fileLogger()&lt;/code&gt;메서드가 채널을 사용합니다. 만약 각 요소에서 데이터를 활용할 방향성에 대해 정의하지 않으면, 자신의 권한과 상관없이 데이터를 마음껏 저장하고 불러올 수 있겠죠. 이건 우리가 이상적으로 생각하는 모습이 아닙니다. 그래서 우리는 각 핸들러와 메서드가 사용할 채널의 방향성을 지정해줌으로서 파이프라인에서의 데이터의 흐름을 한 방향으로 보장하도록 하려고 합니다. 고맙게도 고언어에서는 이에 대해서도 미리 &lt;a href=&#34;https://golang.org/ref/spec#Channel_types&#34;&gt;준비&lt;/a&gt;를 해놨습니다.&lt;/p&gt;
+&lt;p&gt;여려분이 만들 프로그램은 각 데이터 종류에 대한 핸들러와 &lt;code&gt;fileLogger()&lt;/code&gt;메서드가 채널을 사용합니다. 만약 각 요소에서 데이터를 활용할 방향성에 대해 정의하지 않으면, 자신의 권한과 상관없이 데이터를 마음껏 저장하고 불러올 수 있겠죠. 이건 우리가 이상적으로 생각하는 모습이 아닙니다. 그래서 우리는 각 핸들러와 메서드가 사용할 채널의 방향성을 지정해줌으로서 파이프에서의 데이터의 흐름을 한 방향으로 보장하도록 하려고 합니다. 고맙게도 Go언어에서는 이에 대해서도 미리 &lt;a href=&#34;https://golang.org/ref/spec#Channel_types&#34;&gt;준비&lt;/a&gt;를 해놨습니다.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;T&lt;/span&gt;        		  &lt;span class=&#34;c1&#34;&gt;// 이런 형식으로 사용권을 받으면 채널에서 T 타입 데이터를 불러오고 저장할 수 있습니다.&lt;/span&gt;
 &lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;float64&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;// 이런 형식으로 받게 되면 채널에서 T 타입 데이터를 불러오기만 할 수 있습니다.&lt;/span&gt;
 &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;     	 &lt;span class=&#34;c1&#34;&gt;// 이런 형식으로 받으면 T 타입 데이터를 채널에 저장만 할 수 있습니다.&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;그렇다면 우리는 &lt;code&gt;ServeHTTP()&lt;/code&gt; 메서드에선 채널에서 데이터를 보내기만 하도록, &lt;code&gt;fileLogger()&lt;/code&gt; 메서드에선 채널에서 데이터를 받기만 하도록 지정해줘야겠죠. 따라서 우리는 각 메서드의 정의에서 채널의 방향성을 아래와 같이 지정해줘야합니다. 이렇게 바꿔주면 에러가 날까봐 걱정인가요? 지금까지 잘 따라왔다면 에러없이 잘 작동할 것입니다. :)&lt;/p&gt;
+&lt;p&gt;그렇다면 우리는 &lt;code&gt;ServeHTTP()&lt;/code&gt; 메서드에선 채널에서 데이터를 보내기만 하도록, &lt;code&gt;fileLogger()&lt;/code&gt; 메서드에선 채널에서 데이터를 받기만 하도록 지정해줘야겠죠. 따라서 우리는 각 메서드의 정의에서 채널의 방향성을 아래와 같이 지정해줘야합니다. 이렇게 바꿔주면 에러가 날까봐 걱정인가요? 지금까지 잘 따라왔다면 에러없이 잘 작동할 것입니다 :)&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;GyroHandler&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 	&lt;span class=&#34;nx&#34;&gt;buf&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;logContent&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
@@ -942,53 +926,53 @@ models/
 		Temp.log
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;약어가 의미하듯이 엑셀.로그는 가속도 센서의 측정값을, 자이로.로그는 자이로 센서의 측정값을, 그리고 템프.로그는 온도 및 습도계의 측정값을 저장합니다. 로그를 본격적으로 저장하기 전에, 우리가 로그를 저장할 폴더가 존재하는지 확인해야합니다. 이를 외해 &lt;a href=&#34;https://golang.org/pkg/os/#Open&#34;&gt;&lt;code&gt;os.Open(&#39;log&#39;)&lt;/code&gt;&lt;/a&gt;이라는 메서드를 사용할 것입니다.만약 이 메서드가 로그 폴더를 정상적으로 찾아내면, 그에 대한 파일 타입을 반환할 것입니다. 아닐 경우, 로그 폴더를 &lt;a href=&#34;https://golang.org/pkg/os/#Mkdir&#34;&gt;&lt;code&gt;os.Mkdir(&#39;log&#39;, os.ModePerm)&lt;/code&gt;&lt;/a&gt;이라는 메서드를 이용해 생성할 것입니다.&lt;/p&gt;
+&lt;p&gt;약어가 의미하듯이 &lt;code&gt;Accel.log&lt;/code&gt;는 가속도 센서의 측정값을, &lt;code&gt;Gyro.log&lt;/code&gt;는 자이로 센서의 측정값을, 그리고 &lt;code&gt;Temp.log&lt;/code&gt;는 온도 및 습도계의 측정값을 저장합니다. 로그를 본격적으로 저장하기 전에, 우리가 로그를 저장할 폴더가 존재하는지 확인해야합니다. 이를 외해 &lt;a href=&#34;https://golang.org/pkg/os/#Open&#34;&gt;&lt;code&gt;os.Open(&#39;log&#39;)&lt;/code&gt;&lt;/a&gt;이라는 메서드를 사용할 것입니다.만약 이 메서드가 로그 폴더를 정상적으로 찾아내면, 그에 대한 파일 타입을 반환할 것입니다. 아닐 경우, 로그 폴더를 &lt;a href=&#34;https://golang.org/pkg/os/#Mkdir&#34;&gt;&lt;code&gt;os.Mkdir(&#39;log&#39;, os.ModePerm)&lt;/code&gt;&lt;/a&gt;이라는 메서드를 이용해 생성할 것입니다.&lt;/p&gt;
 
-&lt;p&gt;로그 폴더가 정상적으로 존재하는 경우, &lt;code&gt;Log Handler&lt;/code&gt;인 &lt;code&gt;fileLogger()&lt;/code&gt; 메서드는 채널에 값이 들어오기를 기다립니다. 아래의 &lt;code&gt;for := range&lt;/code&gt; 문구가 그 역할을 합니다.&lt;/p&gt;
+&lt;p&gt;로그 폴더가 정상적으로 존재하는 경우, &lt;code&gt;Log Handler&lt;/code&gt;인 &lt;code&gt;fileLogger()&lt;/code&gt; 메서드는 채널에 값이 들어오기를 기다립니다. 아래의 &lt;code&gt;for := range&lt;/code&gt; 문이 그 역할을 합니다.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;for logData := range logStream
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;이 &lt;code&gt;for, range&lt;/code&gt; 문은 main 메서드에서 전달받은 채널에 데이터가 존재할지 기다리고, 존재하는 경우 바로 내부 코드를 실행합니다. 이런 과정은 프로그램이 강제로 종료하거나, 외부에서 채널을 종료(Close)하기까지 계속 반복됩니다.&lt;/p&gt;
+&lt;p&gt;이 &lt;code&gt;for := range&lt;/code&gt; 문은 &lt;code&gt;main()&lt;/code&gt; 함수에서 전달받은 채널에 데이터가 존재할지 기다리고, 존재하는 경우 바로 내부 코드를 실행합니다. 이런 과정은 프로그램이 강제로 종료하거나, 외부에서 채널을 종료(Close)하기까지 계속 반복됩니다.&lt;/p&gt;
 
-&lt;p&gt;채널에 데이터가 들어오게 되면 받은 데이터 구조체에서 해당 데이터가 저장될 위치를 읽어와 이를 디렉토리 주소로 조합하고 해당 로그파일을 열게됩니다.&lt;/p&gt;
+&lt;p&gt;채널에 데이터가 들어오게 되면 받은 데이터 구조체에서 해당 데이터가 저장될 위치를 읽어와 이를 디렉토리 주소로 조합하고 해당 로그 파일을 열게됩니다.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;joinee&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;logDir&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;logData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;location&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;span class=&#34;nx&#34;&gt;filePath&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;strings&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Join&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;joinee&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 
 &lt;span class=&#34;nx&#34;&gt;fileHandle&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;OpenFile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;filePath&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;O_CREATE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;O_WRONLY&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;O_APPEND&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mo&#34;&gt;0666&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;해당 파일이 정상적으로 열릴 경우, 다음 단계로 넘어가면 됩니다. (만약 에러가 발생하면 이에 대한 예외처리가 필요합니다.) 이제 파일에 로그를 남겨줄 &lt;code&gt;logger&lt;/code&gt;를 만들겁니다. 여기서 우리는 &lt;a href=&#34;https://golang.org/pkg/log&#34;&gt;log 패키지&lt;/a&gt;를 이용해 직접 해당 파일로 로그를 남기는 로거를 직접 만들어보겠습니다. 아래의 &lt;a href=&#34;https://golang.org/pkg/log/#New&#34;&gt;New()&lt;/a&gt; 메서드는 특정 &lt;code&gt;Writer&lt;/code&gt; 인터페이스로 로그를 남길 수 있도록 합니다. 여러분의 경우, 파일에 로그를 남기기로 했으니, 위에서 열어준 &lt;code&gt;fileHandle&lt;/code&gt;을 이용하면 됩니다.&lt;/p&gt;
+&lt;p&gt;해당 파일이 정상적으로 열릴 경우, 다음 단계로 넘어가면 됩니다. (만약 에러가 발생하면 이에 대한 예외처리가 필요합니다.) 이제 파일에 로그를 남겨줄 &lt;code&gt;logger&lt;/code&gt;를 만들겁니다. 여기서 우리는 &lt;a href=&#34;https://golang.org/pkg/log&#34;&gt;log 패키지&lt;/a&gt;를 이용해 직접 해당 파일로 로그를 남기는 &lt;code&gt;logger&lt;/code&gt;를 직접 만들어보겠습니다. 아래의 &lt;a href=&#34;https://golang.org/pkg/log/#New&#34;&gt;New()&lt;/a&gt; 메서드는 특정 &lt;code&gt;Writer&lt;/code&gt; 인터페이스로 로그를 남길 수 있도록 합니다. 여러분의 경우, 파일에 로그를 남기기로 했으니, 위에서 열어준 &lt;code&gt;fileHandle&lt;/code&gt;을 이용하면 됩니다.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;logger&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;New&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;fileHandle&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;LstdFlags&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;span class=&#34;nx&#34;&gt;logger&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;[%s Data Received]\n%s\n&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;logData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sensorName&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;logData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;content&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;이렇게 생성한 &lt;code&gt;logger&lt;/code&gt;를 이용해 로그 내용을 출력하게 되면 다음과 같은 결과를 로그파일에서 확인할 수 있습니다. 결과값은 &lt;code&gt;main()&lt;/code&gt; 메서드에서 실제로 핸들러와 로거를 실행해서 결과를 확인해봅시다!&lt;/p&gt;
+&lt;p&gt;이렇게 생성한 &lt;code&gt;logger&lt;/code&gt;를 이용해 로그 내용을 출력하게 되면 다음과 같은 결과를 로그 파일에서 확인할 수 있습니다. 결과값은 &lt;code&gt;main()&lt;/code&gt; 메서드에서 실제로 핸들러와 &lt;code&gt;logger&lt;/code&gt;를 실행해서 결과를 확인해봅시다!&lt;/p&gt;
 
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;일해라-서버야&#34;&gt;일해라 서버야!&lt;/h3&gt;
 
-&lt;p&gt;이제 &lt;code&gt;main()&lt;/code&gt; 메서드에서 우리가 정의해줬던 것들을 실제로 실행할 수 있게 해보겠습니다.&lt;/p&gt;
+&lt;p&gt;이제 &lt;code&gt;main()&lt;/code&gt; 함수에서 우리가 정의해줬던 것들을 실제로 실행해보겠습니다.&lt;/p&gt;
 
-&lt;p&gt;먼저, HTTP 핸들러 메서드에서 로그 핸들러로 기록할 로그의 내용을 전달해주는 채널, 각 센서에 대한 핸들러를 정의해줍니다.&lt;/p&gt;
+&lt;p&gt;먼저, HTTP 핸들러 메서드에서 로그 핸들러로 기록할 로그의 내용을 전달해주는 채널, 각 센서에 대한 핸들러를 선언해줍니다.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;logBuf&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;make&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;logContent&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;span class=&#34;nx&#34;&gt;gyroHander&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;GyroHandler&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;buf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;logBuf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;span class=&#34;nx&#34;&gt;accelHandler&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;AccelHandler&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;buf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;logBuf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;span class=&#34;nx&#34;&gt;tempHandler&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;TempHandler&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;buf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;logBuf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;그 다음엔 실제 HTTP 서버를 실행하는 &lt;code&gt;ListenAndServe()&lt;/code&gt; 메서드를 실행합니다. 여기서 주의할 것은, 그냥 실행하면 맨 위의 한 개 서버만 생성이 됩니다. &lt;code&gt;ListenAndServe()&lt;/code&gt; 메서드가 실행되면 그 즉시 해당 핸들러에 대해 HTTP 요청을 대기 시작하기 때문입니다. 우리는 3개의 센서에 대한 서버가 동시에 돌아가는 것을 윈하는 것이죠? 이 때 고루틴을 적용해줍니다! 단순히 실행할 메서드 앞에 &lt;code&gt;go&lt;/code&gt;를 붙여주면 됩니다.&lt;/p&gt;
+&lt;p&gt;그 다음엔 실제 HTTP 서버를 실행하는 &lt;code&gt;ListenAndServe()&lt;/code&gt; 메서드를 실행합니다. 여기서 주의할 것은, 그냥 실행하면 맨 위의 한 개 서버만 생성이 됩니다. &lt;code&gt;ListenAndServe()&lt;/code&gt; 메서드가 실행되면 그 즉시 해당 핸들러에 대해 HTTP 요청을 대기 시작하기 때문입니다. 우리는 3개의 센서에 대한 서버가 동시에 돌아가는 것을 윈하죠? 이 때 고루틴으로 실행합니다! 단순히 실행할 메서드 앞에 &lt;code&gt;go&lt;/code&gt;를 붙여주면 됩니다.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;go&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ListenAndServe&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;:8001&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;gyroHander&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;span class=&#34;k&#34;&gt;go&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ListenAndServe&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;:8002&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;accelHandler&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;span class=&#34;k&#34;&gt;go&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ListenAndServe&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;:8003&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;tempHandler&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;그리고 동시에 파일로거도 실행이 되어야겠죠? &lt;code&gt;fileLogger()&lt;/code&gt; 메서드도 고루틴을 이용해 실행해줍니다.&lt;/p&gt;
+&lt;p&gt;그리고 동시에 파일&lt;code&gt;logger&lt;/code&gt;도 실행이 되어야겠죠? &lt;code&gt;fileLogger()&lt;/code&gt; 함수도 고루틴을 이용해 실행해줍니다.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;go&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;fileLogger&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;logBuf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;이제 바로 실행을 해볼까요? 실행이 잘 되나요? 아마 안 될 겁니다. 왜냐하면 고루틴들이 일을 하고 있지만, 프로그램 메인 프로세스가 먼저 종료되었기 때문입니다. 기본적으로 고루틴들이 종료되기를 기다리지 않는다는 것이죠. 그래서 우리는 메인 스레드가 고루틴을 기다릴 수 있도록 한 가지를 더 추가할 것입니다. 바로 &lt;a href=&#34;https://golang.org/pkg/sync/#WaitGroup&#34;&gt;&lt;code&gt;WaitGroup&lt;/code&gt;&lt;/a&gt;입니다. 이 &lt;code&gt;WaitGroup&lt;/code&gt;에서 우리는 &lt;code&gt;Wait()&lt;/code&gt;이라는 메서드를 사용해서 고루틴들이 끝나기기 까지 기다려야하지만, 그 전에 얼마나 많은 고루틴을 기다려야하는지를 정의해야합니다. 이 때 우리는 &lt;code&gt;Add()&lt;/code&gt; 메서드를 이용하며, 얼마나 더 많은 고루틴을 기다릴지 &lt;code&gt;WaitGroup&lt;/code&gt;에 알려줍니다. 우리의 경우 4개의 고루틴을 기다려야겠죠? (주의할 것은 &lt;code&gt;WaitGroup&lt;/code&gt;은 &lt;code&gt;sync&lt;/code&gt; 패키지에 정의되어 있는 타입이기 때문에 이 또한 &lt;code&gt;import&lt;/code&gt;해줘야 합니다!!)&lt;/p&gt;
+&lt;p&gt;이제 바로 실행을 해볼까요? 실행이 잘 되나요? 아마 안 될 겁니다. 왜냐하면 고루틴들이 일을 하고 있지만, 프로그램 메인 프로세스가 먼저 종료되었기 때문입니다. 기본적으로 고루틴들이 종료되기를 기다리지 않는다는 것이죠. 그래서 우리는 메인 스레드가 고루틴을 기다릴 수 있도록 한 가지를 더 추가할 것입니다. 바로 &lt;a href=&#34;https://golang.org/pkg/sync/#WaitGroup&#34;&gt;&lt;code&gt;WaitGroup&lt;/code&gt;&lt;/a&gt;입니다. 이 &lt;code&gt;WaitGroup&lt;/code&gt;은 일종의 카운팅 세마포어로, &lt;code&gt;Wait()&lt;/code&gt;이라는 메서드를 사용해서 고루틴들이 끝나기 까지 기다려야하지만, 그 전에 얼마나 많은 고루틴을 기다려야하는지를 정의해야합니다. 이 때 우리는 &lt;code&gt;Add()&lt;/code&gt; 메서드를 이용하여, 기다려야하는 고루틴의 갯수를 &lt;code&gt;WaitGroup&lt;/code&gt;에 지정합니다. 우리의 경우 4개의 고루틴을 기다려야겠죠? (주의할 것은 &lt;code&gt;WaitGroup&lt;/code&gt;은 &lt;code&gt;sync&lt;/code&gt; 패키지에 정의되어 있는 타입이기 때문에 이 또한 &lt;code&gt;import&lt;/code&gt;해줘야 합니다!!)&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;quot;sync&amp;quot;&lt;/span&gt;
 
 &lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;
