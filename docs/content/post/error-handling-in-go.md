@@ -35,7 +35,7 @@ func OpenFile(name string, flag int, perm FileMode) (*File, error)
 ```
 리턴값의 종류를 확인해보면 `*File`이라는 타입과 `error`라는 타입을 받을 수 있음을 확인할 수 있습니다. `*File` 타입은 특정파일에 대한 `FileHandle`임을 알 수 있습니다. 그렇다면 `error`라는 타입은 어떤 것일까요? 이는 [Go언어 자체에서 에러들을 표현하기 위해 만든 `Interface`](https://golang.org/pkg/builtin/#error)입니다.
 
-`error` 인터페이스는 `Error()`라는 메서드를 가지며, 에러가 발생할 경우 `Error()`라는 메서드는 해당 에러의 정보를 반환합니다. 에러가 발생하지 않는다면 이러한 에러 인터페이스 대신 nil값(null을 의미합니다.)을 반환하게 됩니다. (에러가 없으니 당연히 존재하지 않겠죠?) 따라서 우리가 특정 파일을 열고, 여기에 문제가 있는지 확인하기 위해선 다음과 같이 작성하면 됩니다.
+`error` 인터페이스는 `Error()`라는 메서드를 가지며, 에러가 발생할 경우 `Error()`라는 메서드는 해당 에러의 정보를 반환합니다. 에러가 발생하지 않는다면 이 `error` 인터페이스 대신 nil값(null을 의미합니다.)을 반환하게 됩니다. (에러가 없으니 당연히 존재하지 않겠죠?) 따라서 우리가 특정 파일을 열고, 여기에 문제가 있는지 확인하기 위해선 다음과 같이 작성하면 됩니다.
 
 ```go
 fileHandle, err := os.OpenFile(filePath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
