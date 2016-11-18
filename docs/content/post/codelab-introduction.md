@@ -18,7 +18,7 @@ weight = 1
 목차는 다음과 같습니다.
 
 #### 1. [설치 및 환경설정](/install-and-env)
-#### 2. [프로젝트 구조](/project-structure)
+#### 2. [튜토리얼 구조](/project-structure)
 #### 3. [패키지와 임포트](/package-and-import)
 #### 4. [구조체와 인터페이스](/struct-and-interface)
 #### 5. [클라이언트 구조](/client-structure)
