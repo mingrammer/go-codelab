@@ -104,3 +104,15 @@ export GOPATH=/path/to/work
 
 ...
 ```
+<br>
+### 프로젝트 다운받기
+
+이제 설정한 Go언어의 Workspace에 프로젝트를 다운받아보겠습니다. 우리의 프로젝트는 다음의 GitHub Repository에 저장되어있습니다. Git이 설정되어 있는 경우엔, Go언어의 Workspace에서 다음의 명령어를 입력해주면 됩니다.
+```
+git clone git@github.com:mingrammer/go-codelab.git
+```
+명령어를 입력하고 기다려주면, Workspace 안에 `go-codelab`이라는 폴더가 만들어지고 우리의 튜토리얼에 쓰일 코드가 안에 들어있을겁니다!
+
+다음 페이지에선 우리의 튜토리얼이 어떻게 구성되어있는지 확인해보겠습니다.
+
+**Tip** : Go 언어 프로젝트를 가져오는 다른 방법으로는 [`go get`](https://golang.org/cmd/go/#hdr-Download_and_install_packages_and_dependencies)이라는 명령어를 사용하는 것이 있습니다.
