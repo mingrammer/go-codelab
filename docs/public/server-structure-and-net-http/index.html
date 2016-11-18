@@ -161,7 +161,7 @@
 
 <h3 id="server-의-기본-동작-방식"><code>Server</code>의 기본 동작 방식</h3>
 
-<p><code>Server</code>는 기본적으로 3개의 포트 번호에 대한 HTTP 서버를 생성합니다. 각 포트 번호를 달리한 것은 서로 다른 측정값 종류를 받기 위함이여, 각 번호는 다음의 의미를 갖습니다.</p>
+<p><code>Server</code>는 기본적으로 3개의 포트 번호에 대한 HTTP 서버를 생성합니다. 각 포트 번호를 달리한 것은 서로 다른 종류의 센서값을 받기 위함이며, 각 번호는 다음의 의미를 갖습니다.</p>
 
 <h4 id="8001번은-자이로스코프-센서의-데이터를">8001번은 자이로스코프 센서의 데이터를,</h4>
 
@@ -169,7 +169,7 @@
 
 <h4 id="8003번은-온도-및-습도계의-데이터를-받습니다">8003번은 온도 및 습도계의 데이터를 받습니다.</h4>
 
-<p><code>Sensor</code>의 코드에서 봤듯이, HTTP 프로토콜을 이용하기 위해선 <a href="https://golang.org/pkg/net/http/"><code>net/http</code></a> 패키지가 필요합니다. <code>Sensor</code> 클라이언트에서는 단순히 POST 요청을 보내면 되기에 패키지를 <code>import</code>하고 필요한 API를 사용하는 것으로 끝났습니다.</p>
+<p><code>Sensor</code>의 코드에서 봤듯이, HTTP 프로토콜을 이용하기 위해선 <a href="https://golang.org/pkg/net/http/"><code>net/http</code></a> 패키지가 필요합니다. <code>Sensor</code> 클라이언트에서는 단순히 POST 요청을 보내면 되므로 패키지를 <code>import</code>하고 필요한 API를 사용하는 것으로 끝났습니다.</p>
 
 <p>그러나 <code>net/http</code> 패키지에서 서버를 생성하는 메서드인 <a href="https://golang.org/pkg/net/http/#ListenAndServe"><code>ListenAndServe()</code></a> 메서드를 확인해보면, 인자로 <a href="https://golang.org/pkg/net/http/#Handler"><code>Handler Interface</code></a>를 요구하고 있습니다. 이 <code>Handler Interface</code>를 다시 확인해보면, 결국 <a href="https://golang.org/pkg/net/http/#HandlerFunc"><code>ServeHTTP()</code></a>라는 메서드를 요구합니다.</p>
 
@@ -177,8 +177,8 @@
 
 <h3 id="handler-interface-구현하기"><code>Handler Interface</code> 구현하기</h3>
 
-<p>따라서, 우리는 <code>ServeHTTP()</code> 메서드가 구현된 <code>Handler Interface</code>가 필요합니다. 이를 위해, 우리는 각 데이터 종류에 대한 <code>Interface</code>를 다음과 같이 만들어줘야 합니다.</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="kd">type</span> <span class="nx">GyroHandler</span> <span class="kd">struct</span> <span class="p">{</span>
+<p>우리는 <code>ServeHTTP()</code> 메서드가 구현된 <code>Handler Interface</code>가 필요하므로  <code>Handler Interface</code>를 만족시키기 위한 각 센서에 대한 핸들러를 정의해줘야 합니다.</p>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">GyroHandler</span> <span class="kd">struct</span> <span class="p">{</span>
 
 <span class="p">}</span>
 
@@ -191,14 +191,8 @@
 <span class="p">}</span>
 </code></pre></div>
 
-<p>위와 같이 핸들러를 만들어주고, 이 핸들러들이 쓸 <code>ServeHTTP()</code> 메서드를 구현해야합니다. 앞에서 우리가 구조체와 인터페이스에 대해 배웠을 때, 다음과 같은 코드를 봤습니다.</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">st</span> <span class="nx">StructType</span><span class="p">)</span> <span class="nx">functionName</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">(</span><span class="nx">returnTypes</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// procssing with &#39;st&#39;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>특정 메서드를 특정 구조체에 연결하기 위해 <code>Pointer Receiver</code>를 사용했습니다. 우리의 경우, <code>main()</code> 메서드에서 만들었던 <code>Handler Instance</code>를 생성했기 때문에 이 핸들러 인스턴스에서 사용할 수 있는 <code>ServeHTTP()</code> 메서드를 구현해줘야합니다.</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">TempHandler</span><span class="p">)</span> <span class="nx">ServeHTTP</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">req</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+<p>위의 핸들러들이 <code>Handler Interface</code>를 만족하기 위해선 <code>ServeHTTP()</code> 메서드를 구현해야 합니다. 구조체의 메서드를 정의하기위해 <code>Pointer Receiver</code>를 사용합니다.</p>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">TempHandler</span><span class="p">)</span> <span class="nx">ServeHTTP</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">req</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
 	<span class="c1">// 온도계 및 습도계에서 받은 데이터를 처리합니다.</span>
 <span class="p">}</span>
 
@@ -216,7 +210,7 @@
 <h3 id="데이터-까보기">데이터 까보기</h3>
 
 <p>이제 HTTP 프로토콜을 통해서 받은 데이터를 해독해봅시다. 먼저, HTTP를 통해 받은 데이터는 <code>Request</code>에 들어있겠죠? 그래서 우리는 <code>*http.Request</code> 객체를 사용하겠습니다. 클라이언트 측에선 센서에 대한 데이터를 JSON 형식으로 보냈습니다. 따라서 우리는 Go언어에서 제공해주는 <a href="https://golang.org/pkg/encoding/json/#Unmarshal">JSON 패키지</a>를 이용해 해독해보겠습니다. JSON 패키지에서 데이터를 해독하기 위해 제공하는 방법으로는 두가지가 있습니다. 하나는 <a href="https://golang.org/pkg/encoding/json/#Unmarshal"><code>Unmarshal</code></a>이고, 다른 하나는 <a href="https://golang.org/pkg/encoding/json/#Decoder"><code>Decoder</code></a> 타입을 이용하는 것입니다. 그러나 링크들을 확인해보면 서로 다른 타입에 대해 해독한다는 것을 확인할 수 있습니다. 우리가 JSON 데이터를 가져올 <code>*http.Request</code> 구조체를 확인해보면, request의 <code>Body</code>는 <code>io.ReadCloser</code> 인터페이스로 이루어져 있음을 확인할 수 있습니다. 이 <code>io.ReadCloser</code>인터페이스는 다시 <code>io.Reader</code> 인터페이스로 이루어져있습니다. 공교롭게도, JSON 패키지의 <code>NewDecoder()</code> 메서드는 <code>io.Reader</code> 인터페이스를 받기 때문에 결국 우리는 데이터를 해독하기 위해 Decoder를 사용해야합니다. 그래서 우리는 다음과 같이 데이터를 해독하려고 합니다.</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="kd">var</span> <span class="nx">data</span> <span class="nx">models</span><span class="p">.</span><span class="nx">TempSensor</span>					<span class="c1">// 해독한 데이터를 저장할 공간을 만들어줍니다.</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">data</span> <span class="nx">models</span><span class="p">.</span><span class="nx">TempSensor</span>					<span class="c1">// 해독한 데이터를 저장할 공간을 만들어줍니다.</span>
 
 <span class="nx">decoder</span> <span class="o">:=</span> <span class="nx">json</span><span class="p">.</span><span class="nx">NewDecoder</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>	<span class="c1">// Request의 Body를 해독하기 위해 JSON 패키지에서 Decoder를 새로 생성해줍니다.</span>
 <span class="nx">err</span> <span class="o">:=</span> <span class="nx">decoder</span><span class="p">.</span><span class="nx">Decode</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">data</span><span class="p">)</span>				<span class="c1">// 생성한 Decoder를 이용해서 데이터를 해독하고 저장합니다.</span>
@@ -227,16 +221,16 @@
 </code></pre></div>
 
 <p>그럼 해독한 데이터를 어떻게 로그 핸들러에게 전달해줘야할까요? 이것은 다음 페이지에서 자세하게 얘기할게요. 대신 <code>ServeHTTP()</code> 메서드 마지막에 이 코드만 추가해주세요.</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="nx">m</span><span class="p">.</span><span class="nx">buf</span> <span class="o">&lt;-</span> <span class="nx">logContent</span><span class="p">{</span><span class="nx">content</span><span class="p">:</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprintf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="nx">data</span><span class="p">),</span> <span class="nx">location</span><span class="p">:</span> <span class="nx">tempLog</span><span class="p">,</span> <span class="nx">sensorName</span><span class="p">:</span> <span class="nx">data</span><span class="p">.</span><span class="nx">Name</span><span class="p">}</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="nx">m</span><span class="p">.</span><span class="nx">buf</span> <span class="o">&lt;-</span> <span class="nx">logContent</span><span class="p">{</span><span class="nx">content</span><span class="p">:</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprintf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="nx">data</span><span class="p">),</span> <span class="nx">location</span><span class="p">:</span> <span class="nx">tempLog</span><span class="p">,</span> <span class="nx">sensorName</span><span class="p">:</span> <span class="nx">data</span><span class="p">.</span><span class="nx">Name</span><span class="p">}</span>
 </code></pre></div>
 
 <p>이제 다음 페이지에선 해독한 데이터를 로그 핸들러에게 전달해보겠습니다.</p>
 
 <p><br></p>
 
-<h3 id="도전">도전</h3>
+<h3 id="도전">도전!</h3>
 
-<p>남은 기본 센서들과 이전 단계에서 만들었던 여러분들만의 센서에 대해 <code>Handler Interface</code>와 <code>ServeHTTP()</code> 메서드를 정의해보세요.</p>
+<p>남은 기본 센서들과 이전 단계에서 만들었던 여러분들만의 센서에 대해 <code>Handler Interface</code>와 <code>ServeHTTP()</code> 메서드를 정의해보세요!</p>
 
         </article>
     </div>
