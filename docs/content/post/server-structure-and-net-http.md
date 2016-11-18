@@ -56,6 +56,7 @@ func (m *AccelHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 ### 데이터 까보기
 
 이제 HTTP 프로토콜을 통해서 받은 데이터를 디코딩해봅시다. 먼저, HTTP를 통해 받은 데이터는 `Request`에 들어있겠죠? 그래서 우리는 `*http.Request` 객체를 사용하겠습니다. 클라이언트 측에선 센서에 대한 데이터를 JSON 형식으로 보냈습니다. 따라서 우리는 Go언어에서 제공해주는 [JSON 패키지](https://golang.org/pkg/encoding/json/#Unmarshal)의 `NewDecoder()` 메서드를 이용해 다음과 같이 데이터를 디코딩하겠습니다.
+
 ```go
 var data models.TempSensor					// 해독한 데이터를 저장할 공간을 만들어줍니다.
 
@@ -67,12 +68,13 @@ if err != nil {										// 해독하는 중 발생할 수 있는 에러를 처�
 defer req.Body.Close()							// Request의 Body를 더 이상 읽을 필요가 없으면 닫아줍니다.
 ```
 
-그럼 해독한 데이터를 어떻게 로그 핸들러에게 전달해줘야할까요? 이것은 다음 페이지에서 자세하게 얘기할게요. 대신 `ServeHTTP()` 메서드 마지막에 이 코드만 추가해주세요.
+그럼 디코딩된 데이터를 어떻게 로그 핸들러에게 전달해줘야할까요? 이것은 다음 페이지에서 자세하게 얘기할게요. 대신 `ServeHTTP()` 메서드 마지막에 이 코드만 추가해주세요.
+
 ```go
 m.buf <- logContent{content: fmt.Sprintf("%s", data), location: tempLog, sensorName: data.Name}
 ```
 
-이제 다음 페이지에선 해독한 데이터를 로그 핸들러에게 전달해보겠습니다.
+이제 다음 페이지에선 디코딩된 데이터를 로그 핸들러에게 전달해보겠습니다.
 
 <br>
 
