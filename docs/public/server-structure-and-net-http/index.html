@@ -220,11 +220,11 @@
 <span class="k">defer</span> <span class="nx">req</span><span class="p">.</span><span class="nx">Body</span><span class="p">.</span><span class="nx">Close</span><span class="p">()</span>							<span class="c1">// Request의 Body를 더 이상 읽을 필요가 없으면 닫아줍니다.</span>
 </code></pre></div>
 
-<p>그럼 해독한 데이터를 어떻게 로그 핸들러에게 전달해줘야할까요? 이것은 다음 페이지에서 자세하게 얘기할게요. 대신 <code>ServeHTTP()</code> 메서드 마지막에 이 코드만 추가해주세요.</p>
+<p>그럼 디코딩된 데이터를 어떻게 로그 핸들러에게 전달해줘야할까요? 이것은 다음 페이지에서 자세하게 얘기할게요. 대신 <code>ServeHTTP()</code> 메서드 마지막에 이 코드만 추가해주세요.</p>
 <div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="nx">m</span><span class="p">.</span><span class="nx">buf</span> <span class="o">&lt;-</span> <span class="nx">logContent</span><span class="p">{</span><span class="nx">content</span><span class="p">:</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprintf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="nx">data</span><span class="p">),</span> <span class="nx">location</span><span class="p">:</span> <span class="nx">tempLog</span><span class="p">,</span> <span class="nx">sensorName</span><span class="p">:</span> <span class="nx">data</span><span class="p">.</span><span class="nx">Name</span><span class="p">}</span>
 </code></pre></div>
 
-<p>이제 다음 페이지에선 해독한 데이터를 로그 핸들러에게 전달해보겠습니다.</p>
+<p>이제 다음 페이지에선 디코딩된 데이터를 로그 핸들러에게 전달해보겠습니다.</p>
 
 <p><br></p>
 
