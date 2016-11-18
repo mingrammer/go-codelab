@@ -198,7 +198,7 @@ models/
 </code></pre>
 
 <p>그럼 이제 우리 튜토리얼의 패키지들을 살펴봅시다. <code>faker</code>의 <code>range.go</code> 파일과 <code>models</code>의 <code>sensor.go</code>를 보면 상단에 다음과 같은 코드를 볼 수 있습니다.</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="c1">// faker/range.go</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="c1">// faker/range.go</span>
 <span class="kn">package</span> <span class="nx">faker</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -206,7 +206,7 @@ models/
 	<span class="s">&quot;time&quot;</span>
 <span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="c1">// models/sensor.go</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="c1">// models/sensor.go</span>
 <span class="kn">package</span> <span class="nx">models</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -225,7 +225,7 @@ models/
 <h3 id="임포트">임포트</h3>
 
 <p>위의 <code>range.go</code>와 <code>sensor.go</code> 파일을 보면 <code>package</code> 아래에서 <code>import</code>문을 볼 수 있습니다.  <code>import</code>문을 통해 표준 또는 외부 패키지를 불러와 사용할 수 있습니다. 위 코드에서 보이는 <code>math/rand</code>, <code>time</code>, <code>fmt</code>, <code>strings</code>는 Go의 표준 라이브러리 패키지입니다. 표준 라이브러리 패키지의 경우 해당 패키지명만 그대로 선언해주면 바로 사용할 수 있습니다. 다음은 콘솔에 값을 출력하는 코드입니다.</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="c1">// 단일 import문은 이렇게 쓸 수 있습니다.</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="c1">// 단일 import문은 이렇게 쓸 수 있습니다.</span>
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
 <span class="c1">// 다중 import문은 이렇게 쓸 수 있습니다.</span>
