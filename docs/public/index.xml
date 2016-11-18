@@ -83,14 +83,15 @@ sudo apt install golang
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;설치가 완료되면 터미널(혹은 명령 프롬프트)에서 &lt;code&gt;go&lt;/code&gt;를 입력하여 결과를 확인합니다. 다음과 같은 결과가 나오면 기본 설치는 잘 된 것입니다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span&gt;&lt;/span&gt;lkaybob@lkaybob-530u4c:/$ go
-Go is a tool &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; managing Go &lt;span class=&#34;nb&#34;&gt;source&lt;/span&gt; code.
+
+&lt;pre&gt;&lt;code&gt;lkaybob@lkaybob-530u4c:/$ go
+Go is a tool for managing Go source code.
 
 Usage:
 
-	go &lt;span class=&#34;nb&#34;&gt;command&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;arguments&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+	go command [arguments]
 ...	
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 
@@ -165,9 +166,18 @@ mkdir work/src      &lt;span class=&#34;c1&#34;&gt;# 소스 파일 디렉토리�
 
 &lt;h3 id=&#34;프로젝트-다운받기&#34;&gt;프로젝트 다운받기&lt;/h3&gt;
 
-&lt;p&gt;이제 설정한 Go언어의 Workspace에 프로젝트를 다운받아보겠습니다. 우리의 프로젝트는 다음의 GitHub Repository에 저장되어있습니다. Git이 설정되어 있는 경우엔, Go언어의 Workspace에서 다음의 명령어를 입력해주면 됩니다.&lt;/p&gt;
+&lt;p&gt;이제 설정한 Go언어의 Workspace에 프로젝트를 다운받아보겠습니다. 우리의 프로젝트는 다음의 GitHub Repository에 저장되어있습니다. Git이 설정되어 있는 경우엔, Go언어의 Workspace에서 다음의 명령어를 순차적으로 입력해주면 됩니다. 폴더를 만들어주는 것은 Go언어의 Workspace 형식에 맞추기 위함입니다. (이에 대한 자세한 내용은 &lt;a href=&#34;https://mingrammer.com/go-codelab/package-and-import&#34;&gt;패키지와 임포트&lt;/a&gt; 단계에서 확인하실 수 있습니다!)&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;git clone git@github.com:mingrammer/go-codelab.git
+&lt;pre&gt;&lt;code&gt;mkdir src
+cd src
+
+mkdir github.com
+cd github.com
+
+mkdir mingrammer
+cd mingrammer
+
+git clone git@github.com:mingrammer/go-codelab.git
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;명령어를 입력하고 기다려주면, Workspace 안에 &lt;code&gt;go-codelab&lt;/code&gt;이라는 폴더가 만들어지고 우리의 튜토리얼에 쓰일 코드가 안에 들어있을겁니다!&lt;/p&gt;

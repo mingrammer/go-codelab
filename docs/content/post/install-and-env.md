@@ -26,7 +26,7 @@ sudo apt install golang
 
 설치가 완료되면 터미널(혹은 명령 프롬프트)에서 `go`를 입력하여 결과를 확인합니다. 다음과 같은 결과가 나오면 기본 설치는 잘 된 것입니다.
 
-```bash
+```
 lkaybob@lkaybob-530u4c:/$ go
 Go is a tool for managing Go source code.
 
@@ -107,8 +107,17 @@ export GOPATH=/path/to/work
 <br>
 ### 프로젝트 다운받기
 
-이제 설정한 Go언어의 Workspace에 프로젝트를 다운받아보겠습니다. 우리의 프로젝트는 다음의 GitHub Repository에 저장되어있습니다. Git이 설정되어 있는 경우엔, Go언어의 Workspace에서 다음의 명령어를 입력해주면 됩니다.
+이제 설정한 Go언어의 Workspace에 프로젝트를 다운받아보겠습니다. 우리의 프로젝트는 다음의 GitHub Repository에 저장되어있습니다. Git이 설정되어 있는 경우엔, Go언어의 Workspace에서 다음의 명령어를 순차적으로 입력해주면 됩니다. 폴더를 만들어주는 것은 Go언어의 Workspace 형식에 맞추기 위함입니다. (이에 대한 자세한 내용은 [패키지와 임포트](/package-and-import) 단계에서 확인하실 수 있습니다!)
 ```
+mkdir src
+cd src
+
+mkdir github.com
+cd github.com
+
+mkdir mingrammer
+cd mingrammer
+
 git clone git@github.com:mingrammer/go-codelab.git
 ```
 명령어를 입력하고 기다려주면, Workspace 안에 `go-codelab`이라는 폴더가 만들어지고 우리의 튜토리얼에 쓰일 코드가 안에 들어있을겁니다!
