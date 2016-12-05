@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Post-rsses on Go codelab step-by-step page</title>
-    <link>https://mingrammer.com/go-codelab/post/index.xml</link>
-    <description>Recent content in Post-rsses on Go codelab step-by-step page</description>
+    <title>Posts on Go codelab step-by-step page</title>
+    <link>https://mingrammer.com/go-codelab/post/</link>
+    <description>Recent content in Posts on Go codelab step-by-step page</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 14 Nov 2016 10:20:44 +0900</lastBuildDate>
@@ -177,7 +177,7 @@ cd github.com
 mkdir mingrammer
 cd mingrammer
 
-git clone git@github.com:mingrammer/go-codelab.git
+git clone https://github.com/mingrammer/go-codelab.git
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;명령어를 입력하고 기다려주면, Workspace 안에 &lt;code&gt;go-codelab&lt;/code&gt;이라는 폴더가 만들어지고 우리의 튜토리얼에 쓰일 코드가 안에 들어있을겁니다!&lt;/p&gt;
