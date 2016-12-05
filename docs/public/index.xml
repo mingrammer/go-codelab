@@ -76,7 +76,7 @@
 
 &lt;p&gt;&lt;code&gt;OS X/Linux&lt;/code&gt;에선 패키지 매니저로도 설치할 수 있습니다.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;// OS X
-brew install go
+brew install golang
 
 // Ubuntu
 sudo apt install golang
