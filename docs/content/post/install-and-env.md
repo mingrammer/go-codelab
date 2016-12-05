@@ -18,7 +18,7 @@ weight = 2
 
 ```bash
 // OS X
-brew install go
+brew install golang
 
 // Ubuntu
 sudo apt install golang
